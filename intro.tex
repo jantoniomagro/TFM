@@ -1,0 +1,21 @@
+%% Los cap'itulos inician con \chapter{T'itulo}, estos aparecen numerados y
+%% se incluyen en el 'indice general.
+%%
+%% Recuerda que aqu'i ya puedes escribir acentos como: 'a, 'e, 'i, etc.
+%% La letra n con tilde es: 'n.
+
+\chapter{Overview}
+
+\pagenumbering{arabic}
+
+The volume of data produced at some science centers presents a considerable processing challenge.\\
+
+At CERN, for instance, almost 600 million times per second, particles collide within the Large Hadron Collider (LHC). Each collision generates particles that often decay in complex ways into even more particles. Electronic circuits record the passage of each particle through a detector as a series of electronic signals, and send the data to the CERN Data Centre for digital reconstruction. The digitized summary is recorded as a "collision event". Physicists must sift through the 15 petabytes or so of data produced annually to determine if the collisions have thrown up any interesting physics. \\
+
+CERN does not have the computing or financial resources to crunch all of the data on site, so in 2002 it turned to grid computing to share the burden with computer centers around the world. The Worldwide LHC Computing Grid is a distributed computing infrastructure arranged in tiers which gives a community of over 8000 physicists near real-time access to LHC data.. \\
+
+So we could think that current deployed technologies are maybe obsolete and a new rethink should be made. If CERN (but not just CERN as we will discuss later) has changed its storage policy (leaving behind the classic client-server model), why not change the way the data are accessed? \\
+
+Almost a decade after E. Codd published his famous relational model paper, the relational database management systems (RDBMS) have been the must-be tools. Today, non-relational, cloud, or the so-called NoSQL databases are gaining mindshare as an alternative model for database management. NoSQL movement is growing rapidly. Often more characteristics apply such as schema-free, easy replication support, simple API, eventually consistent / BASE (not ACID), a huge amount of data (big data) and more.\\
+
+In this document, we present an alternative, using one of the NoSQL databases free available, to offer a different way of challenging these problems, and always operating inside VO tools.
