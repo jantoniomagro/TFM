@@ -14,7 +14,7 @@ A data model is a description of the objects represented by a computer system wi
 
 In 2011 IVOA proposed a new recommendation: Observation Data Model Core Components and its Implementation in the Table Access Protocol \footnote{\url{http://www.ivoa.net/documents/ObsCore/20110502/PR-ObsCore-v1.0-20110502.pdf}}. That document was intended to be a description of the interface which integrated the data modeling and data access aspects in a single service:\\ 
 
-\framebox{ObsCore data model + Table Access Protocol = ObsTAP}
+\doublebox{ObsCore data model + Table Access Protocol = ObsTAP}
 
 \subsection{ObsCore Data Model}
 
@@ -37,7 +37,7 @@ TAP includes support for multiple query languages, including queries specified u
 
 Finally, it also includes support for both synchronous and asynchronous queries. Special support is provided for spatially indexed queries using the spatial extensions in ADQL.\\
 
-\section{FITS format}
+\section{Flexible Image Transport System}
  
 Flexible Image Transport System (FITS) is an open standard defining a digital file format useful for storage, transmission and processing of scientific and other images. FITS is the most commonly used digital file format in astronomy. Unlike many image formats, FITS is designed specifically for scientific data and hence includes many provisions for describing photometric and spatial calibration information, together with image origin metadata.\\
 
@@ -49,9 +49,20 @@ FITS is also often used to store non-image data, such as spectra, photon lists, 
  
 FITS support is available in a variety of programming languages that are used for scientific work, including C, C++, C\#, Fortran, IGOR Pro, IDL, Java, LabVIEW, Mathematica, MatLab, Perl, PDL, Python, R, and Tcl. The FITS Support Office at NASA/GSFC maintains a list of libraries and platforms that currently support FITS.\\
  
-Image processing programs such as ImageJ, GIMP, Photoshop, XnView and IrfanView can generally read simple FITS images, but frequently cannot interpret more complex tables and databases. Scientific teams frequently write their own code to interact with their FITS data, using the tools available in their language of choice. The FITS Liberator software is used by imaging scientists at the European Space Agency, the European Southern Observatory and NASA. The SAOImage DS9 Astronomical Data Visualization Application is available for many OSs, and handles images and headers.\\
+Image processing programs such as ImageJ, GIMP, Photoshop, XnView and IrfanView can generally read simple FITS images, but frequently cannot interpret more complex tables and databases. Scientific teams frequently write their own code to interact with their FITS data, using the tools available in their language of choice. The FITS Liberator software is used by imaging scientists at the European Space Agency, the European Southern Observatory and NASA. The SAOImage DS9 Astronomical Data Visualization Application is available for many OSs, and handles images and headers.
 
+\subsubsection{FITS Data Format}
 
+A FITS file is comprised of parts called Header Data Units (HDU), being the first HDU called primary HDU o primeray array. This array can contain a 1-999 dimensional array. A typical primeray array could contain a 1D spectrum, 2D image or 3D data cube. Any number of HDU can follow the main array, and are called FITS extensions. Currently, three different¡ extensions can be defined:
+
+\begin{itemize}
+\item Image extension, a 0-9999 dimensional array of pixels, which begins with XTENSION = 'IMAGE'
+\item ASCII table extension which stores tabular data in ASCII formats. They begin with XTENSION = 'TABLE'
+\item Binary table extension stores tabular data in binary representation. Headers start with XTENSION = 'BINTABLE'
+\end{itemize}
+
+Besides, there are additional type of HDU called random groups, but only used for radio interferometry.
+      
 \begin{figure}[H]
 \centering
 \includegraphics[width=11cm,height=8cm]{images/fits_header.png}\\

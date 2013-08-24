@@ -1,4 +1,4 @@
-\chapter{Data storage and access}
+\chapter{Relational DBMS vs Document oriented DBMS}
 
 Typically, modern relational databases have shown little efficiency in certain applications using intensive data, like indexing of a large number of documents, sites rendering with high traffic, and streaming sites. Typical RDBMS implementations are tuned either for small but frequent reads and writes or a large set of transactions that have few write accesses. On the other hand NoSQL can serve load lots of reads and writes.\\
 
@@ -125,11 +125,13 @@ They run on clusters of inexpensive machines.\\
 
 
 
-\subsection{MongoDB}
+\subsection{MongoDB: a document oriented database}
 
 MongoDB (from "humongous") is an open source document-oriented database system developed and supported by 10gen. It is part of the NoSQL family of database systems. Instead of storing data in tables as is done in a "classical" relational database, MongoDB stores structured data as JSON-like documents with dynamic schemas (MongoDB calls the format BSON), making the integration of data in certain types of applications easier and faster. \\
 
 10gen began Development of MongoDB in October 2007 and was not created to be just another database that tries to do everything for everyone. Instead, MongoDB was created to work with documents rather than rows, was extremely fast, massively scalable, and easy to use. In order to accomplish this, some features were excluded, namely support for transactions.
+
+\begin{shaded}A document database is more like a collection of documents. Each entry is a document, and each one can have its own structure. If you want to add a field to an entry, you can do so without affecting any other entry.\end{shaded} 
 
 \subsubsection{Main features}
 
@@ -258,10 +260,5 @@ There are literally millions of developers throughout the world, and in every bu
 
 \end{itemize}
 
-%\section{Languages}
 
-%\subsection{Java}
-
-%Java is a general-purpose, concurrent, class-based, object-oriented computer programming language that is specifically designed to have as few implementation dependencies as possible. It is intended to let application developers "write once, run anywhere", meaning that code that runs on one platform does not need to be recompiled to run on another. Java applications are typically compiled to bytecode (class file) that can run on any Java virtual machine (JVM) regardless of computer architecture.
-
-%We have selected the Java for our study because of its availability and the huge amount of tools ready to use for software development. Its also really easy to set up a development environment, just in a couple of click we can have our IDE configured to start working. See the appendices for more information on how to get a fully operating set of tools.
+\section{Rethinking FITS headers in MongoDB}
