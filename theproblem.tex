@@ -25,8 +25,7 @@ ALMA is a fusion of ideas, with its roots in three astronomical projects: the Mi
 
 \textbf{Millimeter Array} \\
 
-The origins of the Millimeter Array (MMA) are found in the science of the NRAO 36-Foot Telescope (later known as the 12-Meter Telescope), soon followed by the 4.9m telescopes at the University of Texas and Aerospace Corporation, the 14m telescope at the Five Colleges Radio Astronomical Observatory, and the 7m telescope at AT\&T Bell Labs. The millimeter interferometers of the University of California (Berkeley) at the Hat Creek Observatory (later the Berkeley-Maryland- Illinois Association, or BIMA) and the California Institute of Technology at the Owens Valley Radio Observatory demonstrated the power that comes with high angular resolution for studying the sources found with the single dishes. The experience of using a powerful, flexible array that was provided by NRAO’s Very Large Array (VLA) at longer wavelengths was also very influential. Indeed, the prime characteristic of the MMA was the ability to obtain rapid high-quality images at 230GHz, that is, the MMA was to be a millimeter version of the VLA. The science targets of the MMA included the same broad range of topics seen at the VLA: (NSF) in July, 1990, called for an array of 40 antennas of 8-meter diameter, with four receiver bands covering the atmospheric windows from 30-350 GHz, configurable in four arrays of size 70-3000 m. The proposal discussed two possible sites for the MMA, both in the southwestern United States. Studies of the atmospheric transparency and phase stability at these sites led to similar studies on Mauna Kea, in Hawaii. Extensive atmospheric monitoring was also conducted there.\\
-
+The origins of the Millimeter Array (MMA) are found in the science of the NRAO 36-Foot Telescope (later known as the 12-Meter Telescope), soon followed by the 4.9m telescopes at the University of Texas and Aerospace Corporation, the 14m telescope at the Five Colleges Radio Astronomical Observatory, and the 7m telescope at AT\&T Bell Labs. The science targets of the MMA included the same broad range of topics seen at the VLA: (NSF) in July, 1990, called for an array of 40 antennas of 8-meter diameter, with four receiver bands covering the atmospheric windows from 30-350 GHz, configurable in four arrays of size 70-3000 m. The proposal discussed two possible sites for the MMA, both in the southwestern United States. Studies of the atmospheric transparency and phase stability at these sites led to similar studies on Mauna Kea, in Hawaii.\\
 
 Concerns with the limited size of the area available to the MMA on Mauna Kea and with potential environmental problems prompted a search for potential sites in Chile. From April 1994, many highelevation sites were visited. Finally, the site retained for the MMA was formally proposed in 1996: it was the Chajnantor plateau. \\
 
@@ -34,9 +33,9 @@ This effort culminated in the signing of the ALMA Agreement on February 25, 2003
 
 Assuming all three partners are able to meet their commitments, it was decided that the final project would be cost-shared 37.5\% / 37.5\% / 25\% between North America, Europe, and Japan, respectively. The observing time, after a 10\% share for Chile, would be shared accordingly.\\
 
-ALMA is an instrument that consist of a giant array of 12-m antennas with baselines up to 16 km, and an additional compact array of 7-m and 12-m antennas to greatly enhance ALMA's ability to image extended targets, located on the Chajnantor plateau at 5000m altitude. Initially, it will observe at wavelengths in the range 3 mm to 400 μm (84 to 720 GHz). The antennas can be moved around, in order to form arrays with different distributions of baseline lengths. More extended arrays will give high spatial resolution, more compact arrays give better sensitivity for extended sources. In addition to the array of 12-m antennas, there is the Atacama Compact Array (ACA), consisting of twelve 7-m antennas and four 12-m antennas. This array will mostly stay in a fixed configuration and is used to image large scale structures that are not well sampled by the ALMA 12-m array.\\
+ALMA is an instrument that consist of a giant array of 12-m antennas with baselines up to 16 km, and an additional compact array of 7-m and 12-m antennas to greatly enhance ALMA's ability to image extended targets, located on the Chajnantor plateau at 5000m altitude. Initially, it will observe at wavelengths in the range $3 mm$ to $400 μm$ ($84$ to $720 GHz$). The antennas can be moved around, in order to form arrays with different distributions of baseline lengths. More extended arrays will give high spatial resolution, more compact arrays give better sensitivity for extended sources. In addition to the array of 12-m antennas, there is the Atacama Compact Array (ACA), consisting of twelve 7-m antennas and four 12-m antennas. This array will mostly stay in a fixed configuration and is used to image large scale structures that are not well sampled by the ALMA 12-m array.\\
 
-The design of ALMA is driven by three key science goals:\\
+The design of ALMA is driven by three key science goals:
 
 \begin{itemize}
 
@@ -50,25 +49,22 @@ The design of ALMA is driven by three key science goals:\\
 ALMA delivers data cubes, of which the third axis is frequency. In this sense, the final data products are very much like that of an integral field unit with up to a million Spectral Pixels.\\
 
 \textbf{Interferometry}\\
-In order to obtain images, the raw visibility data need to be Fourier transformed. When ALMA is in full operations, this imaging step, as well as various calibration steps, will be done in the data reduction pipeline. Thus, fully calibrated data cubes will be delivered to the user. However, the imaging (and subsequent deconvolution) is a non-unique procedure, so users may want to redo these steps to optimize the data products for their scientific objectives. The Common Astronomy Software Applications package (CASA) has been developed for this purpose.\\
+In order to obtain images, the raw visibility data need to be Fourier transformed. When ALMA is in full operations, this imaging step, as well as various calibration steps, will be done in the data reduction pipeline. Thus, fully calibrated data cubes will be delivered to the user.\\
 
 \textbf{Observing frequencies}\\
-The frequency range available to ALMA is divided into different receiver bands. Data can only be taken in one band at a time. These bands range from band 3, starting at$ 84 GHz$, to band 10, ending at $~950 GHz$. For comparison, a frequency of $300 GHz$ translates to a wavelength of approximately $1mm$. Band 10 ($~869 GHz$) is planned. Two more bands (band 1 around $40 GHz$ and band 2 around $80 GHz$), might be added in the future. Initially, only six ALMA antennas will be equipped with band 5 receivers ($187 GHz$).\\
+The frequency range available to ALMA is divided into different receiver bands. Data can only be taken in one band at a time. These bands range from band 3, starting at$ 84 GHz$, to band 10, ending at $\sim950 GHz$.\\
 
 \textbf{Field of view}\\
-The FWHM of the ALMA primary beam is 21" at $300 GHz$, and scales linearly with wavelength (diffraction limit of a single 12-m antenna, as opposed to that of the whole array). To achieve uniform sensitivity over a field larger than about a few arcsec, or to image larger regions than the primary beam, mosaicking is required, which is a standard observing mode for ALMA. If you plan to use mosaicking, individual pointings should be separated by 1/2 the primary beam FWHM to achieve Nyquist sampling.\\
+The FWHM of the ALMA primary beam is 21" at $300 GHz$, and scales linearly with wavelength (diffraction limit of a single 12-m antenna, as opposed to that of the whole array).\\
 
 \textbf{Spatial resolution}\\
-The spatial resolution of ALMA depends on the observing frequency and the maximum baseline of the array, following the 1.2 x lambda/D scaling. In the most compact configurations ($~150 m$), resolutions range from 0.7" at $675 GHz$ to 4.8" at $110 GHz$. In the most extended configuration (~16 km in the completed array), the resolutions range from 6 mas at $675 GHz$ to 37 mas at $110 GHz$. These numbers refer to the FWHM of the synthesized beam (point spread function), which is the inverse Fourier transform of a (weighted) u-v sampling distribution. The resolution in arcsec can be approximated as: FWHM (") = 76 \/ max\_baseline (km) \/ frequency (GHz).\\
+The spatial resolution of ALMA depends on the observing frequency and the maximum baseline of the array, following the $1.2 x \Lambda/D$ scaling. In the most compact configurations ($\sim150 m$), resolutions range from 0.7" at $675 GHz$ to 4.8" at $110 GHz$.\\
 
 \textbf{Array configurations}\\
-The ALMA 12-m array will cycle from its most compact configuration, with maximum baselines of ~150 m, to its most extended configuration, with maximum baselines of ~16 km (when completed), and back. The Atacama Compact Array (ACA) will have two configurations, one of which is a north-south extension to provide a better beam shape for far-north/far-south targets. Note that during the Early Science phase, the available configurations are restricted. See 'Capabilities' for conditions applying to the current Cycle.\\
+The ALMA 12-m array will cycle from its most compact configuration, with maximum baselines of $\sim~150 m$, to its most extended configuration, with maximum baselines of $\sim 16 km$ (when completed), and back.\\
 
 \textbf{Spectral resolution}\\
-ALMA can deliver data cubes with up to 7680 frequency channels (spectral resolution elements). The width of these channels can range between $3.8 kHz$ and $15.6 MHz$, but the total bandwidth cannot exceed $8 GHz$. At an observing frequency of $110 GHz$, the highest spectral resolution implies a velocity resolution of $0.01 km/s$, or $R=30,000,000$. At $110 GHz$, a velocity resolution of 1 km/s requires channel widths of $0.37 MHz$.\\
-
-\textbf{Sensitivity}\\
-For an interferometer, the noise level in the resulting data cubes (expressed in mJy) scales roughly as $S=(N*(Np*Δ\nu * Δ\tau)1/2)-1$, where N is the number of antennas, Np is the number of polarizations, Δν is the available bandwidth and Δτ is the observing time. For continuum observations, $Δ\nu=7.5 GHz$, for spectral line observations, Δν is the channel width. The ALMA Sensitivity Calculator can be used to estimate noise levels or required integration times to reach a desired noise level.
+ALMA can deliver data cubes with up to 7680 frequency channels (spectral resolution elements). The width of these channels can range between $3.8 kHz$ and $15.6 MHz$, but the total bandwidth cannot exceed $8 GHz$.\\
 
 \subsection{ALMA Science Archive}
 
@@ -83,7 +79,7 @@ As stated in \cite{Etoka12}, the purpose of the ALMA archive is to provide servi
 
 And the key-point of the conceptual design of the ALMA Archive is to guarantee that three ALMA Regional Centres (ARCs) hold an identical copy of the archive at the Joint ALMA Observatory (JAO) in Santiago. \\
 
-Relational denormalized database.
+Relational denormalized database.\\
 
 ALMA frontend archive is optimized for storage and preservation, not for data query and retrieval. ASA database is inspired from ObsCore, RADAMS and Hubble Legacy Archive plus Virtual Observatory Software:
 
@@ -113,10 +109,11 @@ Construction is scheduled to start in 2016.\\
 \caption{Artist's impression of the SKA dishes. Credit: SKA Organisation/TDP/DRAO/Swinburne Astronomy Productions}
 \end{figure}
 
+\subsection{Figures and facts}
 
-The recent launch of the Murchison Widefield Array (MWA) – a radio telescope based in Western Australia's Mid West - marked the start of an impressive flow of astronomical data that will be stored in the iVEC-managed Pawsey Center in Kensington for later use by researchers around the world.\\
+The recent launch of the Murchison Widefield Array (MWA) - a radio telescope based in Western Australia's Mid West - marked the start of an impressive flow of astronomical data that will be stored in the iVEC-managed Pawsey Center in Kensington.\\
 
-According to Professor Andreas Wicenec, from The University of Western Australia node of the International Centre for Radio Astronomy Research (ICRAR), SKA has ``now have more than 400 megabytes per second of MWA data streaming along the National Broadband Network from the desert 800 km away''.\\
+According to Professor Andreas Wicenec, from The University of Western Australia node of the International Centre for Radio Astronomy Research (ICRAR), SKA has ``now have more than 400 megabytes per second of MWA data streaming along the National Broadband Network from the desert 800 km away''. \footnote{\url{http://www.skatelescope.org/news/pawsey-centre/}} \\
 
 The Murchison Widefield Array is the first Square Kilometre Array precursor to enter full operations, generating a vast torrent of information that needs to be stored for later retrieval by researchers.\\
 
@@ -128,11 +125,11 @@ The data are not obviously intented to be fully available for everybody at every
 
 MWA is producing so much information that it would be impossible to manually decide where to send what, which is where a sophisticated archiving system — the open-source Next Generation Archive System (NGAS) — comes in. NGAS was initially developed by Professor Wicenec at the European Southern Observatory (ESO) and later modified by the ICRAR team to meet the MWA data challenge.\\
 
-The NGAS operating mode is very simple, one simply asks the system for what he/she wants and it either provides it from the local store or retrieves it from the full archive back in Perth through a highly efficient dataflow management system.\\
+In the NGAS one simply asks the system for what the data wanted and it either provides it from the local store or retrieves it from the full archive back in Perth.\\
 
-About half of all MWA computing occurs on site in the Murchison, where signals from radio telescope antennas are combined and processed in a powerful system of computers called a correlator. What’s left to do in Perth is produce images, and manage storage and distribution by the archive system so MWA astronomers can analyze the collected data. Data travels down a dedicated 10 gigabit per second connection between the Murchison Radio-astronomy Observatory (MRO) and Geraldton, and the trip to Perth is completed on Australia’s new high-speed National Broadband Network.\\
+About half of all MWA computing occurs on site in the Murchison, where signals from radio telescope antennas are combined and processed in a powerful system of computers called a correlator. What's left to do in Perth is produce images, and manage storage and distribution by the archive system so MWA astronomers can analyze the collected data. Data travels down a dedicated 10 gigabit per second connection between the Murchison Radio-astronomy Observatory (MRO) and Geraldton, and the trip to Perth is completed on Australia’s new high-speed National Broadband Network.\\
 
-The MWA will store about 3 Petabytes at the Pawsey Center each year. Another section of the Pawsey Center will be a supercomputing facility that includes computing for Australia’s other SKA precursor, CSIRO’s Australian Square Kilometre Array Pathfinder (ASKAP), and projects from geoscience and other computationally intensive fields.\\
+The MWA will store about 3 Petabytes at the Pawsey Center each year. Another section of the Pawsey Center will be a supercomputing facility that includes computing for Australia's other SKA precursor, CSIRO’s Australian Square Kilometre Array Pathfinder (ASKAP), and projects from geoscience and other computationally intensive fields.\\
 
 To sum up, some relevants figures and facts about SKA:
 
@@ -140,13 +137,10 @@ To sum up, some relevants figures and facts about SKA:
 
 \item The data collected by the SKA in a single day would take nearly two million years to playback on an ipod.
 \item The SKA central computer will have the processing power of about one hundred million PCs.
-\item The SKA will use enough optical fibre to wrap twice around the Earth!
+\item The SKA will use enough optical fibre to wrap twice around the Earth.
 \item The dishes of the SKA will produce 10 times the global internet traffic.
-\item The aperture arrays in the SKA could produce more than 100 times the global internet traffic.
-\item The SKA will generate enough raw data to fill 15 million 64 GB iPods every day!
-\item The SKA supercomputer will perform 1018 operations per second – equivalent to the number of stars in three million Milky Way galaxies – in order to process all the data that the SKA will produce.
+\item The SKA will generate enough raw data to fill 15 million 64 GB iPods every day.
 \item The SKA will be so sensitive that it will be able to detect an airport radar on a planet 50 light years away.
-\item The SKA will contain thousands of antennas with a combined collecting area of about one square kilometre (that’s 1 000 000 square metres!).
-\item Analysts estimate the London Olympics was the most data-heavy yet – with some 60 Gbytes, the equivalent of 3,000 photographs, travelling across the network in the Olympic Park every second. This however is only equivalent to the data rate from about half a low frequency aperture array station in SKA phase one.
+\item Analysts estimate the London Olympics was the most data-heavy yet - with some 60 Gbytes, the equivalent of 3,000 photographs, travelling across the network in the Olympic Park every second. This however is only equivalent to the data rate from about half a low frequency aperture array station in SKA phase one.
 
 \end{itemize}
