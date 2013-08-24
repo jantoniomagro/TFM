@@ -1,19 +1,41 @@
 \chapter{The Virtual Observatory}
 
-The International Virtual Observatory Alliance (IVOA) was formed in June 2002 with a mission to "facilitate the international coordination and collaboration necessary for the development and deployment of the tools, systems and organizational structures necessary to enable the international utilization of astronomical archives as an integrated and interoperating virtual observatory." The IVOA now comprises 20 VO programs from Argentina, Armenia, Australia, Brazil, Canada, China, Europe, France, Germany, Hungary, India, Italy, Japan, Russia, Spain, the United Kingdom, Ukraine, and the United States and inter-governmental organizations (ESA and ESO). Membership is open to other national and international programs according to the IVOA Guidelines for Participation.\\
+The International Virtual Observatory Alliance (IVOA) was formed in 2002 with the aim to "facilitate the international coordination and collaboration necessary for the development and deployment of the tools, systems and organizational structures necessary to enable the international utilization of astronomical archives as an integrated and interoperating virtual observatory." \footnote{\url{http://www.ivoa.net/}} The IVOA now comprises programs from Argentina, Armenia, Australia, Brazil, Canada, China,  France, Germany, Hungary, India, Italy, Japan, Russia, Spain, the United Kingdom, Ukraine, and the United States and inter-governmental organizations (ESA and ESO). Membership is open to other national and international programs according to the IVOA Guidelines for Participation.\\
 
 The IVOA focuses on the development of standards and encourages their implementation for the benefit of the worldwide astronomical community. Working Groups are constituted with cross-program membership in those areas where key interoperability standards and technologies have to be defined and agreed upon. The Working Groups develop standards using a process modeled after the World Wide Web Consortium, in which Working Drafts progress to Proposed Recommendations and finally to Recommendations. Recommendations may ultimately be endorsed by the Virtual Observatory Working Group of Commission 5 (Astronomical Data) of the International Astronomical Union. The IVOA also has Interest Groups that discuss experiences using VO technologies and provide feedback to the Working Groups. Ad-hoc and permanent committees deal with specific scientific and procedural topics. Interaction with other scientific disciplines interested in data inter-operability is also pursued through dedicated Liaison Groups.\\
 
-Senior representatives from each national and international member VO program form the IVOA Executive Committee. A chair is chosen from among the representatives and serves an eighteen-month term, normally preceded by an eighteen-month term as deputy chair. The Executive Committee meets 3-4 times a year (also by teleconference) to discuss goals, priorities, and strategies. Executive Committee members represent their respective programs and are expected to be in a position to commit resources targeted at the achievement of common goals. Decisions by the IVOA Executive Committee are reached by consensus.\\
+A chair is chosen from among the representatives and serves an eighteen-month term, normally preceded by an eighteen-month term as deputy chair. The Executive Committee meets 3-4 times a year and its members represent their respective programs and are expected to be in a position to commit resources targeted at the achievement of common goals. Decisions by the IVOA Executive Committee are reached by consensus. The IVOA holds two Interoperability Workshops each year. These meetings are opportunities for the IVOA Groups and Committees to have face-to-face discussions.\\
 
-The IVOA holds two Interoperability Workshops each year typically in May and October. These meetings are opportunities for the IVOA Groups and Committees to have face-to-face discussions.
+In this section we are not going to make a deep study of the Virtual Observatory techniques, technologies, protocols and interfaces, just those needed and selected to explain our proposal of including NoSQL into VO. Bearing in mind that the problem we are trying to address is data modelling, we will just make an overview of those aspects related with our work.\\
 
 \section{ObsTAP}
 
-In 2011 IVOA proposed a new recommendation: Observation Data Model Core Components and its Implementation in the Table Access Protocol. That document was intended to be a description of the interface which integrated the data modeling and data access aspects in a single service:\\ 
+A data model is a description of the objects represented by a computer system with their properties and relationships, a logical model detailing the decomposition of a complex dataset into simpler elements, like a collection of concepts and rules used in defining data model.\\
+
+In 2011 IVOA proposed a new recommendation: Observation Data Model Core Components and its Implementation in the Table Access Protocol \footnote{\url{http://www.ivoa.net/documents/ObsCore/20110502/PR-ObsCore-v1.0-20110502.pdf}}. That document was intended to be a description of the interface which integrated the data modeling and data access aspects in a single service:\\ 
 
 \framebox{ObsCore data model + Table Access Protocol = ObsTAP}
 
+\subsection{ObsCore Data Model}
+
+This is the first block for ObsTAP.
+
+\subsection{Table Access Protocol}
+
+This is second block for ObsTAP, and defines a Web service for accessing tables containing astronomical catalogues. TAP is the protocol which underlies in the process of posing a query against a data source (or several data sources). The result of a query is a table, usually a VOTable. \footnote{Support for VOTable output is mandatory, while other formats may be available.}\\
+
+The types of queries implemented by TAP are:
+
+\begin{itemize}
+\item Data queries
+\item Metadata queries
+\item Virtual Observatory Support Interface (VOSI)
+\end{itemize}
+
+
+TAP includes support for multiple query languages, including queries specified using the Astronomical Data Query Language (ADQL [1]) and the Parameterised Query Language (PQL, under development). Other query languages are also supported, and this mechanism allows developments outside the IVOA to be used without modifying the TAP specification.\\
+
+Finally, it also includes support for both synchronous and asynchronous queries. Special support is provided for spatially indexed queries using the spatial extensions in ADQL.\\
 
 \section{FITS format}
  
@@ -30,7 +52,7 @@ FITS support is available in a variety of programming languages that are used fo
 Image processing programs such as ImageJ, GIMP, Photoshop, XnView and IrfanView can generally read simple FITS images, but frequently cannot interpret more complex tables and databases. Scientific teams frequently write their own code to interact with their FITS data, using the tools available in their language of choice. The FITS Liberator software is used by imaging scientists at the European Space Agency, the European Southern Observatory and NASA. The SAOImage DS9 Astronomical Data Visualization Application is available for many OSs, and handles images and headers.\\
 
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=11cm,height=8cm]{images/fits_header.png}\\
 \caption{Viewing FITS header in Aladin}
