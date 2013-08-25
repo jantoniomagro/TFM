@@ -1,51 +1,19 @@
-\chapter{Relational DBMS vs Document oriented DBMS}
+\chapter{Non-relational DBMS inside VO}
 
-Typically, modern relational databases have shown little efficiency in certain applications using intensive data, like indexing of a large number of documents, sites rendering with high traffic, and streaming sites. Typical RDBMS implementations are tuned either for small but frequent reads and writes or a large set of transactions that have few write accesses. On the other hand NoSQL can serve load lots of reads and writes.\\
+Typically, modern relational databases have shown little efficiency in certain applications using intensive data, like indexing of a large number of documents, sites rendering with high traffic, and streaming sites. Typical RDBMS implementations are tuned either for small but frequent reads and writes or a large set of transactions that have few write accesses. On the other hand NoSQL can serve load lots of reads and writes. A non-relational database just stores data without explicit and structured mechanisms to link data from different buckets to one another. \newline
 
-We will start making a short overview of the relational model using Postgresql RDMS. Then we move to the NoSQL alternative, through Mongo database.\\
-
-\section{Relational Database Management System}
-
-\subsection{Postgresql}
-
-
-PostgreSQL \footnote{We are not going to explain relational model theory in this section. We will focus on one of the most used and open DBMS -Posgresql-. For a full description of relational model, there are several sources available:
-\url{http://infolab.stanford.edu/~ullman/focs/ch08.pdf},
-\url{http://www.macs.hw.ac.uk/~trinder/DbInfSystems/3-RelModel.pdf} or \cite{Silberschatz_01}}
- is a powerful, open source object-relational database system. It has more than 15 years of active development and a proven architecture that has earned it a strong reputation for reliability, data integrity, and correctness. It runs on all major operating systems. It is fully ACID compliant, has full support for foreign keys, joins, views, triggers, and stored procedures (in multiple languages). It has native programming interfaces for C/C++, Java, .Net, Perl, Python, Ruby, Tcl, ODBC, among others. \\
-
-An enterprise class database, PostgreSQL boasts sophisticated features such as Multi-Version Concurrency Control (MVCC), point in time recovery, tablespaces, asynchronous replication, nested transactions (savepoints), online/hot backups, a sophisticated query planner/optimizer, and write ahead logging for fault tolerance. It is highly scalable both in the sheer quantity of data it can manage and in the number of concurrent users it can accommodate. There are active PostgreSQL systems in production environments that manage in excess of 4 terabytes of data.\\
-
-PostgreSQL runs stored procedures in more than a dozen programming languages, including Java, Perl, Python, Ruby, Tcl, C/C++, and its own PL/pgSQL, which is similar to Oracle's PL/SQL. Included with its standard function library are hundreds of built-in functions that range from basic math and string operations to cryptography and Oracle compatibility. Triggers and stored procedures can be written in C and loaded into the database as a library, allowing great flexibility in extending its capabilities.\\
-
-Just as there are many procedure languages supported by PostgreSQL, there are also many library interfaces as well, allowing various languages both compiled and interpreted to interface with PostgreSQL. There are interfaces for Java (JDBC), ODBC, Perl, Python, Ruby, C, C++, PHP, Lisp, Scheme, and Qt just to name a few.\\
-
-PostgreSQL's source code is available under a liberal open source license: the PostgreSQL License. This license gives you the freedom to use, modify and distribute PostgreSQL in any form you like, open or closed source. Any modifications, enhancements, or changes you make are yours to do with as you please.\\
-
-\begin{table}
-\begin{center}
-\begin{tabular}{|l|l|}
-\hline \textbf{Limit} & \textbf{Value}\\ \hline
-Maximum Database Size & Unlimited\\
-Maximum Table Size & 32 TB\\
-Maximum Row Size & 1.6 TB\\
-Maximum Field Size & 1 GB\\
-Maximum Rows per Table & Unlimited\\
-Maximum Columns per Table & 250 - 1600 depending on column types\\
-Maximum Indexes per Table & Unlimited\\ \hline
-\end{tabular}
-\end{center}
-\caption{PostgreSQL DBMS Limits}
-\end{table}
+IVOA has a standard called Astronomical Data Query Language (ADQL) that users do not necessarily need to know, because he can pose a query with a GUI, as long as the query is translated into standard ADQL. The receiving service likewise converts the standard ADQL into whatever its own database servers need, but always inside relational model. For the reasons stated in chapter \ref{theproblem}, we propose the use of a different approach, the NoSQL technology.
 
 
 \section{NoSQL}
 
-NoSQL implementations used in the real world include 3TB Digg green markers (indicated to highlight the stories voted by others in the social network), the 6 TB of "ENSEMBLE" European Commission database used in comparing models and air quality, and the 50 TB of Facebook inbox search.\\
+A non-relational database just stores data without explicit and structured mechanisms to link data from different buckets to one another. \newline
 
-NoSQL architectures often provide limited consistency, such as events or transactional consistency restricted to only data items. Some systems, however, provide all guarantees offered by ACID systems by adding an intermediate layer. There are two systems that have been deployed and provide for storage of snapshot isolation column: Google Percolator (based on BigTable system) and Hbase transactional system developed by the University of Waterloo. These systems use similar concepts in order to achieve distributed multiple rows ACID transactions with snapshot isolation guarantees for the underlying storage system in that column, wit no extra overhead in data management, no system deployment middleware or any maintenance introduced by middleware layer.\\
+NoSQL implementations used in the real world include 3TB Digg green markers (indicated to highlight the stories voted by others in the social network), the 6 TB of "ENSEMBLE" European Commission database used in comparing models and air quality, and the 50 TB of Facebook inbox search. \newline
 
-Quite NoSQL systems employ a distributed architecture, maintaining data redundantly on multiple servers, often using distributed hash table. Thus, the system may actually escale adding more servers, and thus a server failure may be tolerated.\\
+NoSQL architectures often provide limited consistency, such as events or transactional consistency restricted to only data items. Some systems, however, provide all guarantees offered by ACID systems by adding an intermediate layer. There are two systems that have been deployed and provide for storage of snapshot isolation column: Google Percolator (based on BigTable system) and Hbase transactional system developed by the University of Waterloo. These systems use similar concepts in order to achieve distributed multiple rows ACID transactions with snapshot isolation guarantees for the underlying storage system in that column, wit no extra overhead in data management, no system deployment middleware or any maintenance introduced by middleware layer. \newline
+
+Quite NoSQL systems employ a distributed architecture, maintaining data redundantly on multiple servers, often using distributed hash table. Thus, the system may actually escale adding more servers, and thus a server failure may be tolerated. \newline
 
 There are different NoSQL DBs for different projects:
 
@@ -107,55 +75,94 @@ There are different NoSQL DBs for different projects:
 
 \end{itemize}
 
-They run on clusters of inexpensive machines.\\
+They run on clusters of inexpensive machines.
 
 
 
-\subsection{MongoDB: a document oriented database}
+\section{MongoDB: a document oriented database}
 
-MongoDB (from "humongous") is an open source document-oriented database system developed and supported by 10gen. It is part of the NoSQL family of database systems. Instead of storing data in tables as is done in a "classical" relational database, MongoDB stores structured data as JSON-like documents with dynamic schemas (MongoDB calls the format BSON), making the integration of data in certain types of applications easier and faster. \\
+MongoDB (from "humongous") is an open source document-oriented database system developed and supported by 10gen. It is part of the NoSQL family of database systems. Instead of storing data in tables as is done in a "classical" relational database, MongoDB stores structured data as JSON-like documents with dynamic schemas (MongoDB calls the format BSON), making the integration of data in certain types of applications easier and faster. \newline
 
-10gen began Development of MongoDB in October 2007 and was not created to be just another database that tries to do everything for everyone. Instead, MongoDB was created to work with documents rather than rows, was extremely fast, massively scalable, and easy to use. In order to accomplish this, some features were excluded, namely support for transactions.
+As an example, we show some JSON code inserting a document in a Mongo DB:
+\begin{lstlisting}
+db.columns.insert( {
+		table_name: "TAP_SCHEMA.schemas",
+		column_name: "schema_name",
+		utype: null,
+		ucd: null,
+		unit: null,
+		description: "schema name for reference to TAP_SCHEMA.schemas",
+		datatype: "VARCHAR",
+		size: 64,
+		principal: 1,
+		indexed: 0,
+		std: 0
+	}
+);
+\end{lstlisting} 
+
+
+10gen began Development of MongoDB in October 2007 and was not created to be just another database that tries to do everything for everyone. Instead, MongoDB was created to work with documents rather than rows, was extremely fast, massively scalable, and easy to use. In order to accomplish this, some features were excluded, namely support for transactions. \newline
 
 %\begin{shaded}
 A document database is more like a collection of documents. Each entry is a document, and each one can have its own structure. If you want to add a field to an entry, you can do so without affecting any other entry.
 %\end{shaded} 
 
-\subsubsection{Main features}
+\begin{table}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Relational} & \textbf{Document oriented} \\ 
+\hline
+Table & Collection\\
+\hline
+Row & Document\\
+\hline
+Column & Field \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Differences between relational and NoSQL terms}
+\end{table}
+
+
+
+
+\subsection{Main features}
 
 \begin{itemize}
 
-\item \textbf{Ad hoc queries} \\
+\item \textbf{Ad hoc queries} 
 MongoDB supports search by field, range queries, regular expression searches. Queries can return specific fields of documents and also include user-defined JavaScript functions.
 
-\item \textbf{Indexing} \\
+\item \textbf{Indexing} 
 Any field in a MongoDB document can be indexed (indices in MongoDB are conceptually similar to those in RDBMSes). Secondary indices are also available.
 
-\item \textbf{Replication} \\
+\item \textbf{Replication} 
 MongoDB supports master-slave replication. A master can perform reads and writes. A slave copies data from the master and can only be used for reads or backup (not writes). The slaves have the ability to select a new master if the current one goes down.
 
-\item \textbf{Load balancing} \\
+\item \textbf{Load balancing} 
 MongoDB scales horizontally using sharding.[9] The developer chooses a shard key, which determines how the data in a collection will be distributed. The data is split into ranges (based on the shard key) and distributed across multiple shards. (A shard is a master with one or more slaves.)
 MongoDB can run over multiple servers, balancing the load and/or duplicating data to keep the system up and running in case of hardware failure. Automatic configuration is easy to deploy and new machines can be added to a running database.
 
-\item \textbf{File storage} \\
+\item \textbf{File storage} 
 MongoDB could be used as a file system, taking advantage of load balancing and data replication features over multiple machines for storing files.
 This function, called GridFS,[10] is included with MongoDB drivers and available with no difficulty for development languages (see "Language Support" for a list of supported languages). MongoDB exposes functions for file manipulation and content to developers. GridFS is used, for example, in plugins for NGINX and lighttpd. In a multi-machine MongoDB system, files can be distributed and copied multiple times between machines transparently, thus effectively creating a load balanced and fault tolerant system.
 
-\item \textbf{Aggregation} \\
+\item \textbf{Aggregation} 
 MapReduce can be used for batch processing of data and aggregation operations. The aggregation framework enables users to obtain the kind of results for which the SQL GROUP BY clause is used.
 
-\item \textbf{Server-side JavaScript execution} \\
+\item \textbf{Server-side JavaScript execution} 
 JavaScript can be used in queries, aggregation functions (such as MapReduce), are sent directly to the database to be executed.
 
-\item \textbf{Capped collections} \\
+\item \textbf{Capped collections} 
 MongoDB supports fixed-size collections called capped collections. This type of collection maintains insertion order and, once the specified size has been reached, behaves like a circular queue.
 
 Once we have seen the main features of MongoDB, we can move on to the language itself.
 \end{itemize}
 
 
-\subsubsection{The basics}
+\subsection{The basics}
 
 We must know four concepts to dig into MongoDB's world:
 
@@ -169,12 +176,12 @@ We must know four concepts to dig into MongoDB's world:
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=11cm,height=8cm]{images/mongo_dia.png}\\
+\includegraphics[width=11cm,height=8cm]{images/mongo_dia.png}
 \caption{Tree View for Tap Schema in MongoVue}
 \end{figure}
 
 
-\subsection{Advantages and uncertainties of using a NoSQL solution}
+\section{Advantages and uncertainties of NoSQL}
 
 \begin{itemize}
 
@@ -247,3 +254,7 @@ There are literally millions of developers throughout the world, and in every bu
 
 
 \section{A FITS alternative with MongoDB}
+
+A very important issue when working with FITS format is the great amount of possible key-value pairs in FITS headers. A possible solution for this problem could be use the features of MongoDB to translate FITS keywords into collections. So, we could create as much documents as needed, and storing them into MongoDB. Should we need to create supertypes of FITS headers, relations are also available in MongoDB through document linking (with no physical restriction in the sense of relational constraint).
+
+%TODO: ejemplo de conversión de fits a documentos de Mongo

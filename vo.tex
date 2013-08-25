@@ -1,26 +1,26 @@
 \chapter{The Virtual Observatory}
 
-The International Virtual Observatory Alliance (IVOA) was formed in 2002 with the aim to "facilitate the international coordination and collaboration necessary for the development and deployment of the tools, systems and organizational structures necessary to enable the international utilization of astronomical archives as an integrated and interoperating virtual observatory." \footnote{\url{http://www.ivoa.net/}} The IVOA now comprises programs from Argentina, Armenia, Australia, Brazil, Canada, China,  France, Germany, Hungary, India, Italy, Japan, Russia, Spain, the United Kingdom, Ukraine, and the United States and inter-governmental organizations (ESA and ESO). Membership is open to other national and international programs according to the IVOA Guidelines for Participation.\\
+The International Virtual Observatory Alliance (IVOA) was formed in 2002 with the aim to "facilitate the international coordination and collaboration necessary for the development and deployment of the tools, systems and organizational structures necessary to enable the international utilization of astronomical archives as an integrated and interoperating virtual observatory." \footnote{\url{http://www.ivoa.net/}} The IVOA now comprises programs from Argentina, Armenia, Australia, Brazil, Canada, China,  France, Germany, Hungary, India, Italy, Japan, Russia, Spain, the United Kingdom, Ukraine, and the United States and inter-governmental organizations (ESA and ESO). Membership is open to other national and international programs according to the IVOA Guidelines for Participation. \newline
 
-The IVOA focuses on the development of standards and encourages their implementation for the benefit of the worldwide astronomical community. Working Groups are constituted with cross-program membership in those areas where key interoperability standards and technologies have to be defined and agreed upon. The Working Groups develop standards using a process modeled after the World Wide Web Consortium, in which Working Drafts progress to Proposed Recommendations and finally to Recommendations. Recommendations may ultimately be endorsed by the Virtual Observatory Working Group of Commission 5 (Astronomical Data) of the International Astronomical Union. The IVOA also has Interest Groups that discuss experiences using VO technologies and provide feedback to the Working Groups.\\
+The IVOA focuses on the development of standards and encourages their implementation for the benefit of the worldwide astronomical community. Working Groups are constituted with cross-program membership in those areas where key interoperability standards and technologies have to be defined and agreed upon. The Working Groups develop standards using a process modeled after the World Wide Web Consortium, in which Working Drafts progress to Proposed Recommendations and finally to Recommendations. Recommendations may ultimately be endorsed by the Virtual Observatory Working Group of Commission 5 (Astronomical Data) of the International Astronomical Union. The IVOA also has Interest Groups that discuss experiences using VO technologies and provide feedback to the Working Groups. \newline
 
-In this section we are not going to make a deep study of the Virtual Observatory techniques, technologies, protocols and interfaces, just those needed and selected to explain our proposal of including NoSQL into VO. Bearing in mind that the problem we are trying to address is data modelling, we will just make an overview of those aspects related with our work.\\
+In this section we are not going to make a deep study of the Virtual Observatory techniques, technologies, protocols and interfaces, just those needed and selected to explain our proposal of including NoSQL into VO. Bearing in mind that the problem we are trying to address is data modelling, we will just make an overview of those aspects related with our work.
 
 \section{ObsTAP}
 
-A data model is a description of the objects represented by a computer system with their properties and relationships, a logical model detailing the decomposition of a complex dataset into simpler elements, like a collection of concepts and rules used in defining data model.\\
+A data model is a description of the objects represented by a computer system with their properties and relationships, a logical model detailing the decomposition of a complex dataset into simpler elements, like a collection of concepts and rules used in defining data model. \newline
 
-In 2011 IVOA proposed a new recommendation: Observation Data Model Core Components and its Implementation in the Table Access Protocol \footnote{\url{http://www.ivoa.net/documents/ObsCore/20110502/PR-ObsCore-v1.0-20110502.pdf}}. That document was intended to be a description of the interface which integrated the data modeling and data access aspects in a single service:\\ 
+In 2011 IVOA proposed a new recommendation: Observation Data Model Core Components and its Implementation in the Table Access Protocol \footnote{\url{http://www.ivoa.net/documents/ObsCore/20110502/PR-ObsCore-v1.0-20110502.pdf}}. That document was intended to be a description of the interface which integrated the data modeling and data access aspects in a single service: \newline 
 
 \doublebox{ObsCore data model + Table Access Protocol = ObsTAP}
 
-\subsection{ObsCore Data Model}
+\subsection{ObsCore Components Data Model}
 
-This is the first block for ObsTAP.
+Its aim is to get the generic data model for the metadata necessary to describe any astronomical observation. In the IVOA recommendation, the data are described using UML.
 
 \subsection{Table Access Protocol}
 
-This is second block for ObsTAP, and defines a Web service for accessing tables containing astronomical catalogues. TAP is the protocol which underlies in the process of posing a query against a data source (or several data sources). The result of a query is a table, usually a VOTable. \footnote{Support for VOTable output is mandatory, while other formats may be available.}\\ 
+TAP defines a Web service for accessing tables containing astronomical catalogues. TAP is the protocol which underlies in the process of posing a query against a data source (or several data sources). The result of a query is a table, usually a VOTable. \footnote{Support for VOTable output is mandatory, while other formats may be available.}  \newline
 
 Queries which use TAP protocol can be made through several clients, like:
 \begin{itemize}
@@ -39,11 +39,9 @@ The types of queries implemented by TAP are:
 \end{itemize}
 
 
-TAP includes support for multiple query languages, including queries specified using the Astronomical Data Query Language (ADQL [1]) and the Parameterised Query Language (PQL, under development). Other query languages are also supported, and this mechanism allows developments outside the IVOA to be used without modifying the TAP specification.\\
+TAP includes support for multiple query languages, including queries specified using the Astronomical Data Query Language (ADQL [1]) and the Parameterised Query Language (PQL, under development). Other query languages are also supported, and this mechanism allows developments outside the IVOA to be used without modifying the TAP specification. Finally, it also includes support for both synchronous and asynchronous queries. Special support is provided for spatially indexed queries using the spatial extensions in ADQL. \newline
 
-Finally, it also includes support for both synchronous and asynchronous queries. Special support is provided for spatially indexed queries using the spatial extensions in ADQL.\\
-
-
+ADQL sample query:
 \begin{lstlisting}
 SELECT 
  u.raj2000+d_alpha+d_pmalpha/cos(radians(u.dej2000))*(u.epoch-2000) AS ra_icrs,
@@ -56,15 +54,15 @@ FROM
   JOIN ucac3.icrscorr AS c
   ON (c.alpha=FLOOR(u.raj2000)+0.5 and c.delta=FLOOR(u.dej2000)+0.5)
 \end{lstlisting}
-ADQL sample query
+
 
 \section{Flexible Image Transport System}
  
-Flexible Image Transport System (FITS) is an open standard defining a digital file format useful for storage, transmission and processing of scientific and other images. FITS is the most commonly used digital file format in astronomy. Unlike many image formats, FITS is designed specifically for scientific data and hence includes many provisions for describing photometric and spatial calibration information, together with image origin metadata. The FITS format was first standardized in 1981; it has evolved gradually since then, and the most recent version (3.0) was standardized in 2008.\\
+Flexible Image Transport System (FITS) is an open standard defining a digital file format useful for storage, transmission and processing of scientific and other images. FITS is the most commonly used digital file format in astronomy. Unlike many image formats, FITS is designed specifically for scientific data and hence includes many provisions for describing photometric and spatial calibration information, together with image origin metadata. The FITS format was first standardized in 1981; it has evolved gradually since then, and the most recent version (3.0) was standardized in 2008. \newline
   
-FITS is also often used to store non-image data, such as spectra, photon lists, data cubes, or even structured data such as multi-table databases. A FITS file may contain several extensions, and each of these may contain a data object. For example, it is possible to store x-ray and infrared exposures in the same file.\\
+FITS is also often used to store non-image data, such as spectra, photon lists, data cubes, or even structured data such as multi-table databases. A FITS file may contain several extensions, and each of these may contain a data object. For example, it is possible to store x-ray and infrared exposures in the same file. \newline
  
-FITS support is available in a variety of programming languages that are used for scientific work, including C, C++, C\#, Fortran, IGOR Pro, IDL, Java, LabVIEW, Mathematica, MatLab, Perl, PDL, Python, R, and Tcl. The FITS Support Office at NASA/GSFC maintains a list of libraries and platforms that currently support FITS.\\
+FITS support is available in a variety of programming languages that are used for scientific work, including C, C++, C\#, Fortran, IGOR Pro, IDL, Java, LabVIEW, Mathematica, MatLab, Perl, PDL, Python, R, and Tcl. The FITS Support Office at NASA/GSFC maintains a list of libraries and platforms that currently support FITS. \newline
  
 Image processing programs such as ImageJ, GIMP, Photoshop, XnView and IrfanView can generally read simple FITS images, but frequently cannot interpret more complex tables and databases. Scientific teams frequently write their own code to interact with their FITS data, using the tools available in their language of choice. The FITS Liberator software is used by imaging scientists at the European Space Agency, the European Southern Observatory and NASA. The SAOImage DS9 Astronomical Data Visualization Application is available for many OSs, and handles images and headers.
 
@@ -82,15 +80,12 @@ Besides, there are additional type of HDU called random groups, but only used fo
       
 \begin{figure}[H]
 \centering
-\includegraphics[width=11cm,height=8cm]{images/fits_header.png}\\
+\includegraphics[width=11cm,height=8cm]{images/fits_header.png}
 \caption{Viewing FITS header in Aladin}
 \end{figure}
 
 
 \section{OpenCADC}
-
-\textit{This research used the facilities of the Canadian Astronomy Data Centre operated 
-by the National Research Council of Canada with the support of the Canadian Space Agency}.\\
 
 OpenCADC (Canadian Astronomy Data Center) is a Virtual Observatory, used in ALMA Science Archive (for this reason is included in this chapter) tool which comprises several projects \footnote{We do not enumerate all of them here, for a full list, go to \url{https://code.google.com/p/opencadc/source/browse}}:
 
@@ -100,40 +95,17 @@ The Universal Worker Service (UWS) pattern defines how to build asynchronous (th
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=11cm,height=8cm]{images/Class_Diagram__UWS__UWSObjects.png}\\
+\includegraphics[width=11cm,height=8cm]{images/Class_Diagram__UWS__UWSObjects.png}
 \caption{Class diagram representing UWS objects}
 \end{figure}
 
 When the execution starts, the job can adopt several states. The phases are the following:
 
-\begin{itemize}
-
-\item 
-    PENDING: the job is accepted but not committed for execution by the client.
-\item
-    QUEUED: the job is committed for execution by the client but the service has not yet assigned it to a processor.
-\item
-    EXECUTING: the job has been assigned to a processor and the results can be produced at any time during this phase.
-\item
-    COMPLETED: execution is over and the user can collect the results.
-\item
-    ERROR: the job failed to complete.
-\item
-    ABORTED: the job has been stopped by the user or by the system.
-\item
-    UNKNOWN: the job is in an unknown state.
-\item
-    HELD: the job is pending execution.
-\item
-    SUSPENDED: The job has been suspended by the system during execution. This might be because of temporary lack of resource. Similar to aborted but in this state the UWS will automatically resume the when resource are available again.
-
-\end{itemize}
-
 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=11cm,height=8cm]{images/UWSStates.png}\\
+\includegraphics[width=11cm,height=8cm]{images/UWSStates.png}
 \caption{Universal Worker Server Job states}
 \end{figure}
 
