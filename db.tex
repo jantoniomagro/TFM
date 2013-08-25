@@ -6,21 +6,23 @@ We will start making a short overview of the relational model using Postgresql R
 
 \section{Relational Database Management System}
 
-ToDo
-
 \subsection{Postgresql}
 
-PostgreSQL is a powerful, open source object-relational database system. It has more than 15 years of active development and a proven architecture that has earned it a strong reputation for reliability, data integrity, and correctness. It runs on all major operating systems, including Linux, UNIX (AIX, BSD, HP-UX, SGI IRIX, Mac OS X, Solaris, Tru64), and Windows. It is fully ACID compliant, has full support for foreign keys, joins, views, triggers, and stored procedures (in multiple languages). It includes most SQL:2008 data types, including INTEGER, NUMERIC, BOOLEAN, CHAR, VARCHAR, DATE, INTERVAL, and TIMESTAMP. It also supports storage of binary large objects, including pictures, sounds, or video. It has native programming interfaces for C/C++, Java, .Net, Perl, Python, Ruby, Tcl, ODBC, among others, and exceptional documentation. \\
 
-An enterprise class database, PostgreSQL boasts sophisticated features such as Multi-Version Concurrency Control (MVCC), point in time recovery, tablespaces, asynchronous replication, nested transactions (savepoints), online/hot backups, a sophisticated query planner/optimizer, and write ahead logging for fault tolerance. It supports international character sets, multibyte character encodings, Unicode, and it is locale-aware for sorting, case-sensitivity, and formatting. It is highly scalable both in the sheer quantity of data it can manage and in the number of concurrent users it can accommodate. There are active PostgreSQL systems in production environments that manage in excess of 4 terabytes of data. Some general PostgreSQL limits are included in the table below.\\
+PostgreSQL \footnote{We are not going to explain relational model theory in this section. We will focus on one of the most used and open DBMS -Posgresql-. For a full description of relational model, there are several sources available:
+\url{http://infolab.stanford.edu/~ullman/focs/ch08.pdf},
+\url{http://www.macs.hw.ac.uk/~trinder/DbInfSystems/3-RelModel.pdf} or \cite{Silberschatz_01}}
+ is a powerful, open source object-relational database system. It has more than 15 years of active development and a proven architecture that has earned it a strong reputation for reliability, data integrity, and correctness. It runs on all major operating systems. It is fully ACID compliant, has full support for foreign keys, joins, views, triggers, and stored procedures (in multiple languages). It has native programming interfaces for C/C++, Java, .Net, Perl, Python, Ruby, Tcl, ODBC, among others. \\
 
-PostgreSQL runs stored procedures in more than a dozen programming languages, including Java, Perl, Python, Ruby, Tcl, C/C++, and its own PL/pgSQL, which is similar to Oracle's PL/SQL. Included with its standard function library are hundreds of built-in functions that range from basic math and string operations to cryptography and Oracle compatibility. Triggers and stored procedures can be written in C and loaded into the database as a library, allowing great flexibility in extending its capabilities. Similarly, PostgreSQL includes a framework that allows developers to define and create their own custom data types along with supporting functions and operators that define their behavior. As a result, a host of advanced data types have been created that range from geometric and spatial primitives to network addresses to even ISBN/ISSN (International Standard Book Number/International Standard Serial Number) data types, all of which can be optionally added to the system.\\
+An enterprise class database, PostgreSQL boasts sophisticated features such as Multi-Version Concurrency Control (MVCC), point in time recovery, tablespaces, asynchronous replication, nested transactions (savepoints), online/hot backups, a sophisticated query planner/optimizer, and write ahead logging for fault tolerance. It is highly scalable both in the sheer quantity of data it can manage and in the number of concurrent users it can accommodate. There are active PostgreSQL systems in production environments that manage in excess of 4 terabytes of data.\\
+
+PostgreSQL runs stored procedures in more than a dozen programming languages, including Java, Perl, Python, Ruby, Tcl, C/C++, and its own PL/pgSQL, which is similar to Oracle's PL/SQL. Included with its standard function library are hundreds of built-in functions that range from basic math and string operations to cryptography and Oracle compatibility. Triggers and stored procedures can be written in C and loaded into the database as a library, allowing great flexibility in extending its capabilities.\\
 
 Just as there are many procedure languages supported by PostgreSQL, there are also many library interfaces as well, allowing various languages both compiled and interpreted to interface with PostgreSQL. There are interfaces for Java (JDBC), ODBC, Perl, Python, Ruby, C, C++, PHP, Lisp, Scheme, and Qt just to name a few.\\
 
-Best of all, PostgreSQL's source code is available under a liberal open source license: the PostgreSQL License. This license gives you the freedom to use, modify and distribute PostgreSQL in any form you like, open or closed source. Any modifications, enhancements, or changes you make are yours to do with as you please. As such, PostgreSQL is not only a powerful database system capable of running the enterprise, it is a development platform upon which to develop in-house, web, or commercial software products that require a capable RDBMS.\\
+PostgreSQL's source code is available under a liberal open source license: the PostgreSQL License. This license gives you the freedom to use, modify and distribute PostgreSQL in any form you like, open or closed source. Any modifications, enhancements, or changes you make are yours to do with as you please.\\
 
-
+\begin{table}
 \begin{center}
 \begin{tabular}{|l|l|}
 \hline \textbf{Limit} & \textbf{Value}\\ \hline
@@ -33,13 +35,8 @@ Maximum Columns per Table & 250 - 1600 depending on column types\\
 Maximum Indexes per Table & Unlimited\\ \hline
 \end{tabular}
 \end{center}
-
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=11cm,height=8cm]{images/erd_postgres.png}\\
-\caption{Entity-Relationship Diagram for VO Tap Schema}
-\end{figure}
+\caption{PostgreSQL DBMS Limits}
+\end{table}
 
 
 \section{NoSQL}
@@ -60,24 +57,16 @@ There are different NoSQL DBs for different projects:
     \item CouchDB
     \item MongoDB
     \item RavenDB
-    \item BaseX
-    \item djondb
-    \item eXist
-    \item SimpleDB
     \item IBM Lotus Domino
-    \item Terrastore
   \end{itemize}
 
 \item Graph oriented
 
   \begin{itemize}
     \item Neo4j
-    \item DEX
     \item AllegroGraph
-    \item OrientDB
     \item InfiniteGraph
     \item Sones GraphDB
-    \item InfoGrid
     \item HyperGraphDB
   \end{itemize}
 
@@ -89,15 +78,12 @@ There are different NoSQL DBs for different projects:
     \item Dynamo (Amazon)
     \item MongoDB
     \item Project Voldemort (LinkedIn)
-    \item Riak
-    \item Redis
   \end{itemize}
 
 \item Multivalue
 
   \begin{itemize}
     \item OpenQM
-    \item Extensible storage engine
   \end{itemize}  
 
 \item Object Oriented
@@ -131,7 +117,9 @@ MongoDB (from "humongous") is an open source document-oriented database system d
 
 10gen began Development of MongoDB in October 2007 and was not created to be just another database that tries to do everything for everyone. Instead, MongoDB was created to work with documents rather than rows, was extremely fast, massively scalable, and easy to use. In order to accomplish this, some features were excluded, namely support for transactions.
 
-\begin{shaded}A document database is more like a collection of documents. Each entry is a document, and each one can have its own structure. If you want to add a field to an entry, you can do so without affecting any other entry.\end{shaded} 
+%\begin{shaded}
+A document database is more like a collection of documents. Each entry is a document, and each one can have its own structure. If you want to add a field to an entry, you can do so without affecting any other entry.
+%\end{shaded} 
 
 \subsubsection{Main features}
 

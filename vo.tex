@@ -2,9 +2,7 @@
 
 The International Virtual Observatory Alliance (IVOA) was formed in 2002 with the aim to "facilitate the international coordination and collaboration necessary for the development and deployment of the tools, systems and organizational structures necessary to enable the international utilization of astronomical archives as an integrated and interoperating virtual observatory." \footnote{\url{http://www.ivoa.net/}} The IVOA now comprises programs from Argentina, Armenia, Australia, Brazil, Canada, China,  France, Germany, Hungary, India, Italy, Japan, Russia, Spain, the United Kingdom, Ukraine, and the United States and inter-governmental organizations (ESA and ESO). Membership is open to other national and international programs according to the IVOA Guidelines for Participation.\\
 
-The IVOA focuses on the development of standards and encourages their implementation for the benefit of the worldwide astronomical community. Working Groups are constituted with cross-program membership in those areas where key interoperability standards and technologies have to be defined and agreed upon. The Working Groups develop standards using a process modeled after the World Wide Web Consortium, in which Working Drafts progress to Proposed Recommendations and finally to Recommendations. Recommendations may ultimately be endorsed by the Virtual Observatory Working Group of Commission 5 (Astronomical Data) of the International Astronomical Union. The IVOA also has Interest Groups that discuss experiences using VO technologies and provide feedback to the Working Groups. Ad-hoc and permanent committees deal with specific scientific and procedural topics. Interaction with other scientific disciplines interested in data inter-operability is also pursued through dedicated Liaison Groups.\\
-
-A chair is chosen from among the representatives and serves an eighteen-month term, normally preceded by an eighteen-month term as deputy chair. The Executive Committee meets 3-4 times a year and its members represent their respective programs and are expected to be in a position to commit resources targeted at the achievement of common goals. Decisions by the IVOA Executive Committee are reached by consensus. The IVOA holds two Interoperability Workshops each year. These meetings are opportunities for the IVOA Groups and Committees to have face-to-face discussions.\\
+The IVOA focuses on the development of standards and encourages their implementation for the benefit of the worldwide astronomical community. Working Groups are constituted with cross-program membership in those areas where key interoperability standards and technologies have to be defined and agreed upon. The Working Groups develop standards using a process modeled after the World Wide Web Consortium, in which Working Drafts progress to Proposed Recommendations and finally to Recommendations. Recommendations may ultimately be endorsed by the Virtual Observatory Working Group of Commission 5 (Astronomical Data) of the International Astronomical Union. The IVOA also has Interest Groups that discuss experiences using VO technologies and provide feedback to the Working Groups.\\
 
 In this section we are not going to make a deep study of the Virtual Observatory techniques, technologies, protocols and interfaces, just those needed and selected to explain our proposal of including NoSQL into VO. Bearing in mind that the problem we are trying to address is data modelling, we will just make an overview of those aspects related with our work.\\
 
@@ -47,20 +45,23 @@ Finally, it also includes support for both synchronous and asynchronous queries.
 
 
 \begin{lstlisting}
-SELECT centerAlpha, centerDelta, dateObs FROM lsw.plates
-  WHERE dateObs BETWEEN '1903-01-12' AND '1903-01-19'; 
+SELECT 
+ u.raj2000+d_alpha+d_pmalpha/cos(radians(u.dej2000))*(u.epoch-2000) AS ra_icrs,
+ u.dej2000+d_delta+d_pmdelta*(u.epoch-2000) AS de_cicrs,
+ u.pmra+d_pmalpha AS pmra_icrs,
+ u.pmde+d_pmdelta AS pmde_icrs,
+ u.*
+FROM
+  TAP_UPLOAD.T1 AS u
+  JOIN ucac3.icrscorr AS c
+  ON (c.alpha=FLOOR(u.raj2000)+0.5 and c.delta=FLOOR(u.dej2000)+0.5)
 \end{lstlisting}
-ADQL Query for locating an unexpected object on the sky between January 12th and 18th, 1903.
-
+ADQL sample query
 
 \section{Flexible Image Transport System}
  
-Flexible Image Transport System (FITS) is an open standard defining a digital file format useful for storage, transmission and processing of scientific and other images. FITS is the most commonly used digital file format in astronomy. Unlike many image formats, FITS is designed specifically for scientific data and hence includes many provisions for describing photometric and spatial calibration information, together with image origin metadata.\\
-
-The FITS format was first standardized in 1981; it has evolved gradually since then, and the most recent version (3.0) was standardized in 2008. FITS was designed with an eye towards long-term archival storage, and the maxim once FITS, always FITS represents the requirement that developments to the format must be backwards compatible.\\
- 
-A major feature of the FITS format is that image metadata is stored in a human-readable ASCII header, so that an interested user can examine the headers to investigate a file of unknown provenance. The information in the header is designed to calculate the byte offset of some information in the subsequent data unit to support direct access to the data cells. Each FITS file consists of one or more headers containing ASCII card images (80 character fixed-length strings) that carry keyword/value pairs, interleaved between data blocks. The keyword/value pairs provide information such as size, origin, coordinates, binary data format, free-form comments, history of the data, and anything else the creator desires: while many keywords are reserved for FITS use, the standard allows arbitrary use of the rest of the name-space.\\
- 
+Flexible Image Transport System (FITS) is an open standard defining a digital file format useful for storage, transmission and processing of scientific and other images. FITS is the most commonly used digital file format in astronomy. Unlike many image formats, FITS is designed specifically for scientific data and hence includes many provisions for describing photometric and spatial calibration information, together with image origin metadata. The FITS format was first standardized in 1981; it has evolved gradually since then, and the most recent version (3.0) was standardized in 2008.\\
+  
 FITS is also often used to store non-image data, such as spectra, photon lists, data cubes, or even structured data such as multi-table databases. A FITS file may contain several extensions, and each of these may contain a data object. For example, it is possible to store x-ray and infrared exposures in the same file.\\
  
 FITS support is available in a variety of programming languages that are used for scientific work, including C, C++, C\#, Fortran, IGOR Pro, IDL, Java, LabVIEW, Mathematica, MatLab, Perl, PDL, Python, R, and Tcl. The FITS Support Office at NASA/GSFC maintains a list of libraries and platforms that currently support FITS.\\
@@ -69,7 +70,7 @@ Image processing programs such as ImageJ, GIMP, Photoshop, XnView and IrfanView 
 
 \subsubsection{FITS Data Format}
 
-A FITS file is comprised of parts called Header Data Units (HDU), being the first HDU called primary HDU o primeray array. This array can contain a 1-999 dimensional array. A typical primeray array could contain a 1D spectrum, 2D image or 3D data cube. Any number of HDU can follow the main array, and are called FITS extensions. Currently, three different¡ extensions can be defined:
+Each FITS file consists of one or more headers containing ASCII card images that carry keyword/value pairs, interleaved between data blocks. The keyword/value pairs provide information such as size, origin, coordinates, binary data format, free-form comments, history of the data, and anything else the creator desires. In more technical terms, a FITS file is comprised of parts called Header Data Units (HDU), being the first HDU called primary HDU o primary array. This array can contain a 1-999 dimensional array. A typical primary array could contain a 1D spectrum, 2D image or 3D data cube. Any number of HDU can follow the main array, and are called FITS extensions. Currently, three different extensions can be defined:
 
 \begin{itemize}
 \item Image extension, a 0-9999 dimensional array of pixels, which begins with XTENSION = 'IMAGE'
@@ -85,12 +86,6 @@ Besides, there are additional type of HDU called random groups, but only used fo
 \caption{Viewing FITS header in Aladin}
 \end{figure}
 
-
-
-
-
-
-%\input{opencadc}
 
 \section{OpenCADC}
 
@@ -163,7 +158,7 @@ The code that actually executes the job.
 
 \subsection{cadcTAP Library}
 
-The cadcTAP library is responsible of async and sync queries, where QueryRunner implements JobRunner. It also contains TAP\_SCHEMA DDL statements and is used by query parser to validate table and column usage.
+The cadcTAP library is responsible of async and sync queries, where QueryRunner implements JobRunner. It also contains TAP\_SCHEMA \footnote{TAP services try to be self-describing about what data they contain. They provide information on what tables they contain in special tables in TAP\_SCHEMA} DDL statements and is used by query parser to validate table and column usage.
 
 \subsubsection{TapQuery Interface}
 
