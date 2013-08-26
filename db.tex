@@ -79,6 +79,61 @@ They run on clusters of inexpensive machines.
 
 
 
+
+\section{Advantages and uncertainties of NoSQL}
+
+\begin{itemize}
+
+\item \textbf{Elastic scaling}
+
+DBA have relied on scale up — buying bigger servers as database load increases — rather than scale out — distributing the database across multiple hosts as load increases. However, as transaction rates and availability requirements increase, and as databases move into the cloud or onto virtualized environments, the economic advantages of scaling out on commodity hardware become irresistible.
+
+Unlike RDBMS, the NoSQL databases are designed to expand transparently to scale and they are usually designed with low-cost in mind.
+
+
+\item \textbf{No ``need`` for DBAs}
+
+RDBMS systems can be maintained only with the assistance of expensive and highly trained DBAs, while NoSQL databases are generally designed to require less management:  automatic repair, data distribution, and simpler data models lead to lower administration and tuning requirements and costs.
+
+
+\item \textbf{Economics}
+
+NoSQL databases typically use cheap clusters servers, while RDBMS tends to rely on expensive proprietary servers and storage systems. The result is a lower cost per transaction/second for NoSQL.
+
+
+\item \textbf{Flexible data models}
+
+Even minor changes to the data model of an RDBMS have to be carefully managed and may necessitate downtime or reduced service levels. NoSQL databases have a less strict (in the worst case) data model restrictions. NoSQL allows the application to store virtually any structure it wants in a data element.
+
+The result is that application changes and database schema changes do not have to be managed as one unit. In theory, this will allow applications to iterate faster.
+
+\end{itemize}
+
+
+NoSQL systems have generated a lot of enthusiasm but there are still a lot of questions about its future:
+
+\begin{itemize}
+
+\item \textbf{Maturity}
+
+RDBMS systems have been around for a long time. NoSQL evangelists will argue that their advancing age is a sign of their obsolescence, but mature RDBMS systems are stable. Most NoSQL alternatives are in pre-production versions with many key features yet to be implemented.
+
+\item \textbf{Support}
+
+Most NoSQL systems are open source projects, and although there are usually one or more firms offering support for each NoSQL database, these companies often are small start-ups.
+ 
+\item \textbf{Analytics and business intelligence}
+
+NoSQL databases have evolved to meet the scaling demands of modern Web 2.0 applications. Consequently, most of their feature set is oriented toward the demands of these applications. However, data in an application has value to the business that goes beyond the insert-read-update-delete cycle of a typical Web application. Businesses mine information in corporate databases to improve their efficiency and competitiveness, and business intelligence (BI) is a key IT issue for all medium to large companies.
+
+NoSQL databases offer few facilities for ad-hoc query and analysis. Even a simple query requires significant programming expertise, and commonly used BI tools do not provide connectivity to NoSQL.
+
+\item \textbf{Expertise}
+
+There are literally millions of developers throughout the world, and in every business segment, who are familiar with RDBMS concepts and programming. In contrast, almost every NoSQL developer is in a learning mode. This situation will address naturally over time, but for now, it is by far easier to find experienced RDBMS programmers or administrators than NoSQL experts.
+
+\end{itemize}
+
 \section{MongoDB: a document oriented database}
 
 MongoDB (from "humongous") is an open source document-oriented database system developed and supported by 10gen. It is part of the NoSQL family of database systems. Instead of storing data in tables as is done in a "classical" relational database, MongoDB stores structured data as JSON-like documents with dynamic schemas (MongoDB calls the format BSON), making the integration of data in certain types of applications easier and faster. \newline
@@ -179,63 +234,10 @@ We must know four concepts to dig into MongoDB's world:
 \end{figure}
 
 
-\subsubsection{Basic syntax quick guide}
+\subsubsection{Basic syntax quick guide SQL/Mongo}
 
 \lstinputlisting[language=SQL]{/home/jose/Escritorio/TFM/src/sample01.sql}
 
-\section{Advantages and uncertainties of NoSQL}
-
-\begin{itemize}
-
-\item \textbf{Elastic scaling}
-
-DBA have relied on scale up — buying bigger servers as database load increases — rather than scale out — distributing the database across multiple hosts as load increases. However, as transaction rates and availability requirements increase, and as databases move into the cloud or onto virtualized environments, the economic advantages of scaling out on commodity hardware become irresistible.
-
-Unlike RDBMS, the NoSQL databases are designed to expand transparently to scale and they are usually designed with low-cost in mind.
-
-
-\item \textbf{No ``need`` for DBAs}
-
-RDBMS systems can be maintained only with the assistance of expensive and highly trained DBAs, while NoSQL databases are generally designed to require less management:  automatic repair, data distribution, and simpler data models lead to lower administration and tuning requirements and costs.
-
-
-\item \textbf{Economics}
-
-NoSQL databases typically use cheap clusters servers, while RDBMS tends to rely on expensive proprietary servers and storage systems. The result is a lower cost per transaction/second for NoSQL.
-
-
-\item \textbf{Flexible data models}
-
-Even minor changes to the data model of an RDBMS have to be carefully managed and may necessitate downtime or reduced service levels. NoSQL databases have a less strict (in the worst case) data model restrictions. NoSQL allows the application to store virtually any structure it wants in a data element.
-
-The result is that application changes and database schema changes do not have to be managed as one unit. In theory, this will allow applications to iterate faster.
-
-\end{itemize}
-
-
-NoSQL systems have generated a lot of enthusiasm but there are still a lot of questions about its future:
-
-\begin{itemize}
-
-\item \textbf{Maturity}
-
-RDBMS systems have been around for a long time. NoSQL evangelists will argue that their advancing age is a sign of their obsolescence, but mature RDBMS systems are stable. Most NoSQL alternatives are in pre-production versions with many key features yet to be implemented.
-
-\item \textbf{Support}
-
-Most NoSQL systems are open source projects, and although there are usually one or more firms offering support for each NoSQL database, these companies often are small start-ups.
- 
-\item \textbf{Analytics and business intelligence}
-
-NoSQL databases have evolved to meet the scaling demands of modern Web 2.0 applications. Consequently, most of their feature set is oriented toward the demands of these applications. However, data in an application has value to the business that goes beyond the insert-read-update-delete cycle of a typical Web application. Businesses mine information in corporate databases to improve their efficiency and competitiveness, and business intelligence (BI) is a key IT issue for all medium to large companies.
-
-NoSQL databases offer few facilities for ad-hoc query and analysis. Even a simple query requires significant programming expertise, and commonly used BI tools do not provide connectivity to NoSQL.
-
-\item \textbf{Expertise}
-
-There are literally millions of developers throughout the world, and in every business segment, who are familiar with RDBMS concepts and programming. In contrast, almost every NoSQL developer is in a learning mode. This situation will address naturally over time, but for now, it is by far easier to find experienced RDBMS programmers or administrators than NoSQL experts.
-
-\end{itemize}
 
 
 \section{A FITS alternative with MongoDB}
@@ -243,3 +245,7 @@ There are literally millions of developers throughout the world, and in every bu
 A very important issue when working with FITS format is the great amount of possible key-value pairs in FITS headers. A possible solution for this problem could be use the features of MongoDB to translate FITS keywords into collections. So, we could create as much documents as needed, and storing them into MongoDB. Should we need to create supertypes of FITS headers, relations are also available in MongoDB through document linking (with no physical restriction in the sense of relational constraint). In this situation the schema flexibility means that we can model documents that share a similar structure but not enforced to have to same.
 
 %TODO: ejemplo de conversión de fits a documentos de Mongo
+
+\section{MapReduce in MongoDB}
+
+MapReduce is a programming model and its implementation for processing (\textit{e.g.} raw data from telescopes) and producing (\textit{e. g.} representations of graph structure of systems) huge amounts of data. As the runtime controls the partitioning of the input data, controlling the program execution across several hundred or thousands of machines and even controlling machine failures, the developers with low or none expertise in parallel programming take advantage of this model.
