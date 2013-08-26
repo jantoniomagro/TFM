@@ -254,6 +254,14 @@ MapReduce, usually, is used to solve problems involving big size datasets, up to
 
 The MapReduce model allows to write a map function which takes a key/value pair, operates on it (performs object detection) and returns a new set of key/value pairs (source list). The reduce function then aggregates/merges all the intermediate data (builds an object catalog on a stacked source list). Many problems in astronomy naturally fall into this model because of the inherent parallelizability of many astronomical tasks.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=16cm,height=8cm]{images/map_reduce_chart.png}
+\caption{MapReduce concept}
+\end{figure}
+
 \newpage
+
+To finish this chapter, we have developed a simple MapReduce job to show its use inside the context we are working on.
 
 \lstinputlisting[language=Java]{/home/jose/Escritorio/TFM/src/map_reduce_01.js}
