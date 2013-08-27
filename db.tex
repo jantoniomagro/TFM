@@ -163,27 +163,21 @@ db.columns.insert( {
 A document database is more like a collection of documents. Each entry is a document, and each one can have its own structure. If you want to add a field to an entry, you can do so without affecting any other entry.
 %\end{shaded} 
 
-\begin{table}
-\begin{center}
-\begin{tabular}{|l|l|}
-\hline
-\textbf{Relational} & \textbf{Document oriented} \\ 
-\hline
-Table & Collection\\
-\hline
-Row & Document\\
-\hline
-Column & Field \\
-\hline
-\end{tabular}
-\end{center}
-\caption{Differences between relational and NoSQL terms}
-\end{table}
 
 
+\subsection{Why MongoDB?}
 
+A more detailed list of features is listed in \ref{features_mongo} , but as a summary, we have decided to use MongoDB for these reasons:
 
-\subsection{Main features}
+\begin{itemize}
+\item It is open source code (available at \url{https://github.com/mongodb/mongo}).
+\item Widely used in the NoSQL community.
+\item It has full index support
+\item Very easy to install and to connect through drivers with several programming languages like Java, Python, Ruby, C/C++, PHP or Scala.
+\item It supports MapReduce paradigm.
+\end{itemize}
+
+\subsection{Main features} \label{features_mongo}
 
 \begin{itemize}
 
@@ -227,14 +221,33 @@ We must know four concepts to dig into MongoDB's world:
 \end{itemize}
 
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=11cm,height=8cm]{images/mongo_dia.png}
-\caption{Tree View for Tap Schema in MongoVue}
-\end{figure}
+\begin{table}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Relational} & \textbf{Document oriented} \\ 
+\hline
+Table & Collection\\
+\hline
+Row & Document\\
+\hline
+Column & Field \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Differences between relational and NoSQL terms}
+\end{table}
 
 
-\subsubsection{Basic syntax quick guide SQL/Mongo}
+
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=11cm,height=8cm]{images/mongo_dia.png}
+% \caption{Tree View for Tap Schema in MongoVue}
+% \end{figure}
+
+
+\subsubsection{SQL/Mongo syntax differences}
 
 \lstinputlisting[language=SQL]{/home/jose/Escritorio/TFM/src/sample01.sql}
 
