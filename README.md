@@ -10,3 +10,7 @@ ToDo:
 % revisar http://fits.gsfc.nasa.gov/standard30/fits_standard30aa.pdf
 
 % REVISAR http://amiga.iaa.es/FCKeditor/UserFiles/File/VOandALMAarchive_web.pdf
+
+
+% incluir referencia de crítica al MapReduce
+http://www.astro.caltech.edu/ai12/pdfs/Hogg_AI12.pdf
