@@ -17,3 +17,6 @@ http://gigaom.com/2013/08/20/mongodb-now-with-hive-compatibility/?utm_source=buf
 http://docs.mongodb.org/ecosystem/tools/hadoop/
 http://docs.mongodb.org/ecosystem/tutorial/getting-started-with-hadoop/
 http://docs.mongodb.org/ecosystem/use-cases/hadoop/
+
+
+Craigslist example. Add a row to its apartment listings it took three months to insert without breaking the existing schema. Three months, in the 21st century..
