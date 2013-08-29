@@ -29,7 +29,7 @@ http://docs.mongodb.org/ecosystem/use-cases/hadoop/
 </li>
 
 <li>
-Craigslist example. Add a row to its apartment listings it took three months to insert without breaking the existing schema. Three months, in the 21st century..
+Mencionar ejemplo de Craigslist o buscar similares: tres meses de trabajo para no romper el esquema existe cuando hubo que añadir una pequeña funcionalidad.
 </li>
 
 </ul>
