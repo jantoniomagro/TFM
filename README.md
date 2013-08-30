@@ -26,6 +26,4 @@ Posibilidad de hablar de la relación entre hadoop y mongodb
 
 <li>REVISAR http://amiga.iaa.es/FCKeditor/UserFiles/File/VOandALMAarchive_web.pdf</li>
 
-<li>Para trabajo futuro, incluir código generador de documentos mongo a partir de cabeceras FITS.</li>
-
 </ul>
