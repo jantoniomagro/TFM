@@ -1,9 +1,6 @@
 <b>NOTAS VARIAS a modo de NotePad</b><br>
 
 
-ToDo:<br>
-
-
 <ul>
 
 <li>Incluir referencia de crítica al MapReduce en http://www.astro.caltech.edu/ai12/pdfs/Hogg_AI12.pdf</li>
