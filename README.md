@@ -6,12 +6,6 @@ ToDo:<br>
 
 <ul>
 
-<li> 
-Revisar http://fits.gsfc.nasa.gov/standard30/fits_standard30aa.pdf<br>
-Críticas al fits, donde encaja Mongo: varios formatos (e.g. IMB-FITS, FITS-IDI, SDFITS), totalmente inadecuado para almacenamiento. 
-
-</li>
-
 <li>
 REVISAR http://amiga.iaa.es/FCKeditor/UserFiles/File/VOandALMAarchive_web.pdf
 </li>
@@ -30,6 +24,9 @@ http://docs.mongodb.org/ecosystem/use-cases/hadoop/
 
 <li>
 Mencionar ejemplo de Craigslist o buscar similares: tres meses de trabajo para no romper el esquema existe cuando hubo que añadir una pequeña funcionalidad.
+
+Resaltar la idenoidad del nuevo modelo nosql, tecnología que no nace para parchear, sino en la coyuntura actual bigdata.
+
 </li>
 
 </ul>
