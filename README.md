@@ -32,3 +32,4 @@ Posibilidad de hablar de la relación entre hadoop y mongodb
 <li>REVISAR http://amiga.iaa.es/FCKeditor/UserFiles/File/VOandALMAarchive_web.pdf</li>
 
 </ul>
+
