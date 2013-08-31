@@ -91,11 +91,6 @@ DBA have relied on scale up — buying bigger servers as database load increases
 Unlike RDBMS, the NoSQL databases are designed to expand transparently to scale and they are usually designed with low-cost in mind.
 
 
-\item \textbf{No ``need`` for DBAs}
-
-RDBMS systems can be maintained only with the assistance of expensive and highly trained DBAs, while NoSQL databases are generally designed to require less management:  automatic repair, data distribution, and simpler data models lead to lower administration and tuning requirements and costs.
-
-
 \item \textbf{Economics}
 
 NoSQL databases typically use cheap clusters servers, while RDBMS tends to rely on expensive proprietary servers and storage systems. The result is a lower cost per transaction/second for NoSQL.
@@ -103,9 +98,13 @@ NoSQL databases typically use cheap clusters servers, while RDBMS tends to rely 
 
 \item \textbf{Flexible data models}
 
-Even minor changes to the data model of an RDBMS have to be carefully managed and may necessitate downtime or reduced service levels. NoSQL databases have a less strict (in the worst case) data model restrictions. NoSQL allows the application to store virtually any structure it wants in a data element.
+Even minor changes to the data model of an RDBMS have to be carefully managed and may necessitate downtime or reduced service levels. NoSQL databases have a less strict (in the worst case) data model restrictions. NoSQL allows the application to store virtually any structure it wants in a data element. The result is that application changes and database schema changes do not have to be managed as one unit. In theory, this will allow applications to iterate faster.
 
-The result is that application changes and database schema changes do not have to be managed as one unit. In theory, this will allow applications to iterate faster.
+\item \textbf{No need for DBAs}
+
+RDBMS systems can be maintained only with the assistance of expensive and highly trained DBAs, while NoSQL databases are generally designed to require less management:  automatic repair, data distribution, and simpler data models lead to lower administration and tuning requirements and costs.
+
+
 
 \end{itemize}
 
@@ -121,16 +120,10 @@ RDBMS systems have been around for a long time. NoSQL evangelists will argue tha
 \item \textbf{Support}
 
 Most NoSQL systems are open source projects, and although there are usually one or more firms offering support for each NoSQL database, these companies often are small start-ups.
- 
-\item \textbf{Analytics and business intelligence}
-
-NoSQL databases have evolved to meet the scaling demands of modern Web 2.0 applications. Consequently, most of their feature set is oriented toward the demands of these applications. However, data in an application has value to the business that goes beyond the insert-read-update-delete cycle of a typical Web application. Businesses mine information in corporate databases to improve their efficiency and competitiveness, and business intelligence (BI) is a key IT issue for all medium to large companies.
-
-NoSQL databases offer few facilities for ad-hoc query and analysis. Even a simple query requires significant programming expertise, and commonly used BI tools do not provide connectivity to NoSQL.
 
 \item \textbf{Expertise}
 
-There are literally millions of developers throughout the world, and in every business segment, who are familiar with RDBMS concepts and programming. In contrast, almost every NoSQL developer is in a learning mode. This situation will address naturally over time, but for now, it is by far easier to find experienced RDBMS programmers or administrators than NoSQL experts.
+There are millions of developers with expertise using RDBMS. On ther other hand, NoSQL developers are, by far, a minority. This situation seems to change, but for now, it is easier to find experienced RDBMS programmers or DBA than NoSQL experts.
 
 \end{itemize}
 
@@ -198,12 +191,6 @@ MongoDB could be used as a file system, taking advantage of load balancing and d
 
 \item \textbf{Aggregation} 
 MapReduce can be used for batch processing of data and aggregation operations. The aggregation framework enables users to obtain the same results as the SQL GROUP BY clause.
-
-\item \textbf{Server-side JavaScript execution} 
-JavaScript can be used in queries. Aggregation functions are sent directly to the database.
-
-\item \textbf{Capped collections} 
-Capped collections are Fixed-size collections called. This type of collection maintains insertion order and, once the specified size has been reached, behaves like a circular queue.
 
 Once we have seen the main features of MongoDB, we can move on to the language itself.
 \end{itemize}
