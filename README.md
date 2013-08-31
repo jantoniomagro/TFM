@@ -3,11 +3,10 @@
 
 <ul>
 
-<<<<<<< HEAD
 <li>http://gigaom.com/2011/03/31/how-nosql-is-helping-allay-seattles-radiation-fears</li>
-=======
+
 <li>Mencionar ejemplo de uso Cloudant NoSQL: http://gigaom.com/2011/03/31/how-nosql-is-helping-allay-seattles-radiation-fears/</li>
->>>>>>> f0c8a028d7bbda6e63a78b09f66c37ff78596475
+
 
 <li>Mostrar gráfico BigData: http://www.ongridventures.com/wp-content/uploads/2012/10/Big-Data-Landscape.jpg
 
