@@ -362,13 +362,20 @@ To finish this chapter, we have developed a simple MapReduce job to show its use
 
 \section{Rewriting ALMA Science Archive}
 
-ALMA Science Archive (ASA) is the interface for querying ALMA data. Despite all ALMA information can be accessed from the Archive, ASA provide a optimized way to access the data in a scientific way. One of the requirements of ASA design was to provide a search and query tool which allows several parameters (position, frequency, telescope related parameters, etc.). It has two major components: the DB, which is a plain relational database with denormalized structure and the interface, built as a web application.
-
 \begin{figure}
 \centering
 \includegraphics[width=14cm,height=8cm]{images/aq.png}
 \caption{ALMA Science Archive Query}
 \end{figure}
+
+
+ALMA Science Archive (ASA) is the interface for querying ALMA data. Despite all ALMA information can be accessed from the Archive, ASA provide a optimized way to access the data in a scientific way. One of the requirements of ASA design was to provide a search and query tool which allows several parameters (position, frequency, telescope related parameters, etc.). It has two major components: the DB, which is a plain relational database with denormalized structure and the interface, built as a web application.
+
+%\begin{figure}
+%\centering
+%\includegraphics[width=14cm,height=8cm]{images/asa_implementation.png}
+%\caption{ALMA implementation, from  %\href{http://amiga.iaa.es/FCKeditor/UserFiles/File/VOandALMAarchive_web.pdf}{AMIGA-IAA Group Web}}
+%\end{figure}
 
 
 The VO Technologies used in the ALMA Archive are (discussed in \ref{vochapter}):
@@ -379,13 +386,24 @@ The VO Technologies used in the ALMA Archive are (discussed in \ref{vochapter}):
   \begin{enumerate}
     \item OpenCADC
     \item VOView: a utility for viewing large data tables within a Web browser, reformatting a table in XML into HTML requested by the browser.
-
-
   \end{enumerate}
 \end{enumerate}
 
-\begin{figure}
-\centering
-\includegraphics[width=14cm,height=8cm]{images/asa_implementation.png}
-\caption{ALMA Science Archive Query, from  \href{http://amiga.iaa.es/FCKeditor/UserFiles/File/VOandALMAarchive_web.pdf}{AMIGA-IAA Group Web}}
-\end{figure}
+\subsubsection{Java and MongoDB in ASA}
+
+Let's start with a connection to the DB (imports and exceptions are omitted): 
+
+\newpage
+\begin{lstlisting}
+/* assuming there is a database called "test" and the server is listening on port 27017 */
+public class MongoConnection {
+  public static void main(String args[]) throws UnknownHostException {
+    Mongo mongo = new Mongo("localhost", 27017);
+    DB db = mongo.getDB("test");
+  }
+}
+\end{lstlisting}
+
+% Now, we dive into a yet simple example, whose original version, coded in Java for a RDMS can be found online \footnote{\url{https://github.com/jantoniomagro/Misc/blob/master/TapSchemaDAO.java}}. We show here just the relevant code to see the Mongo version in Java.
+% 
+% \lstinputlisting[language=SQL]{/home/jose/Escritorio/TFM/src/TapSchemaDAO.java}
