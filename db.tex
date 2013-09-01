@@ -1,19 +1,19 @@
 \chapter{Non-relational DBMS inside VO}
 
-Typically, modern relational databases have shown little efficiency in certain applications using intensive data, like indexing of a large number of documents, sites rendering with high traffic, and streaming sites. Typical RDBMS implementations are tuned either for small but frequent reads and writes or a large set of transactions that have few write accesses. On the other hand NoSQL DB are optimized for read and append operations, and perform outstandingly where a relational DB would slow down. They are especially fast when large amounts of data have to be queried and if we consider that speed is more important than consistency. \newline
+Typically, modern relational databases have shown little efficiency in certain applications using intensive data, like indexing of a large number of documents, sites rendering with high traffic, and streaming sites. Typical RDBMS implementations are tuned either for small but frequent reads and writes or a large set of transactions that have few write accesses. On the other hand NoSQL DB are optimized for read and append operations, and perform outstandingly where a relational DB would slow down. They are especially fast when large amounts of data have to be queried and if we consider that speed is more important than consistency. 
 
 IVOA has a standard called Astronomical Data Query Language (ADQL) that users do not necessarily need to know, because he can pose a query with a GUI, as long as the query is translated into standard ADQL. The receiving service likewise converts the standard ADQL into whatever its own database servers need, but always inside relational model. For the reasons stated in chapter \ref{theproblem}, we propose the use of a different approach, the NoSQL technology.
 
 
 \section{NoSQL}
 
-A non-relational database just stores data without explicit and structured mechanisms to link data from different buckets to one another. \newline
+A non-relational database just stores data without explicit and structured mechanisms to link data from different buckets to one another. 
 
-NoSQL implementations used in the real world include 3TB Digg green markers (indicated to highlight the stories voted by others in the social network), the 6 TB of "ENSEMBLE" European Commission database used in comparing models and air quality, and the 50 TB of Facebook inbox search. \newline
+NoSQL implementations used in the real world include 3TB Digg green markers (indicated to highlight the stories voted by others in the social network), the 6 TB of "ENSEMBLE" European Commission database used in comparing models and air quality, and the 50 TB of Facebook inbox search. 
 
-NoSQL architectures often provide limited consistency, such as events or transactional consistency restricted to only data items. Some systems, however, provide all guarantees offered by ACID systems by adding an intermediate layer. There are two systems that have been deployed and provide for storage of snapshot isolation column: Google Percolator (based on BigTable system) and Hbase transactional system developed by the University of Waterloo. These systems use similar concepts in order to achieve distributed multiple rows ACID transactions with snapshot isolation guarantees for the underlying storage system in that column, wit no extra overhead in data management, no system deployment middleware or any maintenance introduced by middleware layer. \newline
+NoSQL architectures often provide limited consistency, such as events or transactional consistency restricted to only data items. Some systems, however, provide all guarantees offered by ACID systems by adding an intermediate layer. There are two systems that have been deployed and provide for storage of snapshot isolation column: Google Percolator (based on BigTable system) and Hbase transactional system developed by the University of Waterloo. These systems use similar concepts in order to achieve distributed multiple rows ACID transactions with snapshot isolation guarantees for the underlying storage system in that column, wit no extra overhead in data management, no system deployment middleware or any maintenance introduced by middleware layer. 
 
-Quite NoSQL systems employ a distributed architecture, maintaining data redundantly on multiple servers, often using distributed hash table. Thus, the system may actually escale adding more servers, and thus a server failure may be tolerated. \newline
+Quite NoSQL systems employ a distributed architecture, maintaining data redundantly on multiple servers, often using distributed hash table. Thus, the system may actually escale adding more servers, and thus a server failure may be tolerated. 
 
 There are different NoSQL DBs for different projects:
 
@@ -129,7 +129,7 @@ There are millions of developers with expertise using RDBMS. On ther other hand,
 
 \section{MongoDB: a document oriented database}
 
-MongoDB (from "humongous") is an open source document-oriented database system developed and supported by 10gen. It is part of the NoSQL family of database systems. Instead of storing data in tables as is done in a "classical" relational database, MongoDB stores structured data as JSON-like documents with dynamic schemas (MongoDB calls the format BSON), making the integration of data in certain types of applications easier and faster. \newline
+MongoDB (from "humongous") is an open source document-oriented database system developed and supported by 10gen. It is part of the NoSQL family of database systems. Instead of storing data in tables as is done in a "classical" relational database, MongoDB stores structured data as JSON-like documents with dynamic schemas (MongoDB calls the format BSON), making the integration of data in certain types of applications easier and faster. 
 
 As an example, we show some JSON code inserting a document in a Mongo DB:
 \begin{lstlisting}
@@ -150,7 +150,7 @@ db.columns.insert( {
 \end{lstlisting} 
 
 
-10gen began Development of MongoDB in October 2007 and was not created to be just another database that tries to do everything for everyone. Instead, MongoDB was created to work with documents rather than rows, was extremely fast, massively scalable, and easy to use. In order to accomplish this, some features were excluded, namely support for transactions. \newline
+10gen began Development of MongoDB in October 2007 and was not created to be just another database that tries to do everything for everyone. Instead, MongoDB was created to work with documents rather than rows, was extremely fast, massively scalable, and easy to use. In order to accomplish this, some features were excluded, namely support for transactions. 
 
 %\begin{shaded}
 A document database is more like a collection of documents. Each entry is a document, and each one can have its own structure. If you want to add a field to an entry, you can do so without affecting any other entry.
@@ -243,7 +243,7 @@ Column & Field \\
 
 \section{FITS alternative in MongoDB}
 
-The first issue when working with FITS files is its inadequacy for storing information. In XXI century is difficult to maintain such storage model. So the first and more obvious solution would be replacing FITS headers with their counterparts in a non relational database. \newline
+The first issue when working with FITS files is its inadequacy for storing information. In XXI century is difficult to maintain such storage model. So the first and more obvious solution would be replacing FITS headers with their counterparts in a non relational database. 
 
 Another issue when working with FITS format is the great amount of possible key-value pairs in FITS headers. A possible solution for this problem could be use the features of MongoDB to translate FITS keywords into collections. So, we could create as much documents as needed, and storing them into MongoDB. Should we need to create supertypes of FITS headers, relations are also available in MongoDB through document linking (with no physical restriction in the sense of relational constraint). In this situation the schema flexibility means that we can model documents that share a similar structure but not enforced to have to same.
 
@@ -290,7 +290,7 @@ db.fits_super.insert(
 
 
 
-Now, inserting the primary HDU for a  FITS-IDI header in MondoDB could not be easier. We start from a very simple FITS header like: \newline
+Now, inserting the primary HDU for a  FITS-IDI header in MondoDB could not be easier. We start from a very simple FITS header like: 
 \begin{verbatim}
 SIMPLE = T 			/ Standard FITS format
 BITPIX = 8 			/
@@ -311,7 +311,7 @@ PCOUNT = 0 			/
 END
 \end{verbatim}
 
-This code is very easy to translate into MongoDB syntax: \newline
+This code is very easy to translate into MongoDB syntax: 
 
 \begin{lstlisting}
 
@@ -343,9 +343,9 @@ Now, we have our FITS header into a database with a document structure. We keep 
 
 \section{MapReduce in MongoDB}
 
-MapReduce, developed by Google, is a programming model and its implementation for processing (\textit{e.g.} raw data from telescopes) and producing (\textit{e. g.} representations of graph structure of systems) huge amounts of data. As the runtime controls the partitioning of the input data, controlling the program execution across several hundred or thousands of nodes and even controlling machine failures, the developers with low or none expertise at all in parallel programming can take advantage of this model with a very low learning curve.\\
+MapReduce, developed by Google, is a programming model and its implementation for processing (\textit{e.g.} raw data from telescopes) and producing (\textit{e. g.} representations of graph structure of systems) huge amounts of data. As the runtime controls the partitioning of the input data, controlling the program execution across several hundred or thousands of nodes and even controlling machine failures, the developers with low or none expertise at all in parallel programming can take advantage of this model with a very low learning curve.
 
-MapReduce, usually, is used to solve problems involving big size datasets, up to several petabytes. For this reason, this model is used in distributed file systems, like HDFS \footnote{For a full specification of this filesystem, go to \url{http://hadoop.apache.org/docs/stable/hdfs_design.html}}.\\
+MapReduce, usually, is used to solve problems involving big size datasets, up to several petabytes. For this reason, this model is used in distributed file systems, like HDFS \footnote{For a full specification of this filesystem, go to \url{http://hadoop.apache.org/docs/stable/hdfs_design.html}}.
 
 The MapReduce model allows to write a map function which takes a key/value pair, operates on it (performs object detection) and returns a new set of key/value pairs (source list). The reduce function then aggregates/merges all the intermediate data (builds an object catalog on a stacked source list). Many problems in astronomy naturally fall into this model because of the inherent parallelizability of many astronomical tasks.
 
@@ -354,8 +354,6 @@ The MapReduce model allows to write a map function which takes a key/value pair,
 \includegraphics[width=16cm,height=8cm]{images/map_reduce_chart.png}
 \caption{MapReduce concept}
 \end{figure}
-
-\newpage
 
 To finish this chapter, we have developed a simple MapReduce job to show its use inside the context we are working on.
 
@@ -389,5 +387,5 @@ The VO Technologies used in the ALMA Archive are (discussed in \ref{vochapter}):
 \begin{figure}
 \centering
 \includegraphics[width=14cm,height=8cm]{images/asa_implementation.png}
-\caption{ALMA Science Archive Query, from  \href{http://amiga.iaa.es/FCKeditor/UserFiles/File/VOandALMAarchive_web.pdf‎}{AMIGA-IAA Group Web}}
+\caption{ALMA Science Archive Query, from  \href{http://amiga.iaa.es/FCKeditor/UserFiles/File/VOandALMAarchive_web.pdf}{AMIGA-IAA Group Web}}
 \end{figure}
