@@ -168,6 +168,7 @@ A more detailed list of features is listed in \ref{features_mongo} , but as a su
 \item It has full index support
 \item Very easy to install and to connect through drivers with several programming languages like Java, Python, Ruby, C/C++, PHP or Scala.
 \item It supports MapReduce paradigm.
+\item It is possible to connect MongoDB with Hadoop (the \textit{de facto} big data processing and analytics platform \footnote{\url{http://hadoop.apache.org}}, allowing to to send MongoDB data into Hadoop MapReduce jobs, process the data and return it back to a MongoDB collection).
 \end{itemize}
 
 \subsection{Main features} \label{features_mongo}
@@ -363,8 +364,7 @@ To finish this chapter, we have developed a simple MapReduce job to show its use
 
 \section{Rewriting ALMA Science Archive}
 
-ALMA Science Archive (ASA) is the interface for querying ALMA data. Despite all ALMA information can be accessed from the Archive, ASA provide a optimized way to access the data in a scientific way. One of the requirements of ASA design was to provide a search and query tool which allows several parameters (position, frequency, telescope related parameters, etc.). ALMA front-end Archive was not optimized for data query, but for data storage. \newline
-
+ALMA Science Archive (ASA) is the interface for querying ALMA data. Despite all ALMA information can be accessed from the Archive, ASA provide a optimized way to access the data in a scientific way. One of the requirements of ASA design was to provide a search and query tool which allows several parameters (position, frequency, telescope related parameters, etc.). It has two major components: the DB, which is a plain relational database with denormalized structure and the interface, built as a web application.
 
 \begin{figure}
 \centering
@@ -373,22 +373,21 @@ ALMA Science Archive (ASA) is the interface for querying ALMA data. Despite all 
 \end{figure}
 
 
-ASA DB:
+The VO Technologies used in the ALMA Archive are (discussed in \ref{vochapter}):
 
-ASA Interfaces:
+\begin{enumerate}
+\item VO Data Models
+\item Software
+  \begin{enumerate}
+    \item OpenCADC
+    \item VOView: a utility for viewing large data tables within a Web browser, reformatting a table in XML into HTML requested by the browser.
 
 
-VO Technologies for the ALMA Archive
-
-VO DM
-Software
-  OpenCADC
-  VOView
-
-ASA Implementation:
+  \end{enumerate}
+\end{enumerate}
 
 \begin{figure}
 \centering
 \includegraphics[width=14cm,height=8cm]{images/asa_implementation.png}
-\caption{ALMA Science Archive Query, from  \url{http://amiga.iaa.es/FCKeditor/UserFiles/File/VOandALMAarchive_web.pdf‎}}
+\caption{ALMA Science Archive Query, from  \href{http://amiga.iaa.es/FCKeditor/UserFiles/File/VOandALMAarchive_web.pdf‎}{AMIGA-IAA Group Web}}
 \end{figure}
