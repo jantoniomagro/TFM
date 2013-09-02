@@ -237,6 +237,8 @@ Column & Field \\
 
 \subsubsection{SQL/Mongo syntax differences}
 
+In this subsection we can see some differences in the DDL syntax used by both SQL and MongoDB. For the latter, we can call it from any language having a driver to connect to the DB or use the interactive shell (the code presented here uses this shell): 
+
 \lstinputlisting[language=SQL]{/home/jose/Escritorio/TFM/src/sample01.sql}
 
 
@@ -317,22 +319,22 @@ This code is very easy to translate into MongoDB syntax:
 
 db.my_idi_collection.insert(
     supertype: "FITS-IDI", // it simulates a foreign key!
-    SIMPLE = "T",
-    BITPIX = 8,
-    NAXIS = 0,
-    EXTEND = "T",
-    BLOCKED = "T",
-    OBJECT = "BINARYTB",
-    TELESCOP= "VLBA ",
-    CORELAT = "VLBA ",
-    FXCORVER= "4.22 ",
-    OBSERVER= "BL146 ",
-    ORIGIN = "VLBA Correlator",
-    DATE-OBS= "2007-08-23",
-    DATE-MAP= "2007-08-31",
-    GROUPS = "T",
-    GCOUNT = 0,
-    PCOUNT = 0,
+    SIMPLE: "T",
+    BITPIX: 8,
+    NAXIS: 0,
+    EXTEND: "T",
+    BLOCKED: "T",
+    OBJECT: "BINARYTB",
+    TELESCOP: "VLBA ",
+    CORELAT: "VLBA ",
+    FXCORVER: "4.22 ",
+    OBSERVER: "BL146 ",
+    ORIGIN: "VLBA Correlator",
+    DATE-OBS: "2007-08-23",
+    DATE-MAP: "2007-08-31",
+    GROUPS: "T",
+    GCOUNT: 0,
+    PCOUNT: 0,
 );
 
 \end{lstlisting}
@@ -391,17 +393,24 @@ The VO Technologies used in the ALMA Archive are (discussed in \ref{vochapter}):
 
 \subsubsection{Java and MongoDB in ASA}
 
-Let's start with a connection to the DB (imports and exceptions are omitted): 
+Let's see some simple examples from ALMA query interface: 
 
 \newpage
 \begin{lstlisting}
-/* assuming there is a database called "test" and the server is listening on port 27017 */
-public class MongoConnection {
-  public static void main(String args[]) throws UnknownHostException {
-    Mongo mongo = new Mongo("localhost", 27017);
-    DB db = mongo.getDB("test");
-  }
-}
+/* code from TapSchemaDAO.java */
+
+// SQL to select all rows from TAP_SCHEMA.colums.
+private static final String SELECT_COLUMNS_TEMPLATE = 
+  "select table_name, column_name, description, utype, ucd, unit, datatype, type_size " +
+  "from %s.asa_columns ";
+
+// List of TAP_SCHEMA.columns
+List<ColumnDesc> columnDescs = jdbc.query(
+  String.format(SELECT_COLUMNS_TEMPLATE, schemaName),
+  new ColumnMapper()
+);
+
+
 \end{lstlisting}
 
 % Now, we dive into a yet simple example, whose original version, coded in Java for a RDMS can be found online \footnote{\url{https://github.com/jantoniomagro/Misc/blob/master/TapSchemaDAO.java}}. We show here just the relevant code to see the Mongo version in Java.
