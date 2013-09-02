@@ -32,12 +32,11 @@ A Thoroidal LHC Apparatus (ATLAS) is another of the six particle detectors exper
 
 The reason to select a NoSQL solution is there is no need to store the monitoring data in a RDBMS, deciding instead a system which can provide a very high degrees of availability, resilience and scalability.
 
-At first stage, two of the most popular platforms were considered: Apache Cassandra and Apache Hbase. As Cassandra has a lower learning curve, and considering that it was already deployed in ATLAS, the decision was done.
+At first stage, two of the most popular platforms were considered: Apache Cassandra \footnote{More information in \href{http://cassandra.apache.org/}{Apache Cassandra Website}} and Apache Hbase. As Cassandra has a lower learning curve, and considering that it was already deployed in ATLAS, the decision was done.
 
 As a matter of fact, in the tests done, Cassandra's time per extracted entry was 10 ms, with 10 concurrent clients. This means 1000 queries per second, about twice the rate currently experienced by their Oracle DB. An analogous test done against Oracle (from a Python client) yielded roughly 100ms per query. \footnote{More information at \href{http://cds.cern.ch/record/1446655/files/ATL-SOFT-PROC-2012-012.pdf}{CERN Document Center}.}
 
 
 \section{Measuring radiation levels in Seattle: Cloudant}
 
-Researchers at the University of Washington utilized the Cloudant NoSQL database as part of an experiment that determined radiation levels in Seattle as a result of the recent Fukushima nuclear disaster are ``well below alarming limits.`` The research team, which includes Cloudant Founder and Chief Scientist Mike Miller studied particles captured from the five air filters at the university’s Physics and Astronomy building and used Cloudant’s CouchDB-based BigCouch database to store and process the data from its experiments.
-
+Researchers at the University of Washington used the Cloudant \footnote{See \href{https://cloudant.com/}{Cloudant Website}} database as part of an experiment that determined radiation levels in Seattle as a result of the recent Fukushima nuclear disaster are ``well below alarming limits.`` The research team, which includes Cloudant Founder and Chief Scientist Mike Miller studied particles captured from the five air filters and used Cloudant’s CouchDB-based BigCouch database to store and process the data. They chose Cloudant because with it, it was possible to start monitoring radiation levels very quickly, after a very easy setup and the capability of sampling gigantic quantities of air, allowing them to analyze the data and sharing it in near-real-time, profiting from BigCouch MapReduce engine.
