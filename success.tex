@@ -1,115 +1,38 @@
 \chapter{Successful case studies}
 
+
+FALTA DESARROLLAR LOS DOS ÚLTIMOS PUNTOS
+
+
+
 \section{CMS at the LHC}
 
-High-energy physicists working at the Compact Muon Solenoid (CMS) detector at the Large Hadron Collider (LHC) at Cern in Switzerland are benefiting from a NoSQL database management system that gives them unified access to data from a slew of sources.
+High-energy physicists working at the Compact Muon Solenoid (CMS) detector at the LHC, that generates more than 100 datacentres in a three-tier model and generates around 10PB of data each year, are benefiting from a NoSQL database management system that gives them unified access to data from a huge variety of sources (from relational and non-relational data sources, such as relational databases, document-oriented databases, blogs, wikis, file systems and customised applications). The team providing data management to the CMS Cern project has built a system using MongoDB in preference to relational database technologies and other non-relational options. The reasons to select MongoDB were:
 
-Valentin Kuznetsov, a research associate and computer specialist at Cornell University, is a member of a team providing data management to the CMS Cern project. It built a system using MongoDB in preference to relational database technologies and other non-relational options.
+\begin{itemize}
+\item Dynamic queries support
+\item full indexes
+\item auto-sharding
+\end{itemize}
 
-``We considered a number of different options, including file-based and in-memory caches, as well as key-value databases, but ultimately decided that a document-oriented database would best suit our needs," he says. "After evaluating several applications, we chose MongoDB due to its support of dynamic queries, full indexes, including inner objects and embedded arrays, as well as auto-sharding.''
+Several years ago the data management group at the CMS confronted a data discovery problem, with a variety of databases necessitating a user interface that would hide the complexity of the underlying architecture from the physicists. There was a vast variety of distributed databases and different formats (HTML, XML, JSON files, etc.).
 
-The CMS (pictured) is one of two particle physics detectors at Cern. It collects data from the LHC experiment that reproduces the big bang that kick-started the universe, designed to gain an understanding of how matter and force particles get their mass. More than 3,000 physicists from 183 institutions representing 38 countries are involved in the design, construction and maintenance of the CMS experiments.
-
-Cornell is one of many institutions worldwide that contribute to the LHC experiments at Cern. Kuznetsov, a physicist and software engineer who has worked at Cern in the past, is involved in the data management group at Cern.
-
-He says some five years ago the data management group at the CMS confronted a data discovery problem, with a variety of databases necessitating a user interface that would hide the complexity of the underlying architecture from the physicists. It wanted to build a Google-like interface, but one that would return precise answers to queries whose form could not be determined in advance.
-
-``We had a variety of distributed databases and different formats – HTML, XML, JSON files, and so on. And then there is the security dimension. The complexity was, and is, huge'', he says.
-
-The team discovered the world of NoSQL databases and, within that, the document-oriented approach seemed the best fit, with MongoDB being favoured because it lent itself well to the end product being an interface that could be queried in free text form.
-
-MongoDB is one of a sub-genre of document store NoSQL databases, like Apache’s CouchDB. 
-
-Barry Devlin, a data warehousing expert who blogs on TechTarget’s B-Eye Network, explains what is meant by a document-oriented approach: ``Documents? If you're confused, you are not alone. In this context, we don't mean textual documents used by humans, but rather use the word in a programming sense as a collection of data items stored together for convenience and ease of processing, generally without a pre-defined schema.''
-
-The CMS spans more than 100 datacentres in a three-tier model and generates around 10PB of data each year in real data, simulated data and metadata. This information is stored and retrieved from relational and non-relational data sources, such as relational databases, document-oriented databases, blogs, wikis, file systems and customised applications.
-
+%
+\paragraph{Data Aggregation System}
 To provide the ability to search and aggregate information across this complex data landscape CMS's Data Management and Workflow Management (DMWM) project created a data aggregation system (DAS), built on MongoDB. 
 
-The DAS provides a layer on top of the existing data sources that allows researchers and other staff to query data via free text-based queries, and then aggregates the results from across distributed providers, while preserving their integrity, security policy and data formats. The DAS then represents that data in defined format.
-
-All DAS queries can be expressed in a free text-based form, either as a set of keywords or key-value pairs, where a pair can represent a condition. Users can query the system using a simple, SQL-like language, which is then transformed into the MongoDB query syntax, which is itself a JSON (JavaScript Object Notation) record, said Kuznetsov.
-
-``Due to the schema-less nature of the underlying MongoDB back end we are able to store DAS records of any arbitrary structure, regardless of whether it's a dictionary, lists, key-value pairs, and so on. Therefore, every DAS key has a set of attributes describing its JSON structure,'' says Kuznetsov.
-
-Kuznetsov says it is now clear that ``there was nothing specific to the system related to our experiment''. The approach is extensible. 
-
-At Cornell, other groups, including in ornithology, are facing similar problems and have expressed interest. He stresses that “analytics should be the main ingredient. The system should learn from what is being asked and be able to answer more questions in a free way.
-
-``The beauty of MongoDB,`` he says, ``is that the query language is built into the system,`` unlike, for example, Couch, also in use at Cern, where users need to code for each query.
-
-''DAS is used 24 hours a day, seven days a week, by CMS physicists, data operators and data managers at research facilities around the world. The average query may resolve into thousands of documents, each a few kilobytes in size. [We get a] throughput of around 6,000 documents a second for raw cache population,`` concludes Kuznetsov.
-
-The Cern physicists are at work unlocking the mysteries of the universe, and NoSQL technology is, whether they know that or not, helping them do it.
-
+Valentin Kuznetsov, a research associate at Cornell University, says that ``there was nothing specific to the system related to our experiment'', so it can be deduced that this MongoDB approach is extensible. 
 
 %%%%%
 
 \section{PanDA Workload Management System}
 
-PanDA is a Workload Management System built around the concept of Pilot Frameworks [1]. In this approach, workload is assigned to successfully activated and validated Pilot Jobs, which are lightweight processes that probe the environment and act as a ‘smart wrapper’ for the payload. This 'late binding' of workload jobs to processing slots prevents latencies and failures in slot acquisition from impacting the jobs, and maximizes the flexibility of job allocation to globally distributed and heterogeneous resources [2]. The system was developed in response to computing demands of the ATLAS collaboration at the LHC, and for a number of years now has been the backbone of ATLAS data production and user analysis.
 
-A central and crucial component of the PanDA architecture is its database (hosted on an Oracle RDBMS), which at any given time reflects the state of both pilot and payload jobs, as well as stores a variety of vital configuration information. It is driven by the PanDA Server, which is implemented as an Apache-based Python application and performs a variety of brokerage and workload management tasks, as well as advanced pre-emptive data placement at sites, as required by the workload.
-
-By accessing the central database, another PanDA component -the PanDA Monitoring System (or simply PanDA Monitor)- offers to its users and operators a comprehensive and coherent view of the system and job execution, from high level summaries to detailed drill-down job diagnostics. Some of the entities that are monitored in the system are:
-
-Pilot Job Generators (schedulers)
-Queues (abstractions of physical sites)
-Pilot Jobs (or simply pilots)
-Payload Jobs (the actual workload)
-
-All of these are related to each other by reference, i.e. an instance of the Pilot Job Generator is submitting pilots to a particular queue, a queue in turn can contain any number of pilots in various stages of execution, and payload jobs are mapped to successfully activated, running pilots. Payload jobs are also associated with their input/output datasets (details of data handling in PanDA go beyond the scope of this paper). The purpose of the PanDA Monitoring System is to present these objects and their logical associations to the user with optimal utility.
-
-Characteristics of the data and current design of the PanDA monitor
-As already mentioned, the PanDA Monitor handles a variety of data, and perhaps the most important and widely accessed objects stored in its database are entries describing payload jobs. We used this type of data as the most relevant case study in considering our database strategies going forward. Each job entry is mapped onto a row in the Oracle table, with roughly a hundred attributes (columns).
-
-The monitor is currently implemented as a Python application embedded in the Apache server. Database access is done via the cx\_Oracle Python library. The Oracle server is handling loads of the order of 103 queries of varying complexity per second. There are more than 500,000 new entries generated daily, which results in multi-terabyte accumulated data load. Despite ongoing query optimization effort, there are capability and performance limits imposed by available resources of the current Oracle installation and nature of the queries themselves.
-
-Since RDBMS features such as the ability to perform join operation across several tables can be costly in terms of performance, most of the widely accessed data stored in the PanDA Oracle database is de-normalized. For that reason, there is slight redundancy in the data and joins are not used in the application.
-
-For performance and scalability reasons, the data stored in Oracle is partitioned into ''live'' and ''archive'' tables. The former contains the state of live objects (such as job being queued or executed in one of the clouds), while the latter contains a much larger set of data which is final (read-only, such as parameters of fully completed jobs) and has been migrated from the live table after a certain period of time after becoming static. In addition, we note that monitoring applications do not require guaranteed “hard consistency” of the data, which would be another crucial motivation to use a RDBMS. In other words, the time window between the instants when information is updated in the database by its client application, and when this is reflected in results of subsequent queries, is not required to be zero (which is achieved in RDBMS by making the “write” operation synchronous).
-Motivation for noSQL and choice of platform
-As explained above, we actually don’t have compelling reasons to store the monitoring data in a RDBMS. In situations like this, a variety of so-called noSQL database solutions are often employed by major Web services that require extreme degrees of availability, resilience and scalability. Examples include Google, Amazon, Facebook, Twitter, Digg and many others, as well as “brick and mortar” businesses. In order to leverage this new technology, we initiated a R\&D project aiming at applying this approach to elements of the PanDA monitoring system to make it future-proof and gain relevant experience going forward.
-The “noSQL” term applies to a broad class of database management systems that differ from RDBMS in some significant aspects. These systems include such diverse categories as Document Store, Graph Databases, Tabular, Key-Value Store and others. Based on the patterns observed in queries in PanDA, a conclusion was made that either a Key-Value or a Tabular Store would be an adequate architecture in the context of PanDA monitoring system. A significant portion of all queries done in PanDA is performed using a unique identifier each entry has, therefore representing a classic case of Key-Value query. Other types of queries are done by indexing relevant columns, which is a general approach that will still work with noSQL solutions which support indexing.
-We considered two of the most popular platforms: Apache Cassandra (Key-Value) and Apache Hbase (Tabular). The latter relies on Hadoop Distributed Filesystem. To cut on the learning curve, and for ease of operation, it was decided to choose Cassandra, which does not have such dependency. In addition, Cassandra was already deployed and undergoing evaluation by ATLAS personnel, giving us leverage in quickly acquiring our own R\&D platform.
-Cassandra characteristics
-A quick description of Cassandra would be as follows: it’s a truly distributed, schema-less, eventually consistent, highly scalable key-value storage system.
-The key, in this context, can be of almost any data type, as Cassandra handles it as an array of bytes. The value is a collection of elements called columns (again, stored as arrays of bytes). The column is the smallest unit of data in Cassandra and consists of a name, value and a timestamp (used by Cassandra internally). This gives the developer flexibility in modeling objects in the data. Aggregation of columns with the same key is often called a row, and it can be thought of as a dictionary describing an object. A collection of rows pertaining to the same application is termed a column family and serves as a very distant approximation of what is called a table in the traditional RDBMS – note however that Cassandra rows can be drastically different from each other inside a single column family, while rows in a RDBS table follow the same schema.
- By design, the write operation is durable: once a write is completed (and this becomes known to the client requesting this procedure), data will survive many modes of hardware failure. While an instance of Cassandra can be successfully run on a single node, its advantages are best utilized when using a cluster of nodes, possibly distributed across more than one data center, which brings the following features:
-Incremental and linear scalability – capacity can be added with no downtime
-Automatic load balancing
-Fault tolerance, with data replication within the cluster as well as across data centers
-
-Cassandra also features built-in caching capabilities which will not be discussed here for sake of brevity. The application is written in Java, which makes it highly portable. There are client libraries for Cassandra, for almost any language platform in existence. In our case, we chose Pycassa Python module to interface Cassandra.
-Data Design and migration scheme
-Design of PanDA data for storage in the Cassandra system underwent a few iterations which included storage of data as csv (comma-separated values) data chunks, “bucketing” of data in groups with sequential identifiers (to facilitate queries of serially submitted jobs) etc. After performance evaluation, a simple scheme was adopted where a single job entry maps onto a Cassandra row. The row key then is the same as used as primary index in the Oracle database, which is the unique ID automatically assigned to each job by the PanDA system.
-At the time of this writing, parts of the archived data in PanDA are mirrored on Amazon S3 system in csv format for backup and R\&D purposes, grouped in segments according to the date of the last update. This body of data was used as input for populating a Cassandra instance as it effectively allows us to avoid placing an extra load on the production RDBMS during testing, is globally and transparently available and does not require DB-specific tools to access data (all data can be downloaded by the client application from a specific URL using tools like curl, wget etc).
-In this arrangement, a multithreaded client application (written in Python) pulls the data from Amazon, optionally caches it on the local file system, parses the csv format, and feeds it to the Cassandra cluster.
-Characteristics of the cluster used in the project
-In order to achieve optimal performance, Cassandra makes full use of the resources of the machine on which it is deployed. It is therefore not optimal to place a Cassandra system on a cluster of virtual machines, since there is nothing to be gained from sharing redundant resources. For that reason, after initial testing on a 4-VM cluster at CERN, a dedicated cluster was built at Brookhaven National Laboratory, with the following characteristics: 3 nodes with 24 cores, 48GB RAM and 1TB of attached SSD storage each. Its first version relied on rotational media (6 spindles per node in RAID0 configuration), but testing showed that it didn’t scale up to performance levels of the PanDA Oracle instance, therefore storage was upgraded to SSDs. Main results of testing will be given below. The Oracle cluster used in PanDA had a total spindle count of 110 (Raptor-class rotational media). Its performance would doubtless benefit from using SSDs as well, but clearly at this scale this wouldn’t be economical.
-It’s worth noting that Cassandra use of resources is radically different between read and write operations – the former is I/O bound, while the latter is CPU intensive. Depending on application, it’s important to provide sufficient resources in each domain.
-Monitoring load on the nodes as well as client machines that load and index data on the cluster is an important part of regular operations, troubleshooting and maintenance. We used the Ganglia system to accomplish that.
-Indexing
-Efficient use of data makes it necessary to create an effective indexing scheme in the data. Analysis of actual queries done against PanDA database shows that in addition to a simple row key query they often contain selection based in values in a few columns. This knowledge can be utilized in building a Cassandra-based application, by creating composite indexes mapped to such queries. This can be done in one of two ways:
-1. Relying on “native” indexing in Cassandra
-2. Creating additional lookup tables by a separate client application
-If one goes with the former, it effectively necessitates creation of composite columns in the column families. This is akin to duplication of parts of data and leads to inflation of disk space associated with the data. On the other hand, there is no extra code to be written or run against the database, as the cluster will handle indexing transparently and asynchronously.
-Producing indexes “by hand” (the second option) gives the operator complete control over when and how the data is indexed, and saves disk space since no extra columns are attached to column families. In the end, driven by consideration of referential integrity when retiring parts of data, it was decided to use the former option in creating indexes, trading disk space for ease of operation and maintenance.
-Indexes were designed as follows: we identified queries most frequently used in the PanDA monitor. As an example, there are queries that select data based on the following job attributes: computingsite, prodsourcelabel, date. A new column is created in each row, with a name that indicates its composite nature: “computingsite+prodsourcelabel+date”. The value of such column may then look like ``ANALY\_CERN+user+20110601``. This augmentation of data can be done either at loading stage, or by running a separate process at a later time, at discretion of the operator. When and if this column is declared as index for Cassandra (which is typically done via its CLI), the cluster will start building corresponding data structures, automatically and asynchronously. To utilize the index, client application must determine that the user’s request contains requisite query elements, and then a query is run on the cluster by selecting values of the composite column according to the user’s request. Seven indexes constructed in such a way cover a vast majority of all queries done in the Monitor. The remaining small fraction can be handled by using individual “single” column indexes in combination, since this is also allowed in Cassandra. It won’t be as fast as a composite index since it will involve iterations over a collection of objects instead of a seek and fetch, however preliminary testing shows that the performance will still be acceptable, given relative scarcity of such queries.
-Results of testing
-A few client applications, written in Python, were created for purposes of data loading and indexing, as well as performance and scalability tests. The Cassandra cluster was populated with real PanDA data, and the data load was equal to one year worth of job records, covering the period of June 2010 to May 2011, in order to be approximately the same as in testing done with previous configurations. Based on observed query patterns, two main categories of performance and scalability tests were performed, along with comparisons with analogous queries against the original Oracle database:
-Random seek test, whereby a long series of queries were extracting individual data for randomly selected jobs from the past year data sample
-Indexed queries, when a number of representative complex queries were performed using composite indexes as described in the section above
-
-In order to judge the scalability of the system, queries of both classes were run concurrently in multiple client threads, simulating real operational conditions of the database. Our capability to fully stress the cluster was limited to approximately 10 threads, by the available CPU resources on the client machine, however the results extracted provide useful guidance nevertheless.
-In the random seek test, Cassandra’s time per extracted entry was 10 ms, with 10 concurrent clients. This translates into 1000 queries per second, which is about twice the rate currently experienced by our Oracle database. An analogous test done against Oracle (from a Python client) yielded roughly 100ms per query.
-In the case of indexed queries, Cassandra’s time per entry was 4ms. This result is counterintuitive at first, when compared to the random query metric, because indexed queries result in additional disk operations (the index must be read before the actual data extraction). However this result makes sense  if one considers that multiple rows extracted in the query were packaged more efficiently in the network layer during data transmission from the cluster to the client, i.e. effective overhead per entry was lower. A comparable Oracle test returned a range of values from 0.5ms to 15 ms.
-The queries that were run for comparison purposes against Oracle and Cassandra were effectively identical in scope and logic, i.e. full content of the row was pulled from the database in each case.
-When increasing the load further, we found that the Cassandra cluster will adequately handle loads of at least 1500 queries per second, which is approximately 3 times more than current query load in the PanDA Monitor. Actual timing results were less relevant because of the client machine limitations mentioned above, i.e. we were not able to reach stress limits of the Cassandra cluster at this time.
-Conclusions
-We identified a “noSQL” database system Cassandra as a promising technology platform to ensure scalability and performance of the PanDA monitor database, operating under conditions of consistently high data and query load. A few versions of data design and indexing were evaluated. Hardware requirements were confirmed via testing of the Cassandra cluster under realistic conditions and benchmarking it against Oracle RDBMS. A simple but effective technique of composite index creation was employed to guarantee high performance in most popular queries generated in the PanDA monitor. Quantitative scalability and performance test results are favorable and pave the way for integration of this new noSQL data store with PanDA monitor.
-
-
+\begin{figure}
+\centering
+\includegraphics[width=14cm,height=8cm]{images/panda.png}
+\caption{Weibull distribution of CPU-hours used to recover job failures in petascale data processing, from \href{https://sharepoint.anl.gov/hep/HEP\%20Accomplishments/Highlights_101212.pdf}{Argonne National Library}}
+\end{figure}
 
 
 
@@ -125,14 +48,3 @@ We identified a “noSQL” database system Cassandra as a promising technology 
 
 Researchers at the University of Washington utilized the Cloudant NoSQL database as part of an experiment that determined radiation levels in Seattle as a result of the recent Fukushima nuclear disaster are “well below alarming limits.” The research team, which includes Cloudant Founder and Chief Scientist Mike Miller (his other title is research associate professor of physics), studied particles captured from the five air filters at the university’s Physics and Astronomy building and used Cloudant’s CouchDB-based BigCouch database to store and process the data from its experiments.
 
-The research team's shielded germanium detector and data acquisition hardware.
-
-The team’s results show radioactive particles first reached Seattle on March 17, but they were less abundant in volume and type than was expected based on research carried out after the Chernobyl disaster in 1986. In fact, the project’s official website states, “We stress that the overall amount of the radioactivity is extremely low, at least thousands of times below EPA limits.” Miller attributes the difference in radiation levels resulting from Chernobyl to the fact that the reactor at Chernobyl “was operating at full steam when it exploded,” whereas his team’s research suggests the Fukushima plant’s automatic safety system must have kicked in when the earthquake hit, turning off the reactor in the process.
-
-Miller’s association with Cloudant certainly influenced his team’s decision to use the product, but BigCouch — which is more big-data-focused than its web-application-focused NoSQL counterparts — is particularly well-suited for this type of job. According to Miller, the team created “a MacGuyver-like setup” in order to start monitoring radiation levels in a hurry. After installing the special air filters and sampling “gigantic quantities of air,” the trapped particles were run through a germanium detector to determine the unique fingerprints of isotopes created by nuclear fission. Miller says the general belief is that radioactive isotopes travel through the air attached to dust particles or concrete particles from the explosion.
-
-Cloudant’s BigCouch database let the team keep up with a steady flow of data so it could process  and analyze it, then share it with the various stakeholders in near-real-time. The team was changing the data about 20 times per day and writing complex workflows to process it, two tasks that fall into BigCouch’s wheelhouse. The database has a built-in MapReduce engine to enable writing and processing the workflows, and it allows for secondary indices, which users can populate with new data from their MapReduce jobs and query very quickly. Miller actually helped create Cloudant in 2008 while doing post-doctoral research at MIT that involved analyzing huge data sets from CERN’s Large Hadron Collider.
-
-Although humans might not be at risk from the Fukushima-based radiation, their scientific experiments might not be so lucky. In an article by the University of Washington’s Office of News and Information, Miller’s colleague R.G. Hamish Robertson explained that the radiation levels “can raise havoc with sensitive physics experiments. That includes one called Majorana, in which the UW physicists are deeply involved, that is being planned for a lab nearly [one] mile down in the proposed Deep Underground Science and Engineering Laboratory in the old Homestake Mine in Lead, S.D.” Miller told me that project, which involves trying to determine what the universe is made of, has been suspended because the next step is to bring highly sensitive homegrown copper up from underground for machining, but that even the trace levels of radiation present in South Dakota could taint it and ruin the experiment.
-
-The currently-available paper sharing the team’s results and insights mentions some uncertainty based on questions about the particle sizes they were trying to capture, but Miller said his team has made progress on this front and that they’re “very confident” in the results. The team will release a final paper soon with more detail and a larger time frame of data points.
