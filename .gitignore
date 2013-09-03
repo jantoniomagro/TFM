@@ -7,4 +7,6 @@
 *.lot
 *.out
 *.toc
-*.synctex.gz # tesis.synctex.gz
+*.synctex.gz
+*.lol
+*.gz
