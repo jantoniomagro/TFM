@@ -9,7 +9,7 @@ IVOA has a standard called Astronomical Data Query Language (ADQL) that users do
 
 A non-relational database just stores data without explicit and structured mechanisms to link data from different buckets to one another. 
 
-NoSQL implementations used in the real world include 3TB Digg green markers (indicated to highlight the stories voted by others in the social network), the 6 TB of "ENSEMBLE" European Commission database used in comparing models and air quality, and the 50 TB of Facebook inbox search. 
+NoSQL implementations used in the real world include 3TB Digg green markers (indicated to highlight the stories voted by others in the social network), the 6 TB of ``ENSEMBLE'' European Commission database used in comparing models and air quality, and the 50 TB of Facebook inbox search. 
 
 NoSQL architectures often provide limited consistency, such as events or transactional consistency restricted to only data items. Some systems, however, provide all guarantees offered by ACID systems by adding an intermediate layer. There are two systems that have been deployed and provide for storage of snapshot isolation column: Google Percolator (based on BigTable system) and Hbase transactional system developed by the University of Waterloo. These systems use similar concepts in order to achieve distributed multiple rows ACID transactions with snapshot isolation guarantees for the underlying storage system in that column, wit no extra overhead in data management, no system deployment middleware or any maintenance introduced by middleware layer. 
 
@@ -129,7 +129,7 @@ There are millions of developers with expertise using RDBMS. On ther other hand,
 
 \section{MongoDB: a document oriented database}
 
-MongoDB (from "humongous") is an open source document-oriented database system developed and supported by 10gen. It is part of the NoSQL family of database systems. Instead of storing data in tables as is done in a "classical" relational database, MongoDB stores structured data as JSON-like documents with dynamic schemas (MongoDB calls the format BSON), making the integration of data in certain types of applications easier and faster. 
+MongoDB (from ``humongous'') is an open source document-oriented database system developed and supported by 10gen. It is part of the NoSQL family of database systems. Instead of storing data in tables as is done in a ``classical'' relational database, MongoDB stores structured data as JSON-like documents with dynamic schemas (MongoDB calls the format BSON), making the integration of data in certain types of applications easier and faster. 
 
 As an example, we show some JSON code inserting a document in a Mongo DB:
 \begin{lstlisting}

@@ -69,9 +69,9 @@ Image processing programs such as GIMP can generally read simple FITS images, bu
 Each FITS file consists of one or more headers containing ASCII card images that carry keyword/value pairs, interleaved between data blocks. The keyword/value pairs provide information such as size, origin, coordinates, binary data format, free-form comments, history of the data, and anything else the creator desires. In more technical terms, a FITS file is comprised of parts called Header Data Units (HDU), being the first HDU called primary HDU o primary array. This array can contain a 1-999 dimensional array. A typical primary array could contain a 1D spectrum, 2D image or 3D data cube. Any number of HDU can follow the main array, and are called FITS extensions. Currently, three different extensions can be defined:
 
 \begin{itemize}
-\item Image extension, a 0-9999 dimensional array of pixels, which begins with XTENSION = 'IMAGE'
-\item ASCII table extension which stores tabular data in ASCII formats. They begin with XTENSION = 'TABLE'
-\item Binary table extension stores tabular data in binary representation. Headers start with XTENSION = 'BINTABLE'
+\item Image extension, a 0-9999 dimensional array of pixels, which begins with \texttt{XTENSION = `IMAGE'}
+\item ASCII table extension which stores tabular data in ASCII formats. They begin with \texttt{XTENSION = `TABLE'}
+\item Binary table extension stores tabular data in binary representation. Headers start with \texttt{XTENSION = `BINTABLE'}
 \end{itemize}
 
 Besides, there are additional type of HDU called random groups, but only used for radio interferometry.
