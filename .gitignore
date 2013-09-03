@@ -7,4 +7,4 @@
 *.lot
 *.out
 *.toc
-*.synctex.gz # LaTeX position syncing
+*.gz # tesis.synctex.gz
