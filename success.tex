@@ -37,6 +37,7 @@ At first stage, two of the most popular platforms were considered: Apache Cassan
 As a matter of fact, in the tests done, Cassandra's time per extracted entry was 10 ms, with 10 concurrent clients. This means 1000 queries per second, about twice the rate currently experienced by their Oracle DB. An analogous test done against Oracle (from a Python client) yielded roughly 100ms per query. \footnote{More information at \href{http://cds.cern.ch/record/1446655/files/ATL-SOFT-PROC-2012-012.pdf}{CERN Document Center}.}
 
 
-\section{Measuring radiation levels in Seattle: Cloudant}
+% \section{Measuring radiation levels in Seattle: Cloudant}
+\section{Measuring radiation levels in Seattle: CouchDB}
 
 Researchers at the University of Washington used the Cloudant \footnote{See \href{https://cloudant.com/}{Cloudant Website}} database as part of an experiment that determined radiation levels in Seattle as a result of the recent Fukushima nuclear disaster are ``well below alarming limits.`` The research team, which includes Cloudant Founder and Chief Scientist Mike Miller studied particles captured from the five air filters and used Cloudant’s CouchDB-based BigCouch database to store and process the data. They chose Cloudant because with it, it was possible to start monitoring radiation levels very quickly, after a very easy setup and the capability of sampling gigantic quantities of air, allowing them to analyze the data and sharing it in near-real-time, profiting from BigCouch MapReduce engine.
