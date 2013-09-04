@@ -20,9 +20,21 @@ relational model. For the reasons stated in chapter \ref{theproblem}, we propose
 
 A non-relational database just stores data without explicit and structured mechanisms to link data from different buckets to one another.
 
-NoSQL implementations used in the real world include 3TB Digg green markers (indicated to highlight the stories voted by others in the social network), the 6 TB of ``ENSEMBLE'' European Commission database used in comparing models and air quality, and the 50 TB of Facebook inbox search. 
+NoSQL implementations used in the real world include 3TB Digg
+social media website\urlnote{http://digg.com}
+green markers (indicated to highlight the stories voted by others in the social network), the 6 TB of
+the ENSEMBLES\urlnote{http://ensemble2.jrc.ec.europa.eu/public/}
+European Commission
+Joint Research Centre (JRC)
+database used in comparing models and air quality, and the 50 TB of Facebook inbox search. 
 
-NoSQL architectures often provide limited consistency, such as events or transactional consistency restricted to only data items. Some systems, however, provide all guarantees offered by ACID systems by adding an intermediate layer. There are two systems that have been deployed and provide for storage of snapshot isolation column: Google Percolator (based on BigTable system) and Hbase transactional system developed by the University of Waterloo. These systems use similar concepts in order to achieve distributed multiple rows ACID transactions with snapshot isolation guarantees for the underlying storage system in that column,
+NoSQL architectures often provide limited consistency, such as events or transactional consistency restricted to only data items. Some systems, however, provide all guarantees offered by
+% ACID systems
+systems compliying with the Atomicity, Consistency, Isolation and Durability (ACID) criteria
+by adding an intermediate layer.
+The ACID properties guarantee the reliable processing of database transactions, but they are not needed for system where the data are not subject to transactions, such as read-only systems.
+
+There are two systems that have been deployed and provide for storage of snapshot isolation column: Google Percolator (based on BigTable system) and Hbase transactional system developed by the University of Waterloo. These systems use similar concepts in order to achieve distributed multiple rows ACID transactions with snapshot isolation guarantees for the underlying storage system in that column,
 with % typo: wit
 no extra overhead in data management, no system deployment middleware or any maintenance introduced by middleware layer. 
 
@@ -36,23 +48,25 @@ There are different NoSQL DBs for different projects:
 \item[Document oriented] These are systems whose main purpose is to record document data and metadata, such as text corpuses, massive mail systems, or similar datasets.
 
   \begin{itemize}
-    \item CouchDB
-    \item MongoDB
-    \item RavenDB
-    \item IBM Lotus Domino
+    \item CouchDB\urlnote{http://couchdb.apache.org}
+    \item MongoDB\urlnote{http://www.mongodb.org}
+    \item RavenDB\urlnote{http://ravendb.net}
+    \item IBM Lotus Domino\urlnote{http://www.ibm.com/software/products/us/en/ibmdomino/}
   \end{itemize}
 
 \item[Graph oriented] These are systems whose emphasis is made in recording the relationships (including directionality) between the objects in the data store.
 
   \begin{itemize}
-    \item Neo4j
-    \item AllegroGraph
-    \item InfiniteGraph
-    \item Sones GraphDB
-    \item HyperGraphDB
+    \item Neo4j\urlnote{http://www.neo4j.org}
+    \item AllegroGraph\urlnote{http://www.franz.com/agraph/allegrograph/}
+    \item InfiniteGraph\urlnote{http://www.objectivity.com/infinitegraph}
+    \item Sones GraphDB\urlnote{https://github.com/sones/sones}
+    \item HyperGraphDB\urlnote{http://www.hypergraphdb.org/}
   \end{itemize}
 
 \item[Key-value oriented] These are systems where simple key-value pairs (such as those in FITS headers) are stored, withing a shallow hierarchy of metadata.
+
+% NOTA: Añadir \urlnote para el resto de los sitemas
 
   \begin{itemize}
     \item Cassandra
@@ -334,8 +348,9 @@ db.fits_super.insert(
 
 
 
-
-Now, inserting the primary HDU for a  FITS-IDI header in MondoDB could not be easier. We start from a very simple FITS header like: 
+Now, inserting the primary HDU for a  FITS-IDI header in MondoDB could not be
+easier, given the fact that FITS headers are collections of key-value pairs. % easier.
+We start from a very simple FITS header like: 
 \begin{verbatim}
 SIMPLE = T 			/ Standard FITS format
 BITPIX = 8 			/
@@ -383,7 +398,6 @@ db.my_idi_collection.insert(
 \end{lstlisting}
 
 Now, we have our FITS header into a database with a document structure. We keep the same approach but in a very more usable and efficient way.
-
 
 
 \section{MapReduce in MongoDB}

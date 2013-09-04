@@ -131,7 +131,9 @@ The code that actually executes the job.
 
 \subsection{cadcTAP Library}
 
-The cadcTAP library is responsible of async and sync queries, where QueryRunner implements JobRunner. It also contains TAP\_SCHEMA \footnote{TAP services try to be self-describing about what data they contain. They provide information on what tables they contain in special tables in TAP\_SCHEMA} DDL statements and is used by query parser to validate table and column usage.
+The cadcTAP library is responsible of async and sync queries, where QueryRunner implements JobRunner. It also contains TAP\_SCHEMA \footnote{TAP services try to be self-describing about what data they contain. They provide information on what tables they contain in special tables in TAP\_SCHEMA}
+Data Definition Language\footnote{In RDBMS, the Data Definition Language is the language that allows for the creation of tables, fields, and data types.} (DDL) % DDL
+statements and is used by query parser to validate table and column usage.
 
 \subsubsection{TapQuery Interface}
 
