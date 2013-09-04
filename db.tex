@@ -228,7 +228,7 @@ Column & Field \\
 
 
 
-% \begin{figure}[H]
+% \begin{figure}[tb]
 % \centering
 % \includegraphics[width=11cm,height=8cm]{images/mongo_dia.png}
 % \caption{Tree View for Tap Schema in MongoVue}
@@ -240,8 +240,6 @@ Column & Field \\
 In this subsection we can see some differences in the DDL syntax used by both SQL and MongoDB. For the latter, we can call it from any language having a driver to connect to the DB or use the interactive shell (the code presented here uses this shell): 
 
 \lstinputlisting[language=SQL]{src/sample01.sql}
-
-
 
 \section{FITS alternative in MongoDB}
 
@@ -351,7 +349,7 @@ MapReduce, usually, is used to solve problems involving big size datasets, up to
 
 The MapReduce model allows to write a map function which takes a key/value pair, operates on it (performs object detection) and returns a new set of key/value pairs (source list). The reduce function then aggregates/merges all the intermediate data (builds an object catalog on a stacked source list). Many problems in astronomy naturally fall into this model because of the inherent parallelizability of many astronomical tasks.
 
-\begin{figure}[H]
+\begin{figure}[tb]
 \centering
 \includegraphics[width=\textwidth]{images/map_reduce_chart.png}
 \caption{MapReduce concept}
