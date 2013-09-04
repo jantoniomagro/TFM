@@ -43,7 +43,7 @@ The types of queries implemented by TAP are:
 TAP includes support for multiple query languages, including queries specified using the Astronomical Data Query Language (ADQL [1]) and the Parameterised Query Language (PQL, under development). Other query languages are also supported, and this mechanism allows developments outside the IVOA to be used without modifying the TAP specification. Finally, it also includes support for both synchronous and asynchronous queries. Special support is provided for spatially indexed queries using the spatial extensions in ADQL. 
 
 ADQL sample query:
-\begin{lstlisting}[language=SQL]
+\begin{lstlisting}[float,language=SQL,caption=ADQL sample query]
 SELECT 
  u.raj2000+d_alpha+d_pmalpha/cos(radians(u.dej2000))*(u.epoch-2000) AS ra_icrs,
  u.dej2000+d_delta+d_pmdelta*(u.epoch-2000) AS de_cicrs,
