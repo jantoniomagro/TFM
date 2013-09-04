@@ -1,28 +1,65 @@
-\chapter{Astronomy Big Data}\label{theproblem}
+\chapter{Astronomy and Big Data} % \chapter{Astronomy Big Data}
+\label{theproblem}
 
+Astronomical datasets are growing at an exponential rate: the next generation of telescopes will collect data at rates of
+several terabytes % terabytes
+per day. This data
+deluge % , now and int the future,
+presents some critical challenges for the way astronomers
+can
+get new knowledge from their data.
+These extremely large datasets, or datasets with high data rates, are commonly known as
+\emph{Big Data}.
 
-Big data are high-volume, high-velocity, and/or high-variety information assets that require new forms of processing to enable enhanced decision making, insight discovery and process optimization. Examples of big data include information such as Web search results, electronic messages (e.g. SMS, email and instant messages), social media postings, pictures, videos and even system log data. However, it can also include cash transactions, check images, receipts and other transactional information depending on the source of the information. This situation requires processing of terabytes and even petabytes of data. This is achieved by distributed processing. This is one of major reasons for the power of Web companies such as
-Google, Amazon or social networks like Facebook and Twitter. Relational databases are found to be inadequate in distributed processing involving very large number of servers and handling Big Data applications.
+Big Data are high-volume, high-velocity, and/or high-variety information assets that require new forms of processing to enable enhanced
+decision making\footnote{for instance, fast follow up of transients in the data collected by the LSST}, % decision making,
+insight discovery and process optimization. Examples of big data
+outside of astronomy
+include information such as Web search results, electronic messages (e.g. SMS, email and instant messages), social media postings, pictures, videos, 
+or large web % and 
+system log data.
+% However, it can also include cash transactions, check images, receipts and other transactional information depending on the source of the information.
+These situations require the % This situation requires
+processing of terabytes and even petabytes of data. This is achieved by
+means of
+ distributed processing.
+% This is one of major reasons for the power of Web companies such as Google, Amazon or social networks like Facebook and Twitter.
+% Relational databases
+Relational Database Systems (RDBMS)
+are found to be inadequate in distributed processing involving very large number of servers and handling Big Data applications, due to the limitations of query speed, storage size, and scalabilty inherent to the tasks of keeping relationships between database tables, atomicity of transactions, and the storage layout of data in disk.
 
-Astronomical datasets are growing at an exponential rate: the next generation of telescopes will collect data at rates in terabytes per day. This data deluge, now and int the future, presents some critical challenges for the way astronomers get new knowledge from their data.
+% In this chapter, we make an overview of some of the greatest telescopes and the amount of data they acquire and store.
 
-In this chapter, we make an overview of some of the greatest telescopes and the amount of data they acquire and store.
+In the next sections, we will review some of the current and future challenges for astronomical data processing, which justify the search for NoSQL solutions for astronomical data sharing.
 
+% \section{Atacama Large Millimiter Array}
+\section{The Atacama Large Millimetre/Submillimetre Array}
 
-\section{Atacama Large Millimiter Array}
-
-ALMA is a worldwide project; the synthesis of early visions of astronomers in its three partner communities: Europe, North America and Japan. It is a fusion of ideas, with its roots in three astronomical projects: the Millimeter Array (MMA) of the United States, the Large Southern Array (LSA) of Europe, and the Large Millimeter Array (LMA) of Japan.
+The Atacama Large Millimetre/Submillimetre Array (ALMA) % ALMA
+is a worldwide project, % ; the synthesis of early visions of astronomers in its three partner communities: Europe, North America and Japan. It is a fusion of ideas, with its roots in three astronomical projects: the Millimeter Array (MMA) of the United States, the Large Southern Array (LSA) of Europe, and the Large Millimeter Array (LMA) of Japan.
+built cooperatively by the European Southern Observatory (ESO), the National Radio Astronomical Observatory (NRAO) of the United States of America, and the National Astronomical Observatory of Japan (NJAO), in collaboration with the Academia Sinica of Taiwan.
 
  \begin{figure}[tb]
  \centering
- \includegraphics[height=8cm]{images/alma.jpg}
- \caption{ALMA dishes in Atacama Desert}
+ \includegraphics[width=\textwidth]{images/alma.jpg}
+ % \caption{ALMA dishes in Atacama Desert}
+ \caption{Artist's impression of ALMA dishes at the Chajnantor plateau, in the Atacama Desert}
  \end{figure}
 
 
-ALMA is an instrument that consists of a giant array of 12-m antennas with baselines up to 16 km, and an additional compact array of 7-m and 12-m antennas to greatly enhance ALMA's ability to image extended targets, located on the Chajnantor plateau at 5000m altitude. Initially, it will observe at wavelengths in the range $3 mm$ to $400 μm$ ($84$ to $720 GHz$). The antennas can be moved around, in order to form arrays with different distributions of baseline lengths. More extended arrays will give high spatial resolution, more compact arrays give better sensitivity for extended sources. In addition to the array of 12-m antennas, there is the Atacama Compact Array (ACA), used to image large scale structures that are not well sampled by the ALMA 12-m array, consisting of twelve 7-m antennas and four 12-m antennas. 
+ALMA
+% is an instrument that
+consists of a giant array of
+sixty-six
+12~m antennas with baselines up to
+16~km,
+and an additional compact array of
+7~m
+and
+12~m antennas to greatly enhance ALMA's ability to image extended targets, located on the Chajnantor plateau at 5000m altitude.
 
-The design of ALMA is driven by three key science goals:
+%The design of
+ALMA is driven by three key science goals:
 
 \begin{itemize}
 
@@ -33,34 +70,84 @@ The design of ALMA is driven by three key science goals:
 \item Providing precise high dynamic range images at an angular resolution of $0.1 arcsec$
 \end{itemize}
 
+In order to accomplish those goals,
+% Initially, it will
+ALMA will initially 
+observe at wavelengths in the range $3 mm$ to
+$400 \mu{}m$
+($84$ to $720 GHz$). The antennas can be moved around, in order to
+provide different % form arrays with different distributions of 
+baseline lengths. More extended arrays
+% will
+give high spatial resolution,
+while
+more compact arrays give better sensitivity for extended sources. In addition to the array of
+12~m
+antennas, there is the Atacama Compact Array (ACA), used to image large scale structures that are not well sampled by the ALMA
+12~m
+array, consisting of twelve
+7~m
+antennas and four
+12~m
+antennas. 
+
+
 The current ALMA Archive design allows for a maximum data rate of 64 MB/s and an average data rate
 of 6.4 MB/s, which produces the long-term storage capacity of approximately 200 TB/year. The
-ALMA correlators can producing a data up to 1000 MB/s. 
+ALMA correlators can
+generate % producing a
+data
+up to 1000 MB/s. 
 
  
 As stated in \cite{Etoka12}, the purpose of the ALMA archive is to provide services for:
 
 \begin{itemize}
+
 \item Persistent archiving and retrieval for observational data.
-\item Observaction descriptors.
-\item Datacubes produced by pipeline.
-\item Technical and environmental data.
+
+\item Search and retrieval of observations via several descriptors. % Observaction descriptors.
+
+\item Retrieval of reduced datacubes
+% Datacubes
+produced by
+the
+pipeline.
+
+\item Search and retrieval of technical and environmental data. % Technical and environmental data.
 \end{itemize}
 
-The main objective of the conceptual design of the ALMA Archive is to guarantee that three ALMA Regional Centres (North America, Japan and Europe) hold an identical copy of the archive at the Joint ALMA Observatory in Santiago. 
+The main objective of the
+ALMA Archive
+conceptual design
+is to guarantee that three ALMA Regional Centres (North America,
+East Asia % Japan
+and Europe) hold an identical copy of the archive at the Joint ALMA Observatory in Santiago. 
 
-ALMA front-end archive is optimized for storage and preservation, not for data query and retrieval. ASA database is inspired from ObsCore, RADAMS and Hubble Legacy Archive plus Virtual Observatory Software:
+The
+ALMA Front-end Archive
+(AFA; the part of the archive directly accessed by the ALMA correlator)
+is optimized for storage and preservation, not for data query and retrieval.
 
-\begin{itemize}
-\item openCADC (\ref{opencadc}), which is used for database access and VO access protocol
-\item VOView, for Web components
-\end{itemize}
+The ALMA Science Archive (ASA), on the other hand, is the user-facing part of the ALMA Archive. The ASA receives a transformed copy of the data from the AFA, because only a subset of the data and metadata in the AFA is considered to be queriable by the users.
 
+% NOTA: desconectado del resto de la explicación
+% ASA database is inspired from ObsCore, RADAMS and Hubble Legacy Archive plus Virtual Observatory Software:
+% \begin{itemize}
+% \item openCADC (\ref{opencadc}), which is used for database access and VO access protocol
+% \item VOView, for Web components
+% \end{itemize}
 
+% TODO: Incluir 
 
-\section{Square Kilometer Array}
+\section{The Square Kilometre Array} % \section{Square Kilometer Array}
 
-The Square Kilometer Array (SKA) is a global science and engineering project led by the SKA Organization, a not-for-profit company with its headquarters at Jodrell Bank Observatory, near Manchester. When construction starts in 2016 (according to official schedule) in Australia and in Southern Africa, thousands of linked radio wave receptors will be located to combine the signals from the antennas in each region creating a telescope with a collecting area equivalent to a dish with an area of about one square kilometer to discover how the first stars and galaxies formed after the Big Bang, how galaxies have evolved and the nature of gravity. It comprises:
+The Square
+Kilometre % Kilometer
+Array\urlnote{http://www.skatelescope.org/} (SKA) % Array (SKA)
+is a global science and engineering project led by the SKA Organization, a not-for-profit company with its headquarters at Jodrell Bank Observatory, near Manchester. When construction starts in 2016 (according to
+the official schedule\urlnote{http://www.skatelescope.org/the-project/project/}) % schedule)
+in Australia and in Southern Africa, thousands of linked radio wave receptors will be located to combine the signals from the antennas in each region creating a telescope with a collecting area equivalent to a dish with an area of about one square kilometer to discover how the first stars and galaxies formed after the Big Bang, how galaxies have evolved and the nature of gravity. It comprises:
 
 \begin{itemize}
 \item An array of dish receptors in eight African countries. 
@@ -70,7 +157,7 @@ The Square Kilometer Array (SKA) is a global science and engineering project led
 
  \begin{figure}[tb]
  \centering
- \includegraphics[height=8cm]{images/ska.jpg}
+ \includegraphics[width=\textwidth]{images/ska.jpg}
  \caption{Artist's impression of the SKA dishes. Credit: SKA Organisation/TDP/DRAO/Swinburne Astronomy Productions}
  \end{figure}
 

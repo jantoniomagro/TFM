@@ -1,19 +1,33 @@
 \chapter{Non-relational DBMS inside VO}
 
-Typically, modern relational databases have shown little efficiency in certain applications using intensive data, like indexing of a large number of documents, sites rendering with high traffic, and streaming sites. Typical RDBMS implementations are tuned either for small but frequent reads and writes or a large set of transactions that have few write accesses. On the other hand NoSQL DB are optimized for read and append operations, and perform outstandingly where a relational DB would slow down. They are especially fast when large amounts of data have to be queried and if we consider that speed is more important than consistency. 
+Modern relational databases have shown little efficiency in certain applications using intensive data, like indexing of a large number of documents, sites rendering with high traffic, and streaming sites.
 
-IVOA has a standard called Astronomical Data Query Language (ADQL) that users do not necessarily need to know, because he can pose a query with a GUI, as long as the query is translated into standard ADQL. The receiving service likewise converts the standard ADQL into whatever its own database servers need, but always inside relational model. For the reasons stated in chapter \ref{theproblem}, we propose the use of a different approach, the NoSQL technology.
+Typical RDBMS implementations are tuned either for small but frequent reads and writes or a large set of transactions that have few write accesses. On the other
+hand,
+NoSQL DB are optimized for read and
+bulk-ingest
+operations, and perform outstandingly where a relational DB would slow down. They are especially fast when large amounts of data have to be queried, and if we consider that speed is more important than
+consistency\footnote{Consistency is used here in the sense of having changes replicated to multiple nodes at the same time. RDBMS ensure that consistency, but that makes them less performat. Given that VO users do not know beforehand whether some datasets are available or not, speed in data retrieval and operations is more important than consistency (which will not be perceived unless for special circumstances).}.
+
+IVOA has a standard called Astronomical Data Query Language (ADQL) that users do not necessarily need to know, because
+they % users is 3-rd person plural
+can pose a query with a GUI, as long as the query is translated into standard ADQL. The receiving service likewise converts the standard ADQL into whatever its own database servers need, but always inside
+the
+relational model. For the reasons stated in chapter \ref{theproblem}, we propose the use of a different approach, the NoSQL technology.
 
 
 \section{NoSQL}
 
-A non-relational database just stores data without explicit and structured mechanisms to link data from different buckets to one another. 
+A non-relational database just stores data without explicit and structured mechanisms to link data from different buckets to one another.
 
 NoSQL implementations used in the real world include 3TB Digg green markers (indicated to highlight the stories voted by others in the social network), the 6 TB of ``ENSEMBLE'' European Commission database used in comparing models and air quality, and the 50 TB of Facebook inbox search. 
 
-NoSQL architectures often provide limited consistency, such as events or transactional consistency restricted to only data items. Some systems, however, provide all guarantees offered by ACID systems by adding an intermediate layer. There are two systems that have been deployed and provide for storage of snapshot isolation column: Google Percolator (based on BigTable system) and Hbase transactional system developed by the University of Waterloo. These systems use similar concepts in order to achieve distributed multiple rows ACID transactions with snapshot isolation guarantees for the underlying storage system in that column, wit no extra overhead in data management, no system deployment middleware or any maintenance introduced by middleware layer. 
+NoSQL architectures often provide limited consistency, such as events or transactional consistency restricted to only data items. Some systems, however, provide all guarantees offered by ACID systems by adding an intermediate layer. There are two systems that have been deployed and provide for storage of snapshot isolation column: Google Percolator (based on BigTable system) and Hbase transactional system developed by the University of Waterloo. These systems use similar concepts in order to achieve distributed multiple rows ACID transactions with snapshot isolation guarantees for the underlying storage system in that column,
+with % typo: wit
+no extra overhead in data management, no system deployment middleware or any maintenance introduced by middleware layer. 
 
-Quite NoSQL systems employ a distributed architecture, maintaining data redundantly on multiple servers, often using distributed hash table. Thus, the system may actually escale adding more servers, and thus a server failure may be tolerated. 
+Many % quite
+NoSQL systems employ a distributed architecture, maintaining data redundantly on multiple servers, often using distributed hash tables. Thus, the system may actually escale adding more servers, and thus a server failure may be tolerated. 
 
 There are different NoSQL DBs for different projects:
 
@@ -71,11 +85,11 @@ There are different NoSQL DBs for different projects:
     \item LevelDB (BigTable open version)
     \item Hypertable
   \end{itemize}
-  
-
 \end{itemize}
 
-They run on clusters of inexpensive machines.
+All of these systems can % They
+run on clusters of inexpensive machines,
+or can be run on distributed cloud systems such as the Amazon Elastic Cloud, Google App Engine, or similar.
 
 
 
@@ -98,18 +112,20 @@ NoSQL databases typically use cheap clusters servers, while RDBMS tends to rely 
 
 \item[Flexible data models] % \textbf{Flexible data models}
 
-Even minor changes to the data model of an RDBMS have to be carefully managed and may necessitate downtime or reduced service levels. NoSQL databases have a less strict (in the worst case) data model restrictions. NoSQL allows the application to store virtually any structure it wants in a data element. The result is that application changes and database schema changes do not have to be managed as one unit. In theory, this will allow applications to iterate faster.
+Even minor changes to the data model of an RDBMS have to be carefully managed and may necessitate downtime or reduced service levels. NoSQL databases have a less strict (in the worst case) data model restrictions. NoSQL allows the application to store virtually any structure it wants in a data element. The result is that application changes and database schema changes do not have to be managed as one unit. In theory, this will allow applications
+and user facing services
+to iterate faster.
 
-
-RDBMS systems can be maintained only with the assistance of expensive and highly trained DBAs, while NoSQL databases are generally designed to require less management:  automatic repair, data distribution, and simpler data models lead to lower administration and tuning requirements and costs.
 \item[No need for DBAs] % \textbf{No need for DBAs}
 
+% Este argumento me da un poco de miedo. Cuidado cuando hagas la exposición, o con las preguntas que puedan hacer.
 
+RDBMS systems can be maintained only with the assistance of expensive and highly trained DBAs, while NoSQL databases are generally designed to require less management:  automatic repair, data distribution, and simpler data models lead to lower administration and tuning requirements and costs.
 
 \end{itemize}
 
 
-NoSQL systems have generated a lot of enthusiasm but there are still a lot of questions about its future:
+NoSQL systems have generated a lot of enthusiasm, but there are still a lot of questions about its future:
 
 \begin{itemize}
 
@@ -120,10 +136,17 @@ RDBMS systems have been around for a long time. NoSQL evangelists will argue tha
 \item[Support] % \textbf{Support}
 
 Most NoSQL systems are open source projects, and although there are usually one or more firms offering support for each NoSQL database, these companies often are small start-ups.
+There are risks in chosing a NoSQL solution that is no longer supported in the future, but at the same time, if the community is large enough, NoSQL systems can maintain their deployability for longer time.
 
 \item[Expertise] % \textbf{Expertise}
 
-There are millions of developers with expertise using RDBMS. On ther other hand, NoSQL developers are, by far, a minority. This situation seems to change, but for now, it is easier to find experienced RDBMS programmers or DBA than NoSQL experts.
+There are millions of developers with expertise using RDBMS. On
+the % ther
+other hand, NoSQL developers are, by far, a minority. This situation seems to
+be changing, % change,
+but for now, it is easier to find experienced RDBMS programmers or
+DBAs % DBA
+than NoSQL experts.
 
 \end{itemize}
 
@@ -132,7 +155,8 @@ There are millions of developers with expertise using RDBMS. On ther other hand,
 MongoDB (from ``humongous'') is an open source document-oriented database system developed and supported by 10gen. It is part of the NoSQL family of database systems. Instead of storing data in tables as is done in a ``classical'' relational database, MongoDB stores structured data as JSON-like documents with dynamic schemas (MongoDB calls the format BSON), making the integration of data in certain types of applications easier and faster. 
 
 As an example, we show some JSON code inserting a document in a Mongo DB:
-\begin{lstlisting}
+
+\begin{lstlisting}[float,caption=MongoDB column insertion example in JSON]
 db.columns.insert( {
 		table_name: "TAP_SCHEMA.schemas",
 		column_name: "schema_name",
@@ -150,7 +174,11 @@ db.columns.insert( {
 \end{lstlisting} 
 
 
-10gen began Development of MongoDB in October 2007 and was not created to be just another database that tries to do everything for everyone. Instead, MongoDB was created to work with documents rather than rows, was extremely fast, massively scalable, and easy to use. In order to accomplish this, some features were excluded, namely support for transactions. 
+10gen began Development of MongoDB in October 2007 and was not created to be just another database that tries to do everything for everyone. Instead, MongoDB was created to work with documents rather than rows, was extremely fast, massively scalable, and easy to use. In order to accomplish this, some
+RDBMS
+features were excluded, namely
+the
+support for transactions.
 
 %\begin{shaded}
 A document database is more like a collection of documents. Each entry is a document, and each one can have its own structure. If you want to add a field to an entry, you can do so without affecting any other entry.
@@ -164,34 +192,46 @@ A more detailed list of features is listed in \ref{features_mongo} , but as a su
 
 \begin{itemize}
 \item It is open source code (available at \url{https://github.com/mongodb/mongo}).
-\item Widely used in the NoSQL community.
-\item It has full index support
-\item Very easy to install and to connect through drivers with several programming languages like Java, Python, Ruby, C/C++, PHP or Scala.
-\item It supports MapReduce paradigm.
-\item It is possible to connect MongoDB with Hadoop (the \textit{de facto} big data processing and analytics platform \footnote{\url{http://hadoop.apache.org}}, allowing to to send MongoDB data into Hadoop MapReduce jobs, process the data and return it back to a MongoDB collection).
+\item It is widely used in the NoSQL community.
+\item It has full index %support
+support, which is a must for large datasets
+\item It is very
+easy to install and to connect through drivers with several programming languages like Java, Python, Ruby, C/C++, PHP or Scala.
+\item It supports
+the
+MapReduce paradigm.
+\item It is possible to connect MongoDB with Hadoop (the \emph{de facto} big data processing and analytics platform \urlnote{http://hadoop.apache.org},
+allowing to to send MongoDB data into Hadoop MapReduce jobs, process the data and return it back to a MongoDB collection).
 \end{itemize}
 
 \subsection{Main features} \label{features_mongo}
 
 \begin{itemize}
 
-\item \textbf{Ad hoc queries} 
+\item[Ad-hoc queries] % \textbf{Ad hoc queries} 
 MongoDB supports search by field, range queries, regular expression searches. Queries can return specific fields of documents and also include user-defined JavaScript functions.
 
-\item \textbf{Indexing} 
+\item[Indexing] % \textbf{Indexing} 
 Any field in a MongoDB document can be indexed (indices in MongoDB are conceptually similar to those in RDBMS).
 
-\item \textbf{Replication} 
+\item[Data replication] % \textbf{Replication} 
 MongoDB supports master-slave replication. A master can perform reads and writes. A slave copies data from the master and can only be used for reads or backup (not writes). The slaves have the ability to select a new master if the current one goes down.
 
-\item \textbf{Load balancing} 
-MongoDB scales horizontally using sharding (a shard is a master with one or more slaves). The developer chooses a shard key, which determines how the data in a collection will be distributed. The data is split into ranges (based on the shard key) and distributed across multiple shards. MongoDB can run over multiple servers, balancing the load and/or duplicating data to keep the system up and running in case of hardware failure. Automatic configuration is easy to deploy and new machines can be added to a running database.
+\item[Load balancing] % \textbf{Load balancing} 
+MongoDB scales horizontally using sharding (a shard is a master with one or more slaves). The developer chooses a shard key, which determines how the data in a collection will be
+distributed\footnote{For instance, astronomical collections can be naturally split in different sky stripes, object types, magnitude ranges, et cetera.}. % distributed.
+The data is split into ranges (based on the shard key) and distributed across multiple shards. MongoDB can run over multiple servers, balancing the load and/or duplicating data to keep the system up and running in case of hardware failure. Automatic configuration is easy to deploy and new machines can be added to a running database.
 
-\item \textbf{File storage} 
-MongoDB could be used as a file system, taking advantage of load balancing and data replication features over multiple machines for storing files. This feature, GridFS, is included with MongoDB drivers and available for development languages. GridFS is used, for instance, in plugins for NGINX and lighttpd. In a multi-machine MongoDB system, files can be distributed and copied multiple times between machines transparently, thus effectively creating a load balanced and fault tolerant system.
+\item[File storage capabilities] % \textbf{File storage} 
 
-\item \textbf{Aggregation} 
-MapReduce can be used for batch processing of data and aggregation operations. The aggregation framework enables users to obtain the same results as the SQL GROUP BY clause.
+MongoDB could be used as a file system, taking advantage of load balancing and data replication features over multiple machines for storing files. This feature, GridFS, is included with MongoDB drivers and available for development languages. GridFS is used, for instance, in plugins for NGINX and lighttpd. In a multi-machine MongoDB system, files can be distributed and copied multiple times between machines transparently, thus effectively creating a load balanced and
+fault-tolerant % fault tolerant
+system.
+
+\item[Aggregation] % \textbf{Aggregation} 
+MapReduce can be used for batch processing of data and aggregation operations. The aggregation framework enables users to obtain the same results as the SQL
+\texttt{GROUP BY}
+clause.
 
 \end{itemize}
 
@@ -199,13 +239,18 @@ Once we have seen the main features of MongoDB, we can move on to the language i
 
 \subsection{The basics}
 
-We must know four concepts to dig into MongoDB's world:
+We must know four concepts to understand MongoDB:
+% dig into MongoDB's world:
 
 \begin{itemize}
-\item Database: this concept is much like the RDBM counterpart.
-\item Collection: we can see a collection and a table as the same thing.
-\item Document: its equivalent in RDBM is the row, and a document is made up of fields.
-\item Field: is a lot like a column.
+\item[Database] this concept is much like the RDBM counterpart.
+\item[Collection] we can see a collection and a table as the same thing.
+\item[Document] its equivalent in
+a RDBMS % RDBM
+is the 
+row; % row, and
+a document is made up of fields.
+\item[Field]: it is equivalent to a column % is a lot like a column.
 \end{itemize}
 
 
