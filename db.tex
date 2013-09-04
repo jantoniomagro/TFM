@@ -154,9 +154,9 @@ than NoSQL experts.
 
 MongoDB (from ``humongous'') is an open source document-oriented database system developed and supported by 10gen. It is part of the NoSQL family of database systems. Instead of storing data in tables as is done in a ``classical'' relational database, MongoDB stores structured data as JSON-like documents with dynamic schemas (MongoDB calls the format BSON), making the integration of data in certain types of applications easier and faster. 
 
-As an example, we show some JSON code inserting a document in a Mongo DB:
+An example of Mongo DB document insertion is shown in Listing~\ref{lst:docinsert}.
 
-\begin{lstlisting}[float,caption=MongoDB column insertion example in JSON]
+\begin{lstlisting}[float,label=lst:docinsert,caption=MongoDB column insertion example in JSON]
 db.columns.insert( {
 		table_name: "TAP_SCHEMA.schemas",
 		column_name: "schema_name",
@@ -282,9 +282,9 @@ Column & Field \\
 
 \subsubsection{SQL/Mongo syntax differences}
 
-In this subsection we can see some differences in the DDL syntax used by both SQL and MongoDB. For the latter, we can call it from any language having a driver to connect to the DB or use the interactive shell (the code presented here uses this shell): 
+In this subsection we can see some differences in the DDL syntax used by both SQL and MongoDB. For the latter, we can call it from any language having a driver to connect to the DB or use the interactive shell (the code presented here uses this shell). Listing~\ref{lst:sqlvsmongo} shows the differences in syntax between the DDL instructions for SQL and MongoDB.
 
-\lstinputlisting[language=SQL]{src/sample01.sql}
+\lstinputlisting[float,language=SQL,caption={Syntax comparison between SQL and MongoDB BSON for table/document creation, document/row insertion, document/row selection, document/row deletion, and document/row updates.},label=lst:sqlvsmongo]{src/sample01.sql}
 
 \section{FITS alternative in MongoDB}
 
@@ -310,9 +310,9 @@ We can profit from MongoDB store units (collections, documents and fields). We c
 
 \paragraph{Solution}
 
-Using just one collection and $n$ documents, one for each kind. If we are going to work with FITS-IDI, SDFITS, MBFITS and OIFITS, the code should be like this:
+Using just one collection and $n$ documents, one for each kind. If we are going to work with FITS-IDI, SDFITS, MBFITS and OIFITS, we can use code like that shown on Listing~\ref{lst:fitstypes} to create different variations of what a FITS document is like.
 
-\begin{lstlisting}
+\begin{lstlisting}[float,label=lst:fitstypes,caption=MongoDB BSON code for creating the different FITS document types.]
 
 db.fits_super.insert(
   convention: "FITS-IDI"
@@ -356,9 +356,9 @@ PCOUNT = 0 			/
 END
 \end{verbatim}
 
-This code is very easy to translate into MongoDB syntax: 
+This code is very easy to translate into MongoDB syntax, as shown in Listing~\ref{lst:fitsinsert}.
 
-\begin{lstlisting}
+\begin{lstlisting}[float,label=lst:fitsinsert,caption=MongoDB BSON code for adding FITS metadata to the NoSQL database.]
 
 db.my_idi_collection.insert(
     supertype: "FITS-IDI", // it simulates a foreign key!
