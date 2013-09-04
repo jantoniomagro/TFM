@@ -31,7 +31,7 @@ NoSQL systems employ a distributed architecture, maintaining data redundantly on
 
 There are different NoSQL DBs for different projects:
 
-\begin{itemize}
+\begin{description} % {itemize}
 
 \item[Document oriented] These are systems whose main purpose is to record document data and metadata, such as text corpuses, massive mail systems, or similar datasets.
 
@@ -85,7 +85,7 @@ There are different NoSQL DBs for different projects:
     \item LevelDB (BigTable open version)
     \item Hypertable
   \end{itemize}
-\end{itemize}
+\end{description} % \end{itemize}
 
 All of these systems can % They
 run on clusters of inexpensive machines,
@@ -96,7 +96,7 @@ or can be run on distributed cloud systems such as the Amazon Elastic Cloud, Goo
 
 \section{Advantages and uncertainties of NoSQL}
 
-\begin{itemize}
+\begin{description} % {itemize}
 
 \item[Elastic scaling] % \textbf{Elastic scaling}
 
@@ -122,12 +122,12 @@ to iterate faster.
 
 RDBMS systems can be maintained only with the assistance of expensive and highly trained DBAs, while NoSQL databases are generally designed to require less management:  automatic repair, data distribution, and simpler data models lead to lower administration and tuning requirements and costs.
 
-\end{itemize}
+\end{description} % \end{itemize}
 
 
 NoSQL systems have generated a lot of enthusiasm, but there are still a lot of questions about its future:
 
-\begin{itemize}
+\begin{description} % {itemize}
 
 \item[Maturity] % \textbf{Maturity}
 
@@ -148,7 +148,7 @@ but for now, it is easier to find experienced RDBMS programmers or
 DBAs % DBA
 than NoSQL experts.
 
-\end{itemize}
+\end{description} % \end{itemize}
 
 \section{MongoDB: a document oriented database}
 
@@ -206,7 +206,7 @@ allowing to to send MongoDB data into Hadoop MapReduce jobs, process the data an
 
 \subsection{Main features} \label{features_mongo}
 
-\begin{itemize}
+\begin{description} % {itemize}
 
 \item[Ad-hoc queries] % \textbf{Ad hoc queries} 
 MongoDB supports search by field, range queries, regular expression searches. Queries can return specific fields of documents and also include user-defined JavaScript functions.
@@ -233,7 +233,7 @@ MapReduce can be used for batch processing of data and aggregation operations. T
 \texttt{GROUP BY}
 clause.
 
-\end{itemize}
+\end{description} % \end{itemize}
 
 Once we have seen the main features of MongoDB, we can move on to the language itself.
 
@@ -242,7 +242,7 @@ Once we have seen the main features of MongoDB, we can move on to the language i
 We must know four concepts to understand MongoDB:
 % dig into MongoDB's world:
 
-\begin{itemize}
+\begin{description} % {itemize}
 \item[Database] this concept is much like the RDBM counterpart.
 \item[Collection] we can see a collection and a table as the same thing.
 \item[Document] its equivalent in
@@ -251,7 +251,7 @@ is the
 row; % row, and
 a document is made up of fields.
 \item[Field]: it is equivalent to a column % is a lot like a column.
-\end{itemize}
+\end{description} % \end{itemize}
 
 
 \begin{table}
