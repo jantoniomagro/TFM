@@ -19,7 +19,7 @@ There are different NoSQL DBs for different projects:
 
 \begin{itemize}
 
-\item Document oriented
+\item[Document oriented] These are systems whose main purpose is to record document data and metadata, such as text corpuses, massive mail systems, or similar datasets.
 
   \begin{itemize}
     \item CouchDB
@@ -28,7 +28,7 @@ There are different NoSQL DBs for different projects:
     \item IBM Lotus Domino
   \end{itemize}
 
-\item Graph oriented
+\item[Graph oriented] These are systems whose emphasis is made in recording the relationships (including directionality) between the objects in the data store.
 
   \begin{itemize}
     \item Neo4j
@@ -38,7 +38,7 @@ There are different NoSQL DBs for different projects:
     \item HyperGraphDB
   \end{itemize}
 
-\item Key-value oriented
+\item[Key-value oriented] These are systems where simple key-value pairs (such as those in FITS headers) are stored, withing a shallow hierarchy of metadata.
 
   \begin{itemize}
     \item Cassandra
@@ -54,7 +54,7 @@ There are different NoSQL DBs for different projects:
     \item OpenQM
   \end{itemize}  
 
-\item Object Oriented
+\item[Object Oriented] These systems try to store complex objects, their metadata and relationships in ways that are directly usable by software systems to save and retrieve internal state.
   
   \begin{itemize}
     \item Zope Object Database
@@ -63,7 +63,7 @@ There are different NoSQL DBs for different projects:
     \item Objectivity/DB
   \end{itemize}
 
-\item Tabular
+\item[Tabular] These systems provide support for storing very large tables, but not for relationships between them.
 
   \begin{itemize}
     \item HBase
@@ -84,19 +84,19 @@ They run on clusters of inexpensive machines.
 
 \begin{itemize}
 
-\item \textbf{Elastic scaling}
+\item[Elastic scaling] % \textbf{Elastic scaling}
 
 DBA have relied on scale up — buying bigger servers as database load increases — rather than scale out — distributing the database across multiple hosts as load increases. However, as transaction rates and availability requirements increase, and as databases move into the cloud or onto virtualized environments, the economic advantages of scaling out on commodity hardware become irresistible.
 
 Unlike RDBMS, the NoSQL databases are designed to expand transparently to scale and they are usually designed with low-cost in mind.
 
 
-\item \textbf{Economics}
+\item[Economics] % \textbf{Economics}
 
 NoSQL databases typically use cheap clusters servers, while RDBMS tends to rely on expensive proprietary servers and storage systems. The result is a lower cost per transaction/second for NoSQL.
 
 
-\item \textbf{Flexible data models}
+\item[Flexible data models] % \textbf{Flexible data models}
 
 Even minor changes to the data model of an RDBMS have to be carefully managed and may necessitate downtime or reduced service levels. NoSQL databases have a less strict (in the worst case) data model restrictions. NoSQL allows the application to store virtually any structure it wants in a data element. The result is that application changes and database schema changes do not have to be managed as one unit. In theory, this will allow applications to iterate faster.
 
