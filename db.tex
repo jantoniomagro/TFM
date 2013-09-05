@@ -524,7 +524,7 @@ db.fits_type.insert(
 \end{lstlisting}
 
 
-Now, inserting the primary HDU for a  FITS-IDI header in MondoDB could not be
+Now, inserting the primary HDU for a  FITS-IDI header in MongoDB could not be
 easier, given the fact that FITS headers are collections of key-value pairs. % easier.
 
 This code is very easy to translate into MongoDB syntax, as shown in Listing~\ref{lst:fitsinsert}.
@@ -642,14 +642,67 @@ The VO Technologies used in the ALMA Archive are (discussed in \ref{vochapter}):
 \subsubsection{OpenCADC-MongoDB Interface}
 
 
-After studying NoSQL DBMS and showing their pros, in this section we assume we want to rewrite the Web application from ASA shown in \ref{fig:asa_implementation} to implement MongoDB features.
+After studying NoSQL DBMS and showing their pros, in this section we assume we want to rewrite the Web application from ASA shown in \ref{fig:asa_implementation} to use a non-relational DBMS like MongoDB.
 
-To take advantage of the existing OpenCADC work, our proposal is to use MongoDB and Java programming language, with Spring framework\urlnote{http://www.springsource.org}, a comprehensive programming and configuration model for Java-based enterprise applications. The Spring Data MongoDB \urlnote{http://www.springsource.org/spring-data/mongodb} provides an extension to the Spring programming model that support writing applications for the new datastores, like MongoDB or CouchDB database. There is no need to use any additional component, provided we have this software. \newline
+To take advantage of the existing OpenCADC work, our proposal is to use MongoDB and Java programming language.
+
+We connect Java and MongoDB using two methods:
+
+\begin{enumerate}
+
+\item The MongoDB-provided Java driver \urlnote{http://docs.mongodb.org/ecosystem/drivers/java/}
+
+\item The Spring framework\urlnote{http://www.springsource.org}, a comprehensive programming and configuration model for Java-based enterprise applications. The Spring Data MongoDB \urlnote{http://www.springsource.org/spring-data/mongodb} provides an extension to the Spring programming model that support writing applications for the new datastores, like MongoDB or CouchDB database. There is no need to use any additional component, provided we have this software.
+
+\end{enumerate}
+
+We have chosen the second option, as Spring Data framework reduces notably the amount of code to be written. Let's see a comparison between the traditional Mongo way and the Spring Data one in \ref{lst:classic_new}.
+
+\begin{lstlisting}[float,label=lst:classic_new,caption=Old vs new syntax Mongo-Java connection.]
+// The classic MONGODB-JAVA connection
+public List<cols> getAll() {
+  
+  logger.debug("Retrieving all columns data");
+
+  DBCollection coll = MongoDBFactory.getCollection("asa_db","coll_tables");
+  DBCursor cur = coll.find();
+  List<cols> items = new ArrayList<cols>();
+
+  while(cur.hasNext()) {
+    DBObject dbObject = cur.next();
+    Cols cols = new Cols();
+
+    cols.setColumnName(dbObject.get("Column_name").toString());
+    cols.setTableName(dbObject.get("Table_name").toString());
+    cols.setTableUcd(dbObject.get("Ucd").toString());
+    cols.setTableUtype(dbObject.get("Utype").toString());
+    
+    ... // omitting the rest of fields
+
+    items.add(cols);
+  }
+
+  return items;
+
+}
+
+
+// New implementation with Spring Data
+public List<Cols> getAll() {
+
+  logger.debug("Retrieving all columns data");
+
+  Query query = new Query(where("pid").exists(true));
+  List<Cols> cols = mongoTemplate.find(query, Cols.class);
+
+  return cols;
+
+}
+\end{lstlisting}
+
 
 
 To accomplish this job, we have identified three major stages:
-
-%\begin{enumerate}
 
 \paragraph*{Defining a MongoDB schema for ObsCore}
 \label{sec:mongodb_obscore}
@@ -663,50 +716,5 @@ TAP\_SCHEMA is the database schema where the tables and columns exposed by the s
 \label{sec:data_input}
 We have previously commented in \ref{sec:creating_a_fits_store_in_mongodb} the model used to solve the problems that arise when publishing archives with FITS (and their particular metadata to standard models that in some cases need to be completed with metadata not available in FITS headers) files to the VO.
 
-% \paragraph*{Adapting the existing Java code}
-% \label{sec:spring_mongo}
-% Let's see some examples extracted from ALMA query interface code in \ref{lst:tap_schema_dao_java}, and then, its equivalent using the interface between Spring Data MongoDB and MongoDB DBMS in \ref{lst:tap_schema_dao_mongo}: 
-%  
-% \begin{lstlisting}[float,label=lst:tap_schema_dao_java,caption=ASA existing code to select and list all rows from \emph{TAP\_SCHEMA.colums} table.]
-%  
-% // select all rows from TAP_SCHEMA.colums.
-% private static final String SELECT_COLUMNS_TEMPLATE = 
-%   "select table_name, column_name, description, utype, ucd, unit, datatype, type_size " +
-%   "from %s.asa_columns ";
-% 
-% // List of TAP_SCHEMA.columns
-% List<ColumnDesc> columnDescs = jdbc.query(
-%   String.format(SELECT_COLUMNS_TEMPLATE, schemaName),
-%   new ColumnMapper()
-% );
-% 
-% /**
-% * Creates a List of Column populated from the ResultSet.
-% */
-% private static final class ColumnMapper implements RowMapper {
-%   public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
-%   ColumnDesc col = new ColumnDesc();
-%   col.tableName = rs.getString("table_name");
-%   col.columnName = rs.getString("column_name");            
-%   col.description = rs.getString("description");
-%   col.utype = rs.getString("utype");
-%   col.ucd = rs.getString("ucd");
-%   col.unit = rs.getString("unit");
-%   col.datatype = rs.getString("datatype");
-%   col.size = rs.getObject("type_size") == null ? null : Integer.valueOf(rs.getInt("type_size"));
-%   log.debug("found: " + col);
-%   return col;
-%   }
-% }
-%  
-%  \end{lstlisting}
-% 
-% \begin{lstlisting}[float,label=lst:tap_schema_dao_mongo,caption=Spring Data MongoDB code to select and list all rows from \emph{TAP\_SCHEMA.colums} table.]
-%  
-% private static final String FIND_COLUMNS = "asa_columns ";
-% 
-% public List<Columns> findAllColumns() {
-%   mongoTemplate.find(FIND_COLUMNS), new Query(), Columns.class);
-% }
-% 
-%  \end{lstlisting}
+\paragraph*{Adapting the existing Java code}
+\label{sec:spring_mongo}
