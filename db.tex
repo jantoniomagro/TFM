@@ -16,7 +16,8 @@ the
 relational model. For the reasons stated in chapter \ref{theproblem}, we propose the use of a different approach, the NoSQL technology.
 
 
-\section{NoSQL}
+\section{NoSQL} % (fold)
+\label{sec:nosql}
 
 A non-relational database just stores data without explicit and structured mechanisms to link data from different buckets to one another.
 
@@ -105,10 +106,11 @@ All of these systems can % They
 run on clusters of inexpensive machines,
 or can be run on distributed cloud systems such as the Amazon Elastic Cloud, Google App Engine, or similar.
 
+% section nosql (end)
 
 
-
-\section{Advantages and uncertainties of NoSQL}
+\section{Advantages and uncertainties of NoSQL} % (fold)
+\label{sec:advantages_and_uncertainties_of_nosql}
 
 \begin{description} % {itemize}
 
@@ -164,7 +166,11 @@ than NoSQL experts.
 
 \end{description} % \end{itemize}
 
-\section{MongoDB: a document oriented database}
+% section advantages_and_uncertainties_of_nosql (end)
+
+\section{MongoDB: a document oriented database} % (fold)
+\label{sec:mongodb_a_document_oriented_database}
+
 
 MongoDB (from ``humongous'') is an open source document-oriented database system developed and supported by 10gen. It is part of the NoSQL family of database systems. Instead of storing data in tables as is done in a ``classical'' relational database, MongoDB stores structured data as JSON-like documents with dynamic schemas (MongoDB calls the format BSON), making the integration of data in certain types of applications easier and faster. 
 
@@ -399,8 +405,10 @@ db.my_idi_collection.insert(
 
 Now, we have our FITS header into a database with a document structure. We keep the same approach but in a very more usable and efficient way.
 
+% section mongodb_a_document_oriented_database (end)
 
-\section{MapReduce in MongoDB}
+\section{MapReduce in MongoDB} % (fold)
+\label{sec:mapreduce_in_mongodb}
 
 MapReduce, developed by Google, is a programming model and its implementation for processing (\textit{e.g.} raw data from telescopes) and producing (\textit{e. g.} representations of graph structure of systems) huge amounts of data. As the runtime controls the partitioning of the input data, controlling the program execution across several hundred or thousands of nodes and even controlling machine failures, the developers with low or none expertise at all in parallel programming can take advantage of this model with a very low learning curve.
 
@@ -419,7 +427,9 @@ To finish this chapter, we have developed a simple MapReduce job to show its use
 \lstinputlisting[language=Java]{src/map_reduce_01.js}
 
 
-\section{Rewriting ALMA Science Archive}
+% \section{Rewriting ALMA Science Archive}
+\section{Rewriting the ALMA Science Archive with NoSQL} % (fold)
+\label{sec:rewriting_the_alma_science_archive_with_nosql}
 
 \begin{figure}
 \centering
@@ -472,4 +482,4 @@ List<ColumnDesc> columnDescs = jdbc.query(
 
 % Now, we dive into a yet simple example, whose original version, coded in Java for a RDMS can be found online \footnote{\url{https://github.com/jantoniomagro/Misc/blob/master/TapSchemaDAO.java}}. We show here just the relevant code to see the Mongo version in Java.
 % 
-% \lstinputlisting[language=SQL]{/home/jose/Escritorio/TFM/src/TapSchemaDAO.java}
+% \lstinputlisting[language=SQL]{/home/jose/Escritorio/TFM/src/TapSchemaDAO.java}% section rewriting_the_alma_science_archive_with_nosql (end)
