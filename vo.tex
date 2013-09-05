@@ -15,7 +15,7 @@ In this section we are not going to make a deep study of the Virtual Observatory
 
 A data model is a description of the objects represented by a computer system with their properties and relationships, a logical model detailing the decomposition of a complex dataset into simpler elements, like a collection of concepts and rules used in defining data model. 
 
-In 2011 IVOA proposed a new recommendation: Observation Data Model Core Components and its Implementation in the Table Access Protocol \footnote{\url{http://www.ivoa.net/documents/ObsCore/20110502/PR-ObsCore-v1.0-20110502.pdf}}. That document was intended to be a description of the interface which integrated the data modeling and data access aspects in a single service: ObsCore data model + Table Access Protocol = ObsTAP.
+In 2011 IVOA proposed a new recommendation: Observation Data Model Core Components and its Implementation in the Table Access Protocol\footnote{\url{http://www.ivoa.net/documents/ObsCore/20110502/PR-ObsCore-v1.0-20110502.pdf}}. That document was intended to be a description of the interface which integrated the data modeling and data access aspects in a single service: ObsCore data model + Table Access Protocol = ObsTAP.
 
 \subsection{ObsCore Components Data Model}
 
@@ -23,7 +23,7 @@ Its aim is to get the generic data model for the metadata necessary to describe 
 
 \subsection{Table Access Protocol}
 
-TAP defines a Web service for accessing tables containing astronomical catalogues. TAP is the protocol which underlies in the process of posing a query against a data source (or several data sources). The result of a query is a table, usually a VOTable. \footnote{Support for VOTable output is mandatory, while other formats may be available.}  
+TAP defines a Web service for accessing tables containing astronomical catalogues. TAP is the protocol which underlies in the process of posing a query against a data source (or several data sources). The result of a query is a table, usually a VOTable.\footnote{Support for VOTable output is mandatory, while other formats may be available.}  
 
 Queries which use TAP protocol can be made through several clients, like:
 \begin{itemize}
@@ -44,9 +44,9 @@ The types of queries implemented by TAP are:
 
 TAP includes support for multiple query languages, including queries specified using the Astronomical Data Query Language (ADQL [1]) and the Parameterised Query Language (PQL, under development). Other query languages are also supported, and this mechanism allows developments outside the IVOA to be used without modifying the TAP specification. Finally, it also includes support for both synchronous and asynchronous queries. Special support is provided for spatially indexed queries using the spatial extensions in ADQL. 
 
-Listing~\ref{lst:adqlsample} shows an ADQL sample query: a crossmatch between a user-uploaded catalog (\texttt{TAP_UPLOAD.T1}), and
-the The Third US Naval Observatory CCD Astrograph Catalog (UCAC3) % UCAC
-catalog, compensating the fit for proper motion.},
+Listing~\ref{lst:adqlsample} shows an ADQL sample query: a crossmatch between a user-uploaded catalog (\texttt{TAP\_UPLOAD.T1}), and
+the Third US Naval Observatory CCD Astrograph Catalog\urlnote{http://www.usno.navy.mil/USNO/astrometry/optical-IR-prod/ucac} (UCAC3) % UCAC
+catalog, compensating the fit for proper motion.
 
 \begin{lstlisting}[float,language=SQL,caption={ADQL sample query: the results will be a crossmatch between a user-uploaded catalog, and the UCAC3 catalog, compensating the fit for proper motion.},label=lst:adqlsample]
 SELECT 
@@ -94,7 +94,7 @@ Besides, there are additional type of HDU called random groups, but only used fo
 
 \section{OpenCADC}\label{opencadc}
 
-OpenCADC (Canadian Astronomy Data Center) is a Virtual Observatory, used in ALMA Science Archive (for this reason is included in this chapter) tool which comprises several projects \footnote{We do not enumerate all of them here, for a full list, go to \url{https://code.google.com/p/opencadc/source/browse}}:
+OpenCADC (Canadian Astronomy Data Center) is a Virtual Observatory, used in ALMA Science Archive (for this reason is included in this chapter) tool which comprises several projects\footnote{We do not enumerate all of them here, for a full list, go to \url{https://code.google.com/p/opencadc/source/browse}}:
 
 \subsection{Universal Worker Service}
 
@@ -137,7 +137,7 @@ The code that actually executes the job.
 
 \subsection{cadcTAP Library}
 
-The cadcTAP library is responsible of async and sync queries, where QueryRunner implements JobRunner. It also contains TAP\_SCHEMA \footnote{TAP services try to be self-describing about what data they contain. They provide information on what tables they contain in special tables in TAP\_SCHEMA}
+The cadcTAP library is responsible of async and sync queries, where QueryRunner implements JobRunner. It also contains TAP\_SCHEMA\footnote{TAP services try to be self-describing about what data they contain. They provide information on what tables they contain in special tables in TAP\_SCHEMA}
 Data Definition Language\footnote{In RDBMS, the Data Definition Language is the language that allows for the creation of tables, fields, and data types.} (DDL) % DDL
 statements and is used by query parser to validate table and column usage.
 

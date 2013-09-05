@@ -246,10 +246,13 @@ query\footnote{See \url{http://cds.cern.ch/record/1446655/files/ATL-SOFT-PROC-20
 \subsection{Measuring radiation levels in Seattle: CouchDB} % (fold)
 \label{sec:measuring_radiation_levels_in_seattle_couchdb}
 
-Researchers at the University of Washington used the Cloudant \urlnote{https://cloudant.com/} database as part of an experiment that determined radiation levels in Seattle as a result of the recent Fukushima nuclear disaster are ``well below alarming limits.'' The research team, which includes Cloudant Founder and Chief Scientist Mike Miller studied particles captured from the five air filters and used Cloudant’s CouchDB-based BigCouch database to store and process the data. They chose Cloudant because with it, it was possible to start monitoring radiation levels very quickly, after a very easy setup and the capability of sampling gigantic quantities of air, allowing them to analyze the data and sharing it in near-real-time,
+Researchers at the University of Washington used the Cloudant \urlnote{https://cloudant.com/} database as part of an experiment that determined radiation levels in Seattle as a result of the recent Fukushima nuclear disaster are ``well below alarming limits.'' The research team, which includes Cloudant Founder and Chief Scientist Mike Miller studied particles captured from the five air filters and used Cloudant’s CouchDB-based BigCouch database to store and process the data.
+
+They chose Cloudant because with it, it was possible to start monitoring radiation levels very quickly, after a very easy setup and the capability of sampling gigantic quantities of air, allowing them to analyze the data and sharing it in near-real-time,
 benefiting from BigCouch's MapReduce engine.
 
 % NOTA: Añadir link o publicación como cita del entrecomillado
+% NOTA: Mejorar, si es posible, este último párrafo de justificación
 
 % subsection measuring_radiation_levels_in_seattle_couchdb (end)
 
@@ -459,7 +462,7 @@ The first issue when working with FITS files is its inadequacy for storing infor
 
 Another issue when working with FITS format is the great amount of possible key-value pairs in FITS headers. A possible solution for this problem could be use the features of MongoDB to translate FITS keywords into collections. So, we could create as much documents as needed, and storing them into MongoDB. Should we need to create supertypes of FITS headers, relations are also available in MongoDB through document linking (with no physical restriction in the sense of relational constraint). In this situation the schema flexibility means that we can model documents that share a similar structure but not enforced to have to same.
 
-Another related problem is having multiple FITS formats \footnote{The IAU FITS Working Group (IAU-FWG) is the international control authority for the FITS (Flexible Image Transport System) data format: \url{http://fits.gsfc.nasa.gov/iaufwg/iaufwg.html}}, representing the users need for storing and handling the different information requirements:
+Another related problem is having multiple FITS formats\footnote{The IAU FITS Working Group (IAU-FWG) is the international control authority for the FITS (Flexible Image Transport System) data format: \url{http://fits.gsfc.nasa.gov/iaufwg/iaufwg.html}}, representing the users need for storing and handling the different information requirements:
 
 \begin{itemize}
 \item FITS Interferometry Data Interchange (FITS-IDI) Convention: conventions adopted for registering information from interferometric telescopes recordings. Used by the VLBA.
@@ -650,7 +653,7 @@ List<ColumnDesc> columnDescs = jdbc.query(
 
 \end{lstlisting}
 
-% Now, we dive into a yet simple example, whose original version, coded in Java for a RDMS can be found online \footnote{\url{https://github.com/jantoniomagro/Misc/blob/master/TapSchemaDAO.java}}. We show here just the relevant code to see the Mongo version in Java.
+% Now, we dive into a yet simple example, whose original version, coded in Java for a RDMS can be found online\urlnote{https://github.com/jantoniomagro/Misc/blob/master/TapSchemaDAO.java}. We show here just the relevant code to see the Mongo version in Java.
 % 
 % \lstinputlisting[language=SQL]{/home/jose/Escritorio/TFM/src/TapSchemaDAO.java}
 % section rewriting_the_alma_science_archive_with_nosql (end)
