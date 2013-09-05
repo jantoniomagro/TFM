@@ -1,6 +1,7 @@
-\documentclass[oneside,numbers,english]{ezthesis}
-
+\documentclass[oneside,numbers,english,a4paper]{ezthesis}
+\usepackage{pxfonts}
 \usepackage{setspace}
+\usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{float}
@@ -13,6 +14,8 @@
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 \definecolor{shadecolor}{rgb}{1,0.8,0.3}
+
+\newcommand{\urlnote}[1]{\footnote{\url{#1}}}
 
 \lstset{frame=tb,
   language=Java,
@@ -45,7 +48,8 @@
 %% # Datos del documento #
 
 \author{Jos\'e Antonio Magro Cort\'es}
-\title{BigData. Integrating NoSQL Technologies into Virtual Observatory.}
+% \title{BigData. Integrating NoSQL Technologies into Virtual Observatory.}
+\title{Integrating NoSQL Technologies into the Virtual Observatory to Support Big Data Challenges}
 \degree{Master's Thesis}
 \supervisor{Juan de Dios Santander Vela}
 \institution{Universidad de Granada / Instituto de Astrof\'isica de Andaluc\'ia}
@@ -82,14 +86,16 @@
 %% # 'Indices y listas de contenido #
 \listoffigures
 \listoftables
+\lstlistoflistings
+
+\pagenumbering{arabic}
 
 %% # Cap'itulos #
-\include{intro}
-\include{theproblem}
-\include{vo}
-\include{db}
-\include{success}
-\include{conclusions}
+\include{intro} % Introduction
+\include{theproblem} % Big Data challenges in astronomy
+\include{vo} % The Virtual Observatory
+\include{db} % Integrating NoSQL in the Virtual Observatory
+\include{conclusions} % Conclusions & Future Work
 
 
 \appendix
