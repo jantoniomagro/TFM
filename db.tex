@@ -505,20 +505,20 @@ Prior to translating it into MongoDB, we create several collections in \ref{lst:
 
 \begin{lstlisting}[float,label=lst:fitstypes,caption=MongoDB BSON code for creating the different FITS document types.]
 
-db.fits_super.insert(
-  convention: "FITS-IDI"
+db.fits_type.insert(
+  {convention: "FITS-IDI"}
 );
 
-db.fits_super.insert(
-  convention: "SDFITS"
+db.fits_type.insert(
+  {convention: "SDFITS"}
 );
 
-db.fits_super.insert(
-  convention: "MBFITS"
+db.fits_type.insert(
+  {convention: "MBFITS"}
 );
 
-db.fits_super.insert(
-  convention: "OIFITS"
+db.fits_type.insert(
+  {convention: "OIFITS"}
 );
 
 \end{lstlisting}
@@ -531,8 +531,8 @@ This code is very easy to translate into MongoDB syntax, as shown in Listing~\re
 
 \begin{lstlisting}[float,label=lst:fitsinsert,caption=MongoDB BSON code for adding FITS metadata to the NoSQL database.]
 
-db.my_idi_collection.insert(
-    supertype: "FITS-IDI", // it simulates a foreign key!
+db.fits_docs.insert(
+    {convention: "FITS-IDI",
     SIMPLE: "T",
     BITPIX: 8,
     NAXIS: 0,
@@ -544,11 +544,11 @@ db.my_idi_collection.insert(
     FXCORVER: "4.22 ",
     OBSERVER: "BL146 ",
     ORIGIN: "VLBA Correlator",
-    DATE-OBS: "2007-08-23",
-    DATE-MAP: "2007-08-31",
+    DATE_OBS: "2007-08-23",
+    DATE_MAP: "2007-08-31",
     GROUPS: "T",
     GCOUNT: 0,
-    PCOUNT: 0,
+    PCOUNT: 0}
 );
 
 \end{lstlisting}
