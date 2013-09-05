@@ -147,15 +147,15 @@ statements and is used by query parser to validate table and column usage.
 
 \subsubsection{TapQuery Interface}
 
-It has a separate implementation for each LANG (e.g. $LANG = ADQL$) specified and processess the query to local SQL.
+It has a separate implementation for each LANG (e.g. \texttt{LANG=ADQL}) specified and processess the query to local SQL.
 
 \subsubsection{SqlQuery}
 
-When code states $LANG=SQL$, it implements TapQuery and fully navigates it ($FROM, WHERE$ and $HAVING$ clauses).
+When code states \texttt{LANG=SQL}, it implements TapQuery and fully navigates it (\texttt{FROM}, \texttt{WHERE} and \texttt{HAVING} clauses).
 
 \subsubsection{AdqlQuery}
 
-Same as before when $LANG=ADQL$.
+Same as before when \texttt{LANG=ADQL}.
 
 \subsubsection{Plugins}
 
