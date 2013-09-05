@@ -2,12 +2,7 @@
 
 Modern relational databases have shown little efficiency in certain applications using intensive data, like indexing of a large number of documents, sites rendering with high traffic, and streaming sites.
 
-Typical RDBMS implementations are tuned either for small but frequent reads and writes or a large set of transactions that have few write accesses. On the other
-hand,
-NoSQL DB are optimized for read and
-bulk-ingest
-operations, and perform outstandingly where a relational DB would slow down. They are especially fast when large amounts of data have to be queried, and if we consider that speed is more important than
-consistency\footnote{Consistency is used here in the sense of having changes replicated to multiple nodes at the same time. RDBMS ensure that consistency, but that makes them less performat. Given that VO users do not know beforehand whether some datasets are available or not, speed in data retrieval and operations is more important than consistency (which will not be perceived unless for special circumstances).}.
+Typical RDBMS implementations are tuned either for small but frequent reads and writes or a large set of transactions that have few write accesses. On the other hand, NoSQL DB are optimized for read and bulk-ingest operations, and perform outstandingly where a relational DB would slow down. They are especially fast when large amounts of data have to be queried, and if we consider that speed is more important than consistency\footnote{Consistency is used here in the sense of having changes replicated to multiple nodes at the same time. RDBMS ensure that consistency, but that makes them less performat. Given that VO users do not know beforehand whether some datasets are available or not, speed in data retrieval and operations is more important than consistency (which will not be perceived unless for special circumstances).}.
 
 As mentioned in the chapter on the Virtual Observatory, the
 IVOA has a standard called Astronomical Data Query Language (ADQL) that users do not necessarily need to know, because
@@ -482,7 +477,31 @@ Several proposals of using FITS store in a database have been made, for instance
 
 \paragraph{Solution}
 
-Using just one collection and $n$ documents, one for each kind. If we are going to work with FITS-IDI, SDFITS, MBFITS and OIFITS, we can use code like that shown on Listing~\ref{lst:fitstypes} to create different variations of what a FITS document is like.
+Using just one collection and $n$ documents, one for each kind. If we are going to work with FITS-IDI, SDFITS, MBFITS and OIFITS, we can use code like to create different variations of what a FITS document is like.
+
+We start from a very simple FITS header like: 
+
+\begin{lstlisting}[float,label=lst:fitsheader,caption=FITS sample.]
+SIMPLE = T / Standard FITS format
+BITPIX = 8 /
+NAXIS = 0 /
+EXTEND = T /
+BLOCKED = T /
+OBJECT = 'BINARYTB' /
+TELESCOP= 'VLBA ' /
+CORELAT = 'VLBA ' / added to header dump by EWG
+FXCORVER= '4.22 ' /
+OBSERVER= 'BL146 ' /
+ORIGIN = 'VLBA Correlator' /
+DATE-OBS= '2007-08-23' /
+DATE-MAP= '2007-08-31' / Correlation date
+GROUPS = T /
+GCOUNT = 0 /
+PCOUNT = 0 /
+END
+\end{lstlisting}
+
+Prior to translating it into MongoDB, we create several collections in \ref{lst:fitstypes}, one for each different FITS types.
 
 \begin{lstlisting}[float,label=lst:fitstypes,caption=MongoDB BSON code for creating the different FITS document types.]
 
@@ -505,29 +524,8 @@ db.fits_super.insert(
 \end{lstlisting}
 
 
-
 Now, inserting the primary HDU for a  FITS-IDI header in MondoDB could not be
 easier, given the fact that FITS headers are collections of key-value pairs. % easier.
-We start from a very simple FITS header like: 
-\begin{verbatim}
-SIMPLE = T 			/ Standard FITS format
-BITPIX = 8 			/
-NAXIS = 0 			/
-EXTEND = T 			/
-BLOCKED = T 			/
-OBJECT = ’BINARYTB’ 		/
-TELESCOP= ’VLBA ’ 		/
-CORELAT = ’VLBA ’ 		/ added to header dump by EWG
-FXCORVER= ’4.22 ’ 		/
-OBSERVER= ’BL146 ’ 		/
-ORIGIN = ’VLBA Correlator’ 	/
-DATE-OBS= ’2007-08-23’ 		/
-DATE-MAP= ’2007-08-31’ 		/ Correlation date
-GROUPS = T 			/
-GCOUNT = 0 			/
-PCOUNT = 0 			/
-END
-\end{verbatim}
 
 This code is very easy to translate into MongoDB syntax, as shown in Listing~\ref{lst:fitsinsert}.
 
@@ -554,6 +552,8 @@ db.my_idi_collection.insert(
 );
 
 \end{lstlisting}
+
+Note that we have specified a field named \emph{supertype}, which acts as a foreign key in a RDMS. This field help to classify FITS files, despite MongoDB collections do not enforce the structure of its documents.
 
 Now, we have our FITS header into a database with a document structure. We keep the same approach but in a very more usable and efficient way.
 
@@ -599,7 +599,7 @@ and Europe) hold an identical copy of the archive at the Joint ALMA Observatory 
 The ALMA Front-end Archive (AFA; the part of the archive directly accessed by the ALMA correlator)
 is optimized for storage and preservation, not for data query and retrieval.
 
-The ALMA Science Archive (ASA), on the other hand, is the user-facing part of the ALMA Archive. The ASA receives a transformed copy of the data from the AFA, because only a subset of the data and metadata in the AFA is considered to be queriable by the users.
+The ALMA Science Archive (ASA), on the other hand, is the user-facing part of the ALMA Archive, the interface for querying ALMA data. The ASA receives a transformed copy of the data from the AFA, because only a subset of the data and metadata in the AFA is considered to be queriable by the users.
 
 \begin{figure}
 \centering
@@ -618,13 +618,14 @@ The ALMA Science Archive (ASA), on the other hand, is the user-facing part of th
 % TODO: Incluir 
 
 
-The ALMA Science Archive (ASA) is the interface for querying ALMA data. Despite all ALMA information can be accessed from the Archive, ASA provide a optimized way to access the data in a scientific way. One of the requirements of ASA design was to provide a search and query tool which allows several parameters (position, frequency, telescope related parameters, etc.). It has two major components: the DB, which is a plain relational database with denormalized structure and the interface, built as a web application.
+Despite all ALMA information can be accessed from the Archive, ASA provide a optimized way to access the data in a scientific way. One of the requirements of ASA design was to provide a search and query tool which allows several parameters (position, frequency, telescope related parameters, etc.). It has two major components: the DB, which is a plain relational database with denormalized structure and the interface, built as a web application.
 
-%\begin{figure}
-%\centering
-%\includegraphics[width=14cm,height=8cm]{images/asa_implementation.png}
-%\caption{ALMA implementation, from  %\href{http://amiga.iaa.es/FCKeditor/UserFiles/File/VOandALMAarchive_web.pdf}{AMIGA-IAA Group Web}}
-%\end{figure}
+\label{fig:asa_implementation}
+\begin{figure}
+\centering
+\includegraphics[width=14cm,height=8cm]{images/asa_implementation.png}
+\caption{ALMA implementation, from  \href{http://amiga.iaa.es/FCKeditor/UserFiles/File/VOandALMAarchive_web.pdf}{AMIGA-IAA Group Web}}
+\end{figure}
 
 
 The VO Technologies used in the ALMA Archive are (discussed in \ref{vochapter}):
@@ -638,29 +639,55 @@ The VO Technologies used in the ALMA Archive are (discussed in \ref{vochapter}):
   \end{enumerate}
 \end{enumerate}
 
-\subsubsection{Java and MongoDB in ASA}
-
-Let's see some simple examples from ALMA query interface: 
-
-\newpage
-\begin{lstlisting}
-/* code from TapSchemaDAO.java */
-
-// SQL to select all rows from TAP_SCHEMA.colums.
-private static final String SELECT_COLUMNS_TEMPLATE = 
-  "select table_name, column_name, description, utype, ucd, unit, datatype, type_size " +
-  "from %s.asa_columns ";
-
-// List of TAP_SCHEMA.columns
-List<ColumnDesc> columnDescs = jdbc.query(
-  String.format(SELECT_COLUMNS_TEMPLATE, schemaName),
-  new ColumnMapper()
-);
+\subsubsection{OpenCADC-MongoDB Interface}
 
 
-\end{lstlisting}
+After studying NoSQL DBMS and showing their pros, in this section we assume we want to rewrite the Web application from ASA shown in \ref{fig:asa_implementation} to implement MongoDB features.
 
-% Now, we dive into a yet simple example, whose original version, coded in Java for a RDMS can be found online\urlnote{https://github.com/jantoniomagro/Misc/blob/master/TapSchemaDAO.java}. We show here just the relevant code to see the Mongo version in Java.
+To take advantage of the existing OpenCADC work, our proposal is to use MongoDB and Java programming language, with Spring framework\urlnote{http://www.springsource.org}, a comprehensive programming and configuration model for Java-based enterprise applications. The Spring Data MongoDB \urlnote{http://www.springsource.org/spring-data/mongodb} provides an extension to the Spring programming model that support writing applications for the new datastores, like MongoDB or CouchDB database. There is no need to use any additional component, provided we have this software. \newline
+
+
+To accomplish this job, we have identified three major stages:
+
+%\begin{enumerate}
+
+\paragraph*{Defining a MongoDB schema for ObsCore}
+\label{sec:mongodb_obscore}
+To support the use cases identified in ObsCore IVOA documentation \urlnote{http://www.ivoa.net/documents/ObsCore/20110502/PR-ObsCore-v1.0-20110502.pdf} we must identify a set of elements that any ObsTAP service must support, ensuring that any query based on these parameters is guaranteed to be understood by all ObsTAP services.
+The ObsCore model must be implemented within TAP services, so that all queries can be executed, without changes have to be made, on any service that implements the model.
+TAP\_SCHEMA is the database schema where the tables and columns exposed by the service are described.
+
+
+
+\paragraph*{Addressing the data input}
+\label{sec:data_input}
+We have previously commented in \ref{sec:creating_a_fits_store_in_mongodb} the model used to solve the problems that arise when publishing archives with FITS (and their particular metadata to standard models that in some cases need to be completed with metadata not available in FITS headers) files to the VO.
+
+\paragraph*{Adapting the existing Java code}
+\label{sec:spring_mongo}
+In order to use Java-MongoDB interface through Spring Data MongoDB.
+
+
+%\end{enumerate}
+
+
+% Jose: para eliminar
+% Let's see some simple examples from ALMA query interface: 
 % 
-% \lstinputlisting[language=SQL]{/home/jose/Escritorio/TFM/src/TapSchemaDAO.java}
-% section rewriting_the_alma_science_archive_with_nosql (end)
+% \newpage
+% \begin{lstlisting}
+% /* code from TapSchemaDAO.java */
+% 
+% // SQL to select all rows from TAP_SCHEMA.colums.
+% private static final String SELECT_COLUMNS_TEMPLATE = 
+%   "select table_name, column_name, description, utype, ucd, unit, datatype, type_size " +
+%   "from %s.asa_columns ";
+% 
+% // List of TAP_SCHEMA.columns
+% List<ColumnDesc> columnDescs = jdbc.query(
+%   String.format(SELECT_COLUMNS_TEMPLATE, schemaName),
+%   new ColumnMapper()
+% );
+% 
+% 
+% \end{lstlisting}
