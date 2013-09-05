@@ -663,22 +663,13 @@ TAP\_SCHEMA is the database schema where the tables and columns exposed by the s
 \label{sec:data_input}
 We have previously commented in \ref{sec:creating_a_fits_store_in_mongodb} the model used to solve the problems that arise when publishing archives with FITS (and their particular metadata to standard models that in some cases need to be completed with metadata not available in FITS headers) files to the VO.
 
-\paragraph*{Adapting the existing Java code}
-\label{sec:spring_mongo}
-In order to use Java-MongoDB interface through Spring Data MongoDB.
-
-
-%\end{enumerate}
-
-
-% Jose: para eliminar
-% Let's see some simple examples from ALMA query interface: 
-% 
-% \newpage
-% \begin{lstlisting}
-% /* code from TapSchemaDAO.java */
-% 
-% // SQL to select all rows from TAP_SCHEMA.colums.
+% \paragraph*{Adapting the existing Java code}
+% \label{sec:spring_mongo}
+% Let's see some examples extracted from ALMA query interface code in \ref{lst:tap_schema_dao_java}, and then, its equivalent using the interface between Spring Data MongoDB and MongoDB DBMS in \ref{lst:tap_schema_dao_mongo}: 
+%  
+% \begin{lstlisting}[float,label=lst:tap_schema_dao_java,caption=ASA existing code to select and list all rows from \emph{TAP\_SCHEMA.colums} table.]
+%  
+% // select all rows from TAP_SCHEMA.colums.
 % private static final String SELECT_COLUMNS_TEMPLATE = 
 %   "select table_name, column_name, description, utype, ucd, unit, datatype, type_size " +
 %   "from %s.asa_columns ";
@@ -689,5 +680,33 @@ In order to use Java-MongoDB interface through Spring Data MongoDB.
 %   new ColumnMapper()
 % );
 % 
+% /**
+% * Creates a List of Column populated from the ResultSet.
+% */
+% private static final class ColumnMapper implements RowMapper {
+%   public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+%   ColumnDesc col = new ColumnDesc();
+%   col.tableName = rs.getString("table_name");
+%   col.columnName = rs.getString("column_name");            
+%   col.description = rs.getString("description");
+%   col.utype = rs.getString("utype");
+%   col.ucd = rs.getString("ucd");
+%   col.unit = rs.getString("unit");
+%   col.datatype = rs.getString("datatype");
+%   col.size = rs.getObject("type_size") == null ? null : Integer.valueOf(rs.getInt("type_size"));
+%   log.debug("found: " + col);
+%   return col;
+%   }
+% }
+%  
+%  \end{lstlisting}
 % 
-% \end{lstlisting}
+% \begin{lstlisting}[float,label=lst:tap_schema_dao_mongo,caption=Spring Data MongoDB code to select and list all rows from \emph{TAP\_SCHEMA.colums} table.]
+%  
+% private static final String FIND_COLUMNS = "asa_columns ";
+% 
+% public List<Columns> findAllColumns() {
+%   mongoTemplate.find(FIND_COLUMNS), new Query(), Columns.class);
+% }
+% 
+%  \end{lstlisting}
