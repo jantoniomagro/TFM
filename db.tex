@@ -680,7 +680,7 @@ Spring Data framework reduces notably the amount of code to be written. Let's se
 
 % NOTA: No se explica qué hace esto; ¿por qué la cláusula where("pid")?
 
-\begin{lstlisting}[float,label=lst:classic_new,caption=Old vs new syntax Mongo-Java connection.]
+\begin{lstlisting}[float,label=lst:classic_new,caption=Old vs new syntax Mongo-Java connection, retrieving all columns from a table containing the columns description.]
 // The classic MONGODB-JAVA connection
 public List<cols> getAll() {
   
@@ -714,7 +714,7 @@ public List<Cols> getAll() {
 
   logger.debug("Retrieving all columns data");
 
-  Query query = new Query(where("pid").exists(true));
+  Query query = new Query();
   List<Cols> cols = mongoTemplate.find(query, Cols.class);
 
   return cols;
