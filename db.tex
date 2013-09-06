@@ -457,7 +457,9 @@ Listing~\ref{lst:mapreducesample} shows how to define a MapReduce job in MongoDB
 
 The first issue when working with FITS files is its inadequacy for storing information. In XXI century is difficult to maintain such storage model. So the first and more obvious solution would be replacing FITS headers with their counterparts in a non relational database. 
 
-Another issue when working with FITS format is the great amount of possible key-value pairs in FITS headers. A possible solution for this problem could be use the features of MongoDB to translate FITS keywords into collections. So, we could create as much documents as needed, and storing them into MongoDB. Should we need to create supertypes of FITS headers, relations are also available in MongoDB through document linking (with no physical restriction in the sense of relational constraint). In this situation the schema flexibility means that we can model documents that share a similar structure but not enforced to have to same.
+Another issue when working with FITS format is the great amount of possible key-value pairs in FITS headers. A possible solution for this problem could be use the features of MongoDB to translate FITS keywords into collections. So, we could create as
+many % much
+documents as needed, and storing them into MongoDB. Should we need to create supertypes of FITS headers, relations are also available in MongoDB through document linking (with no physical restriction in the sense of relational constraint). In this situation the schema flexibility means that we can model documents that share a similar structure but not enforced to have to same.
 
 Another related problem is having multiple FITS formats\footnote{The IAU FITS Working Group (IAU-FWG) is the international control authority for the FITS (Flexible Image Transport System) data format: \url{http://fits.gsfc.nasa.gov/iaufwg/iaufwg.html}}, representing the users need for storing and handling the different information requirements:
 
@@ -473,7 +475,16 @@ We show now a logical layout using MongoDB features to solve the previously pose
 
 For the sake of simplicity and clarity, we have not included all FITS keywords, focusing on the abstraction.
 
-Several proposals of using FITS store in a database have been made, for instance, ESO KEYWORD REPOSITORY\urlnote{http://labs.adsabs.harvard.edu/ui/abs/2008SPIE.7016E..51V}, a metadata database containing all information stored in almost 10 million FITS file headers using Sybase IQ server\urlnote{http://www.sybase.com/products/datawarehousing/sybaseiq}, an analytic server specifically designed for advanced analysis techniques and data storing. For this work, we can profit from MongoDB store units (collections, documents and fields). MongoDB allows to define as much kinds of documents as needed, sort of meta-documents, considering that there is no compulsory for them having the same structure. 
+Several proposals
+for storing
+FITS
+header metadata
+in a database have been made. One of the examples is the ESO 
+Keyword Repository~\cite{2008SPIE.7016E..51V}, a metadata database containing all information stored in almost 10 million FITS file headers using Sybase IQ server\urlnote{http://www.sybase.com/products/datawarehousing/sybaseiq}, a columnar storage RDBMS.
+
+For this work, we can profit from MongoDB document-oriented storage support (collections, documents and fields). MongoDB allows to define as
+many % much
+kinds of documents as needed, sort of meta-documents, considering that there is no compulsory for them having the same structure. 
 
 \paragraph{Solution}
 
