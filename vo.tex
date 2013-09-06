@@ -113,9 +113,8 @@ The Universal Worker Service~\cite{2010uws..irec.....H} (UWS)
 standard defines a work
 pattern 
 that specifies
-how to build asynchronous (as the client does not wait for each request to be fulfilled; even if the client disconnects from the service, activity is not aborted), stateful (the service remembers results of a previous activity), job-oriented services.
-
-Job specification rules following the UWS pattern are written in the Job Description Language (JDL).
+how to build asynchronous (as the client does not wait for each request to be fulfilled; even if the client disconnects from the service, activity is not aborted), stateful (the service remembers results of a previous activity), job-oriented
+services\footnote{Job specification rules following the UWS pattern are written in the Job Description Language (JDL).}.
 
 When the execution starts, the job can adopt several states, following the state machine illustrated in Fig.~\ref{fig:jobstatuses}.
 
@@ -133,45 +132,18 @@ When the execution starts, the job can adopt several states, following the state
 \section{OpenCADC} % (fold)
 \label{sec:opencadc}
 
-OpenCADC (Canadian Astronomy Data Center) is a Virtual Observatory, used in ALMA Science Archive (for this reason is included in this chapter) tool which comprises several projects\footnote{We do not enumerate all of them here, for a full list, go to \url{https://code.google.com/p/opencadc/source/browse}}:
+The
+OpenCADC\urlnote{https://code.google.com/p/opencadc/source/browse}
+is a software framework, developed by the
+Canadian Astronomy Data Center (CADC), and which implements a number of VO standards. It can be used either directly or as a library to implement VO services.
 
+OpenCADC is used for implementing the query capabilities of the ASA (see Fig.~\ref{fig:asa_implementation}). It is composed of several libraries, but the most important from the point of view of their interface are cadcUWS, which implements the UWS pattern, and cadcTAP, which implements de TAP web interface.
 
+\subsection{cadcUWS library} % (fold)
+\label{sub:cadcuws_library}
 
-\subsection{cadcTAP library} % (fold)
-\label{sub:cadctap_library}
-
-The cadcTAP library is responsible of async and sync queries, where QueryRunner implements JobRunner. It also contains \texttt{TAP\_SCHEMA}\footnote{TAP services try to be self-describing about what data they contain. They provide information on what tables they contain in special tables in \texttt{TAP\_SCHEMA}}
-Data Definition Language\footnote{In RDBMS, the Data Definition Language is the language that allows for the creation of tables, fields, and data types.} (DDL) % DDL
-statements and is used by query parser to validate table and column usage.
-
-\subsubsection{TapQuery Interface}
-
-It has a separate implementation for each LANG (e.g. \texttt{LANG=ADQL}) specified and processess the query to local SQL.
-
-\subsubsection{SqlQuery}
-
-When code states \texttt{LANG=SQL}, it implements TapQuery and fully navigates it (\texttt{FROM}, \texttt{WHERE} and \texttt{HAVING} clauses).
-
-\subsubsection{AdqlQuery}
-
-Same as before when \texttt{LANG=ADQL}.
-
-\subsubsection{Plugins}
-
-\begin{itemize}
-\item UploadManager
-\item TableWriter
-\item FileStore
-\end{itemize}
-
-
-\subsubsection{QueryRunner}
-
-It implements JobRunner and sets Job state, find DataSource and uses TapSchema, UploadManager, TapQuery and TableWriter.
-
-% subsection cadctap_library (end)
-
-Now, we make a subtle description of the structure of the code relating UWS in OpenCADC (the cadcUWS Library), the section of the code provides Job class and plugin architecture, servlet with UWS async and sync behaviour. These classes are illustrated in Fig.~\ref{fig:uwsjobs}
+We will briefly describe
+the structure of the code relating UWS in OpenCADC (the cadcUWS Library), the section of the code provides Job class and plugin architecture, servlet with UWS async and sync behaviour. These classes are illustrated in Fig.~\ref{fig:uwsjobs}, and listed below.
 
 \begin{figure}[tb]
 \centering
@@ -180,21 +152,48 @@ Now, we make a subtle description of the structure of the code relating UWS in O
 \label{fig:uwsjobs}
 \end{figure}
 
-\subsubsection{JobManager}
+\begin{description}
 
-Responsible for job control.
+\item[JobManager] Class responsible for job control.
 
-\subsubsection{JobPersistence}
+\item[JobPersistence] Class in In charge of storing and retrieving Job state.
 
-In charge of storing and retrieving Job state.
+\item[JobExecutor] Class which executes every job in separated threads.
 
-\subsubsection{JobExecutor}
+\item[JobRunner] The code that actually executes the job.
 
-It executes every job in separated threads.
+\end{description}
 
-\subsubsection{JobRunner}
+% subsection cadcuws_library (end)
 
-The code that actually executes the job.
+\subsection{cadcTAP library} % (fold)
+\label{sub:cadctap_library}
+
+The cadcTAP library is responsible of async and sync queries, where QueryRunner implements JobRunner. It also contains \texttt{TAP\_SCHEMA}\footnote{TAP services try to be self-describing about what data they contain. They provide information on what tables they contain in special tables in \texttt{TAP\_SCHEMA}}
+Data Definition Language\footnote{In RDBMS, the Data Definition Language is the language that allows for the creation of tables, fields, and data types.} (DDL) % DDL
+statements and is used by query parser to validate table and column usage.
+
+\begin{description}
+	\item[TapQuery Interface] It has a separate implementation for each \texttt{LANG} (e.g. \texttt{LANG=ADQL}) specified and processess the query to local SQL.
+	\item[SqlQuery] When code states \texttt{LANG=SQL}, it implements TapQuery and fully navigates it (\texttt{FROM}, \texttt{WHERE} and \texttt{HAVING} clauses).
+	
+	\item[AdqlQuery] Same as before when \texttt{LANG=ADQL}.
+	
+	
+	\item[Plugins] The QueryRunner class (below) needs to be able to find the following classes:
+
+	\begin{description}
+	\item[UploadManager] Interface for classes responsible for uploading local data to the remote TAP service.
+	\item[TableWriter] Interface for classes that convert the retrieved data into a particular data format.
+	\item[FileStore] Interface for classes that deal with the local file storage.
+	\end{description}
+	
+	\item[QueryRunner] Class that implements JobRunner and sets Job state, finds a DataSource and uses TapSchema, UploadManager, TapQuery and TableWriter.
+	
+\end{description}
+
+% subsection cadctap_library (end)
+
 
 
 % section opencadc (end)
