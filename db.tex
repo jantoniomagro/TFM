@@ -1,4 +1,5 @@
-\chapter{Integrating NoSQL in the Virtual Observatory}
+\chapter{Integrating NoSQL in the Virtual Observatory} % (fold)
+\label{cha:integrating_nosql_in_the_virtual_observatory}
 
 Modern relational databases have shown little efficiency in certain applications using intensive data, like indexing of a large number of documents, sites rendering with high traffic, and streaming sites.
 
@@ -648,7 +649,7 @@ The VO Technologies used in the ALMA Archive are (discussed in Chapter~\ref{cha:
 \item VO Data Models
 \item Software libraries
   \begin{enumerate}
-    \item OpenCADC
+    \item OpenCADC, the framework described in Section~\ref{sec:opencadc}, to provide support for TAP, UWS, and other VO technologies.
     \item VOView\urlnote{http://code.google.com/p/voview/}: a JQuery-based JavaScript component for viewing large data tables within a Web browser, reformatting XML VOTables into HTML in the browser.
   \end{enumerate}
 \end{enumerate}
@@ -657,24 +658,28 @@ The VO Technologies used in the ALMA Archive are (discussed in Chapter~\ref{cha:
 
 \subsubsection{OpenCADC-MongoDB Interface}
 
-
 After studying NoSQL DBMS and showing their pros, in this section we assume we want to rewrite the Web application from ASA shown in Fig.~\ref{fig:asa_implementation} to use a non-relational DBMS like MongoDB.
 
 To take advantage of the existing OpenCADC work, our proposal is to use MongoDB and Java programming language.
 
-We connect Java and MongoDB using two methods:
+We
+can
+connect Java and MongoDB using two methods:
 
 \begin{enumerate}
 
-\item The MongoDB-provided Java driver \urlnote{http://docs.mongodb.org/ecosystem/drivers/java/}
+\item the MongoDB-provided Java driver\urlnote{http://docs.mongodb.org/ecosystem/drivers/java/}; or
 
-\item The Spring framework\urlnote{http://www.springsource.org}, a comprehensive programming and configuration model for Java-based enterprise applications. The Spring Data MongoDB \urlnote{http://www.springsource.org/spring-data/mongodb} provides an extension to the Spring programming model that support writing applications for the new datastores, like MongoDB or CouchDB database. There is no need to use any additional component, provided we have this software.
+\item the Spring framework\urlnote{http://www.springsource.org}, a comprehensive programming and configuration model for Java-based enterprise applications. The Spring Data MongoDB \urlnote{http://www.springsource.org/spring-data/mongodb} provides an extension to the Spring programming model that support writing applications for the new datastores, like MongoDB or CouchDB database. There is no need to use any additional component, provided we have this software.
 
 \end{enumerate}
 
-We have chosen the second option, as Spring Data framework reduces notably the amount of code to be written. Let's see a comparison between the traditional Mongo way and the Spring Data one in Listing~\ref{lst:classic_new}.
+We have chosen the second option, as
+the
+Spring Data framework reduces notably the amount of code to be written. Let's see a comparison between the traditional Mongo way and the Spring Data one in Listing~\ref{lst:classic_new}.
 
-% NOTA: No se explica qué hace esto
+% NOTA: No se explica qué hace esto; ¿por qué la cláusula where("pid")?
+
 \begin{lstlisting}[float,label=lst:classic_new,caption=Old vs new syntax Mongo-Java connection.]
 // The classic MONGODB-JAVA connection
 public List<cols> getAll() {
@@ -719,17 +724,53 @@ public List<Cols> getAll() {
 
 To accomplish this job, we have identified three major stages:
 
-\paragraph*{Defining a MongoDB schema for ObsCore}
-\label{sec:mongodb_obscore}
-To support the use cases identified in ObsCore IVOA documentation \urlnote{http://www.ivoa.net/documents/ObsCore/20110502/PR-ObsCore-v1.0-20110502.pdf} we must identify a set of elements that any ObsTAP service must support, ensuring that any query based on these parameters is guaranteed to be understood by all ObsTAP services.
+\paragraph*{Defining a MongoDB schema for ObsCore} % (fold)
+\label{par:mongodb_obscore}
+
+To support the use cases identified in ObsCore~\cite{2011arXiv1111.1758L},
+we must identify a set of elements that any ObsTAP service must support, ensuring that any query based on these parameters is guaranteed to be understood by all ObsTAP services.
 The ObsCore model must be implemented within TAP services, so that all queries can be executed, without changes have to be made, on any service that implements the model.
 \texttt{TAP\_SCHEMA} is the database schema where the tables and columns exposed by the service are described.
 
+MongoDB, thus, provides a very efficient way of supporting the optional columns of ObsCore by means of the variability of documents: particular attributes (ObsCore keywords) will exist or not depending on the document kind (FITS type), and any attribute can be missing, and still we can perform ObsCore queries: when a non-existing attribute is queried, is content is assumed to be NULL.
+
+% paragraph paragraph_name (end)
+
+\paragraph*{Ingesting data in the ObsCore database} % (fold)
+\label{par:ingesting_data_in_the_obscore_database}
 
 
-\paragraph*{Addressing the data input}
-\label{sec:data_input}
-We have previously commented in Section~\ref{sec:creating_a_fits_store_in_mongodb} the model used to solve the problems that arise when publishing archives with FITS (and their particular metadata to standard models that in some cases need to be completed with metadata not available in FITS headers) files to the VO.
+% We have previously commented
+In Section~\ref{sec:creating_a_fits_store_in_mongodb}
+we already presented
+the model used to ingest the FITS files
+containing reduced data, and carrying ObsCore-compatible metadata.
+% (and their particular metadata to standard models that in some cases need to be completed with metadata not available in FITS headers) files to the VO.
 
-\paragraph*{Adapting the existing Java code}
-\label{sec:spring_mongo}
+For the ASA, FITS files contain many more columns than available in ObsCore. But that is precisely the strength of this approach: the additional keywords can be imported as document attributes, and queried against, without having to change the database schema, or change queries.
+
+
+% paragraph ingesting_data_in_the_obscore_database (end)
+
+\paragraph*{Adapting the existing Java code} % (fold)
+\label{par:adapting_the_existing_java_code}
+
+The Java code that implements the OpenCADC interfaces needs to be rewritten to make use of MongoDB. For that, we need to:
+
+\begin{itemize}
+	
+	\item Implement the DataSource interface so that we can connect with the MongoDB instance.
+	
+	\item Implement the TapSchema class so that VO-metadata about the MongoDB attributes (data type, UCDs, UTypes, etc.) can be recovered from the MongDB attributes. A different document store is needed for that, where the documents represent the \emph{database columns}, this is, the ObsCore document attributes themselves.
+	
+	\item All classes using SQL syntax need to use an adapter class that translates the SQL tokens into MongoDB operations. Fortunately, the jsqlparser tokenizer splits SQL in a parse tree that can be used for the reconstruction.
+	
+	\item Optionally, the QueryRunner class can be written using MapReduce jobs, instead of just using the SQL adaptor mentioned above, for further performance increases when doing queries.
+	
+\end{itemize}
+
+We can see that the classes to be changed within the OpenCADC are a small subset. Notably, the classes dealing with the TAP endpoints, parsing of TAP queries, job management (UWS pattern), etcetera, remain untouched, and only the classes most directly involved with database interfacing need to be changed. That is partly thanks to the architecture of the OpenCADC, where classes are assembled through dependency injection, and responsibilities are clearly delimitated by the interfaces.
+
+% paragraph adapting_the_existing_java_code (end)
+
+% chapter integrating_nosql_in_the_virtual_observatory (end)

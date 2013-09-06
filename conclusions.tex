@@ -8,9 +8,9 @@
 
 \item Relational approach are not always suitable for any problem. Non-relational systems are not cure-all, but it has been shown they can face some problems in a more efficient way (\textit{e.g.} MapReduce) and, in some situations, NoSQL can be a complement for existing RDBMS.
 
-\item Any new proposal should be inside Virtual Observatory frame.
+\item NoSQL database systems, specially -not exclusively- those document-oriented can reduce system analysis and design and can also succeed in boosting the performance not just of data querying ---their main goal---, but also simplify data management and data versioning, by simplyfing ingestion and data updates.
 
-\item NoSQL database systems, specially -not exclusively- those document-oriented can reduce system analysis and design and can also succeed in boosting the performance of data management.
+\item It is possible to convert an existing VO framework, such as the OpenCADC (in the configuration used for the ALMA Science Archive), without touching but a few classes. This gives VO tools access to NoSQL capabilities, without having to touch the user-exposed VO interfaces.
 
 \end{itemize}
 
@@ -21,13 +21,25 @@
 
 \begin{itemize}
 
-\item Focusing in a workgroup inside Virtual Observatory instead of treating several aspects.
+% NOTA: elimino este punto porque no lo tengo claro
+% \item Focusing in a workgroup inside Virtual Observatory instead of treating several aspects.
 
-\item The use of formal metrics (CoCoMo, Function Point Analysis, etc.) to plan the software design and development and the costs involved.
+\item Finish a reference NoSQL implementation of the OpenCADC.
 
-\item Benchmarks support in order to obtain accurate data in performance improvements.
+\item % The
+Use % of
+formal
+software engineering
+metrics
+(CoCoMo, Function Point Analysis, etc.) to
+evaluate % plan
+the
+OpenCADC
+redesign
+and current and future costs involved.
 
-\item Deciding which language to use to connect the selected DBMS.
+\item Benchmark the OpenCADC NoSQL system
+in order to obtain accurate data in performance improvements.
 
 \end{itemize}
 
