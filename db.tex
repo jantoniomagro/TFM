@@ -609,6 +609,7 @@ The ALMA Science Archive (ASA), on the other hand, is the user-facing part of th
 \centering
 \includegraphics[width=0.8\textwidth]{images/alma_science_archive.png}
 \caption{ALMA Science Archive and ALMA Front-end Archive; figure by A. Wicenec.}
+\label{fig:asa_afa}
 \end{figure}
 
 
@@ -624,6 +625,7 @@ The ALMA Science Archive (ASA), on the other hand, is the user-facing part of th
 
 Despite all ALMA information can be accessed from the Archive, ASA provide a optimized way to access the data in a scientific way. One of the requirements of ASA design was to provide a search and query tool which allows several parameters (position, frequency, telescope related parameters, etc.). It has two major components: the DB, which is a plain relational database with denormalized structure and the interface
 (shown in Fig.~\ref{fig:asaqueryif}),
+built as a web application.
 
 \begin{figure}
 \centering
@@ -632,11 +634,11 @@ Despite all ALMA information can be accessed from the Archive, ASA provide a opt
 \label{fig:asaqueryif}
 \end{figure}
 
-\label{fig:asa_implementation}
 \begin{figure}
 \centering
 \includegraphics[height=8cm]{images/asa_implementation.png}
-\caption{ALMA implementation, from  \href{http://amiga.iaa.es/FCKeditor/UserFiles/File/VOandALMAarchive_web.pdf}{AMIGA-IAA Group Web}}
+\caption{ALMA implementation diagram, courtesy of   \href{http://amiga.iaa.es/FCKeditor/UserFiles/File/VOandALMAarchive_web.pdf}{Juande Santander}}
+\label{fig:asa_implementation}
 \end{figure}
 
 
@@ -644,12 +646,14 @@ The VO Technologies used in the ALMA Archive are (discussed in Chapter~\ref{cha:
 
 \begin{enumerate}
 \item VO Data Models
-\item Software
+\item Software libraries
   \begin{enumerate}
     \item OpenCADC
-    \item VOView: a utility for viewing large data tables within a Web browser, reformatting a table in XML into HTML requested by the browser.
+    \item VOView\urlnote{http://code.google.com/p/voview/}: a JQuery-based JavaScript component for viewing large data tables within a Web browser, reformatting XML VOTables into HTML in the browser.
   \end{enumerate}
 \end{enumerate}
+
+
 
 \subsubsection{OpenCADC-MongoDB Interface}
 
@@ -670,6 +674,7 @@ We connect Java and MongoDB using two methods:
 
 We have chosen the second option, as Spring Data framework reduces notably the amount of code to be written. Let's see a comparison between the traditional Mongo way and the Spring Data one in Listing~\ref{lst:classic_new}.
 
+% NOTA: No se explica qué hace esto
 \begin{lstlisting}[float,label=lst:classic_new,caption=Old vs new syntax Mongo-Java connection.]
 // The classic MONGODB-JAVA connection
 public List<cols> getAll() {
