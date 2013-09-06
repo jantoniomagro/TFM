@@ -117,37 +117,14 @@ how to build asynchronous (as the client does not wait for each request to be fu
 
 Job specification rules following the UWS pattern are written in the Job Description Language (JDL).
 
-\begin{figure}[tb]
-\centering
-\includegraphics[width=11cm,height=8cm]{images/Class_Diagram__UWS__UWSObjects.png}
-\caption{Class diagram representing UWS objects}
-\end{figure}
-
-When the execution starts, the job can adopt several states. The phases are the following:
+When the execution starts, the job can adopt several states, following the state machine illustrated in Fig.~\ref{fig:jobstatuses}.
 
 \begin{figure}[tb]
 \centering
-\includegraphics[width=11cm,height=8cm]{images/UWSStates.png}
+\includegraphics[height=8cm]{images/UWSStates.png}
 \caption{Universal Worker Server Job states}
+\label{fig:jobstatuses}
 \end{figure}
-
-Now, we make a subtle description of the structure of the code relating UWS in OpenCADC (the cadcUWS Library), the section of the code provides Job class and plugin architecture, servlet with UWS async and sync behaviour.
-
-\subsubsection{JobManager}
-
-Responsible for job control.
-
-\subsubsection{JobPersistence}
-
-In charge of storing and retrieving Job state.
-
-\subsubsection{JobExecutor}
-
-It executes every job in separated threads.
-
-\subsubsection{JobRunner}
-
-The code that actually executes the job.
 
 % subsection universal_worker_service (end)
 
@@ -194,7 +171,30 @@ It implements JobRunner and sets Job state, find DataSource and uses TapSchema, 
 
 % subsection cadctap_library (end)
 
+Now, we make a subtle description of the structure of the code relating UWS in OpenCADC (the cadcUWS Library), the section of the code provides Job class and plugin architecture, servlet with UWS async and sync behaviour. These classes are illustrated in Fig.~\ref{fig:uwsjobs}
 
+\begin{figure}[tb]
+\centering
+\includegraphics[height=8cm]{images/Class_Diagram__UWS__UWSObjects.png}
+\caption{Class diagram representing UWS objects}
+\label{fig:uwsjobs}
+\end{figure}
+
+\subsubsection{JobManager}
+
+Responsible for job control.
+
+\subsubsection{JobPersistence}
+
+In charge of storing and retrieving Job state.
+
+\subsubsection{JobExecutor}
+
+It executes every job in separated threads.
+
+\subsubsection{JobRunner}
+
+The code that actually executes the job.
 
 
 % section opencadc (end)
