@@ -1,4 +1,6 @@
-\chapter{The Virtual Observatory} \label{vochapter}
+\chapter{The Virtual Observatory} % (fold)
+\label{cha:the_virtual_observatory}
+
 
 The International Virtual Observatory Alliance\urlnote{http://www.ivoa.net/}
 (IVOA) was formed in 2002 with the aim to
@@ -11,7 +13,9 @@ Working Groups are constituted with cross-program membership in those areas wher
 
 In this section we are not going to make a deep study of the Virtual Observatory techniques, technologies, protocols and interfaces, just those needed and selected to explain our proposal of including NoSQL into VO. Bearing in mind that the problem we are trying to address is data modelling, we will just make an overview of those aspects related with our work.
 
-\section{ObsTAP}
+\section{ObsTAP} % (fold)
+\label{sec:obstap}
+
 
 A data model is a description of the objects represented by a computer system with their properties and relationships, a logical model detailing the decomposition of a complex dataset into simpler elements, like a collection of concepts and rules used in defining data model. 
 
@@ -69,8 +73,11 @@ FROM
   ON (c.alpha=FLOOR(u.raj2000)+0.5 and c.delta=FLOOR(u.dej2000)+0.5)
 \end{lstlisting}
 
+% section obstap (end)
 
-\section{Flexible Image Transport System}
+\section{Flexible Image Transport System} % (fold)
+\label{sec:flexible_image_transport_system}
+
 
 The
 Flexible Image Transport System (FITS) is an open standard defining a digital file format useful for storage, transmission and processing of scientific and other images. FITS is the most commonly used digital file format in astronomy. Unlike many image formats, FITS is designed specifically for scientific data and hence includes many provisions for describing photometric and spatial calibration information, together with image origin metadata. The FITS format was first standardized in 1981; it has evolved gradually since then, and the most recent version (3.0) was standardized in 2008. 
@@ -96,11 +103,13 @@ Besides, there are additional type of HDU called random groups, but only used fo
 \begin{figure}[tb]
 \centering
 \includegraphics[width=11cm,height=8cm]{images/fits_header.png}
-\caption{Viewing FITS header in Aladin}
+\caption{Viewing a FITS header in Aladin}
 \end{figure}
 
+% section flexible_image_transport_system (end)
 
-\section{OpenCADC}\label{opencadc}
+\section{OpenCADC} % (fold)
+\label{sec:opencadc}
 
 OpenCADC (Canadian Astronomy Data Center) is a Virtual Observatory, used in ALMA Science Archive (for this reason is included in this chapter) tool which comprises several projects\footnote{We do not enumerate all of them here, for a full list, go to \url{https://code.google.com/p/opencadc/source/browse}}:
 
@@ -174,3 +183,8 @@ Same as before when \texttt{LANG=ADQL}.
 
 It implements JobRunner and sets Job state, find DataSource and uses TapSchema, UploadManager, TapQuery and TableWriter.
 
+% section opencadc (end)
+
+
+
+% chapter the_virtual_observatory (end)
