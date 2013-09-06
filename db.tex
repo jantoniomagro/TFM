@@ -501,7 +501,7 @@ PCOUNT = 0 /
 END
 \end{lstlisting}
 
-Prior to translating it into MongoDB, we create several collections in \ref{lst:fitstypes}, one for each different FITS types.
+Prior to translating it into MongoDB, we create several collections in Listing~\ref{lst:fitstypes}, one for each different FITS types.
 
 \begin{lstlisting}[float,label=lst:fitstypes,caption=MongoDB BSON code for creating the different FITS document types.]
 
@@ -564,13 +564,6 @@ Now, we have our FITS header into a database with a document structure. We keep 
 % \section{Rewriting ALMA Science Archive}
 \section{Scaling the ALMA Science Archive: Bridging OpenCADC and NoSQL} % (fold)
 \label{sec:rewriting_the_alma_science_archive_with_nosql}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{images/aq.png}
-\caption{ALMA Science Archive Query}
-\end{figure}
-
  
 As stated in~\cite{2009ASPC..404..324E}, the purpose of the ALMA archive is to provide services for:
 
@@ -591,7 +584,7 @@ pipeline.
 
 The main objective of the
 ALMA Archive
-conceptual design
+conceptual design (see Fig.~\ref{fig:asa_afa})
 is to guarantee that three ALMA Regional Centres (North America,
 East Asia % Japan
 and Europe) hold an identical copy of the archive at the Joint ALMA Observatory in Santiago. 
@@ -618,7 +611,15 @@ The ALMA Science Archive (ASA), on the other hand, is the user-facing part of th
 % TODO: Incluir 
 
 
-Despite all ALMA information can be accessed from the Archive, ASA provide a optimized way to access the data in a scientific way. One of the requirements of ASA design was to provide a search and query tool which allows several parameters (position, frequency, telescope related parameters, etc.). It has two major components: the DB, which is a plain relational database with denormalized structure and the interface, built as a web application.
+Despite all ALMA information can be accessed from the Archive, ASA provide a optimized way to access the data in a scientific way. One of the requirements of ASA design was to provide a search and query tool which allows several parameters (position, frequency, telescope related parameters, etc.). It has two major components: the DB, which is a plain relational database with denormalized structure and the interface
+(shown in Fig.~\ref{fig:asaqueryif}),
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{images/aq.png}
+\caption{ALMA Science Archive Query Interface}
+\label{fig:asaqueryif}
+\end{figure}
 
 \label{fig:asa_implementation}
 \begin{figure}
@@ -628,7 +629,7 @@ Despite all ALMA information can be accessed from the Archive, ASA provide a opt
 \end{figure}
 
 
-The VO Technologies used in the ALMA Archive are (discussed in \ref{cha:the_virtual_observatory}):
+The VO Technologies used in the ALMA Archive are (discussed in Chapter~\ref{cha:the_virtual_observatory}):
 
 \begin{enumerate}
 \item VO Data Models
@@ -642,7 +643,7 @@ The VO Technologies used in the ALMA Archive are (discussed in \ref{cha:the_virt
 \subsubsection{OpenCADC-MongoDB Interface}
 
 
-After studying NoSQL DBMS and showing their pros, in this section we assume we want to rewrite the Web application from ASA shown in \ref{fig:asa_implementation} to use a non-relational DBMS like MongoDB.
+After studying NoSQL DBMS and showing their pros, in this section we assume we want to rewrite the Web application from ASA shown in Fig.~\ref{fig:asa_implementation} to use a non-relational DBMS like MongoDB.
 
 To take advantage of the existing OpenCADC work, our proposal is to use MongoDB and Java programming language.
 
@@ -656,7 +657,7 @@ We connect Java and MongoDB using two methods:
 
 \end{enumerate}
 
-We have chosen the second option, as Spring Data framework reduces notably the amount of code to be written. Let's see a comparison between the traditional Mongo way and the Spring Data one in \ref{lst:classic_new}.
+We have chosen the second option, as Spring Data framework reduces notably the amount of code to be written. Let's see a comparison between the traditional Mongo way and the Spring Data one in Listing~\ref{lst:classic_new}.
 
 \begin{lstlisting}[float,label=lst:classic_new,caption=Old vs new syntax Mongo-Java connection.]
 // The classic MONGODB-JAVA connection
@@ -700,8 +701,6 @@ public List<Cols> getAll() {
 }
 \end{lstlisting}
 
-
-
 To accomplish this job, we have identified three major stages:
 
 \paragraph*{Defining a MongoDB schema for ObsCore}
@@ -714,7 +713,7 @@ The ObsCore model must be implemented within TAP services, so that all queries c
 
 \paragraph*{Addressing the data input}
 \label{sec:data_input}
-We have previously commented in \ref{sec:creating_a_fits_store_in_mongodb} the model used to solve the problems that arise when publishing archives with FITS (and their particular metadata to standard models that in some cases need to be completed with metadata not available in FITS headers) files to the VO.
+We have previously commented in Section~\ref{sec:creating_a_fits_store_in_mongodb} the model used to solve the problems that arise when publishing archives with FITS (and their particular metadata to standard models that in some cases need to be completed with metadata not available in FITS headers) files to the VO.
 
 \paragraph*{Adapting the existing Java code}
 \label{sec:spring_mongo}
