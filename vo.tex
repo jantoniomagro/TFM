@@ -13,6 +13,43 @@ Working Groups are constituted with cross-program membership in those areas wher
 
 In this section we are not going to make a deep study of the Virtual Observatory techniques, technologies, protocols and interfaces, just those needed and selected to explain our proposal of including NoSQL into VO. Bearing in mind that the problem we are trying to address is data modelling, we will just make an overview of those aspects related with our work.
 
+\section{Flexible Image Transport System} % (fold)
+\label{sec:flexible_image_transport_system}
+
+
+The
+Flexible Image Transport System (FITS) is an open standard defining a digital file format useful for storage, transmission and processing of scientific and other images. FITS is the most commonly used digital file format in astronomy. Unlike many image formats, FITS is designed specifically for scientific data and hence includes many provisions for describing photometric and spatial calibration information, together with image origin metadata. The FITS format was first standardized in 1981; it has evolved gradually since then, and the most recent version (3.0) was standardized in 2008. 
+  
+FITS is also often used to store non-image data, such as spectra, photon lists, data cubes, or even structured data such as multi-table databases. A FITS file may contain several extensions, and each of these may contain a data object. For example, it
+could be % is
+possible to store
+X-ray % x-ray
+and infrared exposures in the same file. 
+ 
+FITS support is available in a variety of programming languages that are used for scientific work, including C, C++, C\#, Fortran, IDL, Java, Mathematica, MatLab, Perl, PDL, or Python. 
+ 
+Image processing programs such as GIMP can generally read simple FITS images, but cannot usually interpret complex tables and databases.
+
+\subsection{FITS Data Format}
+
+Each FITS file consists of one or more headers containing ASCII card images that carry keyword/value pairs, interleaved between data blocks. The keyword/value pairs provide information such as size, origin, coordinates, binary data format, free-form comments, history of the data, and anything else the creator desires. In more technical terms, a FITS file is comprised of parts called Header Data Units (HDU), being the first HDU called primary HDU o primary array. This array can contain a 1-999 dimensional array. A typical primary array could contain a 1D spectrum, 2D image or 3D data cube. Any number of HDU can follow the main array, and are called FITS extensions. Currently, three different extensions can be defined:
+
+\begin{itemize}
+\item Image extension, a 0-9999 dimensional array of pixels, which begins with \texttt{XTENSION = `IMAGE'}
+\item ASCII table extension which stores tabular data in ASCII formats. They begin with \texttt{XTENSION = `TABLE'}
+\item Binary table extension stores tabular data in binary representation. Headers start with \texttt{XTENSION = `BINTABLE'}
+\end{itemize}
+
+Besides, there are additional type of HDU called random groups, but only used for radio interferometry.
+      
+\begin{figure}[tb]
+\centering
+\includegraphics[width=11cm,height=8cm]{images/fits_header.png}
+\caption{Viewing a FITS header in Aladin}
+\end{figure}
+
+% section flexible_image_transport_system (end)
+
 \section{ObsTAP} % (fold)
 \label{sec:obstap}
 
@@ -74,43 +111,6 @@ FROM
 \end{lstlisting}
 
 % section obstap (end)
-
-\section{Flexible Image Transport System} % (fold)
-\label{sec:flexible_image_transport_system}
-
-
-The
-Flexible Image Transport System (FITS) is an open standard defining a digital file format useful for storage, transmission and processing of scientific and other images. FITS is the most commonly used digital file format in astronomy. Unlike many image formats, FITS is designed specifically for scientific data and hence includes many provisions for describing photometric and spatial calibration information, together with image origin metadata. The FITS format was first standardized in 1981; it has evolved gradually since then, and the most recent version (3.0) was standardized in 2008. 
-  
-FITS is also often used to store non-image data, such as spectra, photon lists, data cubes, or even structured data such as multi-table databases. A FITS file may contain several extensions, and each of these may contain a data object. For example, it
-could be % is
-possible to store
-X-ray % x-ray
-and infrared exposures in the same file. 
- 
-FITS support is available in a variety of programming languages that are used for scientific work, including C, C++, C\#, Fortran, IDL, Java, Mathematica, MatLab, Perl, PDL, or Python. 
- 
-Image processing programs such as GIMP can generally read simple FITS images, but cannot usually interpret complex tables and databases.
-
-\subsection{FITS Data Format}
-
-Each FITS file consists of one or more headers containing ASCII card images that carry keyword/value pairs, interleaved between data blocks. The keyword/value pairs provide information such as size, origin, coordinates, binary data format, free-form comments, history of the data, and anything else the creator desires. In more technical terms, a FITS file is comprised of parts called Header Data Units (HDU), being the first HDU called primary HDU o primary array. This array can contain a 1-999 dimensional array. A typical primary array could contain a 1D spectrum, 2D image or 3D data cube. Any number of HDU can follow the main array, and are called FITS extensions. Currently, three different extensions can be defined:
-
-\begin{itemize}
-\item Image extension, a 0-9999 dimensional array of pixels, which begins with \texttt{XTENSION = `IMAGE'}
-\item ASCII table extension which stores tabular data in ASCII formats. They begin with \texttt{XTENSION = `TABLE'}
-\item Binary table extension stores tabular data in binary representation. Headers start with \texttt{XTENSION = `BINTABLE'}
-\end{itemize}
-
-Besides, there are additional type of HDU called random groups, but only used for radio interferometry.
-      
-\begin{figure}[tb]
-\centering
-\includegraphics[width=11cm,height=8cm]{images/fits_header.png}
-\caption{Viewing a FITS header in Aladin}
-\end{figure}
-
-% section flexible_image_transport_system (end)
 
 \section{OpenCADC} % (fold)
 \label{sec:opencadc}
