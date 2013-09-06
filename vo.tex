@@ -120,7 +120,13 @@ OpenCADC (Canadian Astronomy Data Center) is a Virtual Observatory, used in ALMA
 
 \subsection{Universal Worker Service}
 
-The Universal Worker Service (UWS) pattern defines how to build asynchronous (the client does not wait for each request to be fulfilled; if the client disconnects from the service then the activity is not aborted), stateful (the service remembers results of a previous activity), job-oriented (the rules for setting and arranging the parameters for a job is called Job Description Language- JDL) services.
+The Universal Worker Service~\cite{2010uws..irec.....H} (UWS) 
+standard defines a work
+pattern 
+that specifies
+how to build asynchronous (as the client does not wait for each request to be fulfilled; even if the client disconnects from the service, activity is not aborted), stateful (the service remembers results of a previous activity), job-oriented services.
+
+Job specification rules following the UWS pattern are written in the Job Description Language (JDL).
 
 \begin{figure}[tb]
 \centering
