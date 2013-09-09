@@ -1,5 +1,5 @@
 \documentclass[serif,12pt]{beamer}
-\usetheme{CambridgeUS}
+\usetheme{Antibes}
 %\usecolortheme{whale}
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
@@ -64,7 +64,7 @@ Realizar un estudio sobre la problemática de \emph{Big Data} en astronomía y p
 \begin{itemize}
 \item A raíz del curso \emph{Archivos Astronómicos: El Observartorio Virtual} (MTAF):
   \begin{itemize}
-  \item Gestión de grandes cantidades de datos
+  \item Problemas en la gestión de grandes cantidades de datos
   \item Inadecuación de:
     \begin{itemize}
     \item DBMS
@@ -100,7 +100,7 @@ Realizar un estudio sobre la problemática de \emph{Big Data} en astronomía y p
 
 \begin{figure}
 \centering
-\includegraphics[width=3.5in]{images/data_rates.png} 
+\includegraphics[width=0.7\textwidth, height=0.7\textheight]{images/data_rates.png} 
 \label{fig:data_rates}
 \end{figure}
 
@@ -130,7 +130,10 @@ Realizar un estudio sobre la problemática de \emph{Big Data} en astronomía y p
 \begin{frame}
 \frametitle{NoSQL}
 
-NoSQL = \emph{Not Only SQL}
+\begin{center}
+NoSQL = \emph{Not Only SQL} \newline
+\end{center}
+
 
 \begin{multicols}{2}
 
@@ -170,7 +173,17 @@ NoSQL = \emph{Not Only SQL}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{¿Qué es un documento?}
+\begin{frame}
+\frametitle{NoSQL: Documentos}
 
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth, height=0.8\textheight]{images/document_vs_tables.png} 
+\label{fig:data_rates}
+\end{figure}
+
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{MongoDB}
@@ -178,12 +191,14 @@ NoSQL = \emph{Not Only SQL}
 \frametitle{NoSQL: MongoDB}
 
 \begin{itemize}
+\item Orientada a documentos
 \item Código abierto
 \item Soporte completo para índices
 \item Fácil instalación y puesta en marcha
 \item Balanceo de carga
 \item Soporta MapReduce
 \item Conexión con Hadoop
+\item Tecnología del S. XXI para problemas del S. XXI
 \end{itemize}
 
 
