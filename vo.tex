@@ -99,9 +99,9 @@ A data model is a description of the objects represented by a computer system wi
 
 In 2011 IVOA proposed a new recommendation: Observation Data Model Core
 Components~\cite{2011arXiv1111.1758L} (ObsCore). ObsCore is a 
-generic data model for the metadata necessary to describe any astronomical observation. Pratically all of the ObsCore metadata (which is modelled as a single table with multiple columns) can be found in the FITS headers of reduced datasets.
+generic data model for the metadata necessary to describe any astronomical observation. Practically all of the ObsCore metadata (which is modelled as a single table with multiple columns) can be found in the FITS headers of reduced datasets.
 
-The ObsCore document was intended not just ato be a description of said data model, but as an interface specification which integrated the data modeling and data access aspects in a single service, called ObsTAP.
+The ObsCore document was intended not just to be a description of said data model, but as an interface specification which integrated the data modeling and data access aspects in a single service, called ObsTAP.
 In other words, ObsTAP is the combination of the TAP with the ObsCore data model.
 
 % subsection obstap (end)
@@ -137,13 +137,13 @@ OpenCADC\urlnote{https://code.google.com/p/opencadc/source/browse}
 is a software framework, developed by the
 Canadian Astronomy Data Center (CADC), and which implements a number of VO standards. It can be used either directly or as a library to implement VO services.
 
-OpenCADC is used for implementing the query capabilities of the ASA (see Fig.~\ref{fig:asa_implementation}). It is composed of several libraries, but the most important from the point of view of their interface are cadcUWS, which implements the UWS pattern, and cadcTAP, which implements de TAP web interface.
+OpenCADC is used for implementing the query capabilities of the ASA (see Fig.~\ref{fig:asa_implementation}). It is composed of several libraries, but the most important from the point of view of their interface are cadcUWS, which implements the UWS pattern, and cadcTAP, which implements the TAP web interface.
 
 \subsection{cadcUWS library} % (fold)
 \label{sub:cadcuws_library}
 
 We will briefly describe
-the structure of the code relating UWS in OpenCADC (the cadcUWS Library), the section of the code provides Job class and plugin architecture, servlet with UWS async and sync behaviour. These classes are illustrated in Fig.~\ref{fig:uwsjobs}, and listed below.
+the structure of the code relating UWS in OpenCADC (the cadcUWS Library), the section of the code provides Job class and plugin architecture, servlet with UWS async and sync behavior. These classes are illustrated in Fig.~\ref{fig:uwsjobs}, and listed below.
 
 \begin{figure}[tb]
 \centering
@@ -174,7 +174,7 @@ Data Definition Language\footnote{In RDBMS, the Data Definition Language is the 
 statements and is used by query parser to validate table and column usage.
 
 \begin{description}
-	\item[TapQuery Interface] It has a separate implementation for each \texttt{LANG} (e.g. \texttt{LANG=ADQL}) specified and processess the query to local SQL.
+	\item[TapQuery Interface] It has a separate implementation for each \texttt{LANG} (e.g. \texttt{LANG=ADQL}) specified and processes the query to local SQL.
 	\item[SqlQuery] When code states \texttt{LANG=SQL}, it implements TapQuery and fully navigates it (\texttt{FROM}, \texttt{WHERE} and \texttt{HAVING} clauses).
 	
 	\item[AdqlQuery] Same as before when \texttt{LANG=ADQL}.
