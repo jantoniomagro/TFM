@@ -3,7 +3,7 @@
 
 Modern relational databases have shown little efficiency in certain applications using intensive data, like indexing of a large number of documents, sites rendering with high traffic, and streaming sites.
 
-Typical RDBMS implementations are tuned either for small but frequent reads and writes or a large set of transactions that have few write accesses. On the other hand, NoSQL DB are optimized for read and bulk-ingest operations, and perform outstandingly where a relational DB would slow down. They are especially fast when large amounts of data have to be queried, and if we consider that speed is more important than consistency\footnote{Consistency is used here in the sense of having changes replicated to multiple nodes at the same time. RDBMS ensure that consistency, but that makes them less performat. Given that VO users do not know beforehand whether some datasets are available or not, speed in data retrieval and operations is more important than consistency (which will not be perceived unless for special circumstances).}.
+Typical RDBMS implementations are tuned either for small but frequent reads and writes or a large set of transactions that have few write accesses. On the other hand, NoSQL DB are optimized for read and bulk-ingest operations, and perform outstandingly where a relational DB would slow down. They are especially fast when large amounts of data have to be queried, and if we consider that speed is more important than consistency\footnote{Consistency is used here in the sense of having changes replicated to multiple nodes at the same time. RDBMS ensure that consistency, but that makes them less performant. Given that VO users do not know beforehand whether some datasets are available or not, speed in data retrieval and operations is more important than consistency (which will not be perceived unless for special circumstances).}.
 
 As mentioned in the chapter on the Virtual Observatory, the
 IVOA has a standard called Astronomical Data Query Language (ADQL) that users do not necessarily need to know, because
@@ -28,7 +28,7 @@ database used in comparing models and air quality, and the 50 TB of Facebook inb
 
 NoSQL architectures often provide limited consistency, such as events or transactional consistency restricted to only data items. Some systems, however, provide all guarantees offered by
 % ACID systems
-systems compliying with the Atomicity, Consistency, Isolation and Durability (ACID) criteria
+systems complying with the Atomicity, Consistency, Isolation and Durability (ACID) criteria
 by adding an intermediate layer.
 The ACID properties guarantee the reliable processing of database transactions, but they are not needed for system where the data are not subject to transactions, such as read-only systems.
 
@@ -149,7 +149,7 @@ RDBMS systems have been around for a long time. NoSQL evangelists will argue tha
 \item[Support] % \textbf{Support}
 
 Most NoSQL systems are open source projects, and although there are usually one or more firms offering support for each NoSQL database, these companies often are small start-ups.
-There are risks in chosing a NoSQL solution that is no longer supported in the future, but at the same time, if the community is large enough, NoSQL systems can maintain their deployability for longer time.
+There are risks in choosing a NoSQL solution that is no longer supported in the future, but at the same time, if the community is large enough, NoSQL systems can maintain their deployability for longer time.
 
 \item[Expertise] % \textbf{Expertise}
 
@@ -315,11 +315,11 @@ easy to install and to connect through drivers with several programming language
 \item It supports
 the
 MapReduce paradigm.
-\item It is possible to connect MongoDB with Hadoop (the \emph{de facto} big data processing and analytics platform \urlnote{http://hadoop.apache.org},
+\item It is possible to connect MongoDB with Hadoop (the \emph{de facto} big data processing and analytic platform \urlnote{http://hadoop.apache.org},
 allowing to to send MongoDB data into Hadoop MapReduce jobs, process the data and return it back to a MongoDB collection).
 \end{itemize}
 
-The following subsection provices a more detailed list of MongoDB features.
+The following subsection provides a more detailed list of MongoDB features.
 
 % subsection justification (end)
 
@@ -440,7 +440,7 @@ and returns a new set of key/value pairs
 The \emph{reduce} function then aggregates/merges all the intermediate data (builds an object catalog removing duplicates from the source list, for instance).
 % Many problems in astronomy naturally fall into this model because of the inherent parallelizability of many astronomical tasks.
 
-Problems in different domains can be parallelized via MapReduce, by a suitable definition of both the \emph{map} and \emph{reduce} functions. In particular, tasks whose only changes are the input values can be \emph{map}ped to the input arguments and output arguments, and the \emph{reduce} function can be a trivial sumation of null outputs from the \emph{map} functions, while the important result has been saved by the \emph{map}ped function (in a save-file, for instance).
+Problems in different domains can be parallelized via MapReduce, by a suitable definition of both the \emph{map} and \emph{reduce} functions. In particular, tasks whose only changes are the input values can be \emph{map}ped to the input arguments and output arguments, and the \emph{reduce} function can be a trivial summation of null outputs from the \emph{map} functions, while the important result has been saved by the \emph{map}ped function (in a save-file, for instance).
 
 
 Listing~\ref{lst:mapreducesample} shows how to define a MapReduce job in MongoDB.
@@ -769,7 +769,7 @@ The Java code that implements the OpenCADC interfaces needs to be rewritten to m
 	
 \end{itemize}
 
-We can see that the classes to be changed within the OpenCADC are a small subset. Notably, the classes dealing with the TAP endpoints, parsing of TAP queries, job management (UWS pattern), etcetera, remain untouched, and only the classes most directly involved with database interfacing need to be changed. That is partly thanks to the architecture of the OpenCADC, where classes are assembled through dependency injection, and responsibilities are clearly delimitated by the interfaces.
+We can see that the classes to be changed within the OpenCADC are a small subset. Notably, the classes dealing with the TAP endpoints, parsing of TAP queries, job management (UWS pattern), et cetera, remain untouched, and only the classes most directly involved with database interfacing need to be changed. That is partly thanks to the architecture of the OpenCADC, where classes are assembled through dependency injection, and responsibilities are clearly delimitated by the interfaces.
 
 % paragraph adapting_the_existing_java_code (end)
 
