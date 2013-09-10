@@ -14,7 +14,7 @@
 
 \begin{document}
 
-\title[NoSQL in VO to support Big Data]{Integrating NoSQL into VO to support Big Data Challenges}  
+\title[Integrating NoSQL in VO - Big Data challenges]{Integrating NoSQL into VO to support Big Data Challenges}  
 \author[José Antonio Magro Cortés]{José Antonio Magro Cortés}
 \institute[UGR]{TFM - Máster en Métodos y Técnicas Avanzadas en Física}
 \date[Septiembre 2013]
@@ -66,12 +66,12 @@ Realizar un estudio sobre la problemática de \emph{Big Data} en astronomía y p
 \begin{itemize}
 \item A raíz del curso \emph{Archivos Astronómicos: El Observartorio Virtual} (MTAF):
   \begin{itemize}
-  \item Problemas en la gestión de grandes cantidades de datos
+  \item Problemas en la gestión de grandes volúmenes de datos.
   \item Inadecuación de:
     \begin{itemize}
-    \item DBMS
-    \item Formatos
-    \item Tecnologías
+    \item DBMS.
+    \item Formatos.
+    \item Tecnologías.
     \end{itemize}
   \end{itemize}
 \end{itemize}
@@ -95,10 +95,10 @@ Realizar un estudio sobre la problemática de \emph{Big Data} en astronomía y p
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % dia 6 - problema
-\subsection{Problemas}
+\subsection{Problemas (I)}
 
 \begin{frame}
-\frametitle{Problemas}
+\frametitle{Problemas (I)}
 
 \begin{figure}
 \centering
@@ -109,20 +109,52 @@ Realizar un estudio sobre la problemática de \emph{Big Data} en astronomía y p
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% dia 6 - problema
+\subsection{Problemas (II)}
+
+\begin{frame}
+\frametitle{Problemas (II)}
+
+\begin{itemize}
+\item ALMA: 200 TB/año en el ALMA Archive.
+\item SKA: \emph{ultimate Big Data challenge}, 10-500 TB/s.
+\item MWA: 3 PB/año.
+\item LSST: 30 TB/día.
+\end{itemize}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% dia 6 - problema
+\subsection{Problemas (III)}
+
+\begin{frame}
+\frametitle{Problemas (III)}
+
+Bases de datos relacionales:\newline
+\begin{itemize}
+\item Ineficientes para el procesamiento distribuido.
+\item Limitaciones en la velocidad de las consultas.
+\item Falta de escalabilidad.
+\end{itemize}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % dia 7 - VO
-\section{Observatorio Virtual}
-\begin{frame}
-\frametitle{Observatorio Virtual}
-
-\begin{itemize}
-\item FITS
-\item TAP
-\item OpenCADC
-\end{itemize}
-
-\end{frame}
+% \section{Observatorio Virtual}
+% \begin{frame}
+% \frametitle{Observatorio Virtual}
+% 
+% \begin{itemize}
+% \item FITS
+% \item TAP
+% \item OpenCADC
+% \end{itemize}
+% 
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -211,13 +243,36 @@ Tipos: orientadas a \textcolor{red}{documentos}, grafos, objetos, tabulares, etc
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{NoSQL en el VO}
+
+
+\subsection{Problemas en el VO}
 \begin{frame}
-\frametitle{NoSQL en el VO}
+\frametitle{Problemas en el VO}
 
 \begin{itemize}
-\item Almacén FITS
-\item MapReduce para registros
-\item Conexión OpenCADC y NoSQL para ALMA
+\item FITS
+  \begin{itemize}
+    \item Almacenamiento en archivos.
+    \item Varias convenciones: IDI, SD, MB, OI.
+    \item Múltiples combinaciones clave-valor.
+  \end{itemize}
+\item TAP: sólo lenguajes relacionales (ADQL/PQL).
+\item OpenCADC: diseñado para RDBMS.
+\end{itemize}
+
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Solución: NoSQL en el VO}
+\begin{frame}
+\frametitle{Solución: NoSQL en el VO}
+
+\begin{itemize}
+\item Almacén FITS en documentos MongoDB.
+\item MapReduce para grabar registros.
+\item Conexión OpenCADC y NoSQL para ALMA: Java y driver MongoDB.
 \end{itemize}
 
 
