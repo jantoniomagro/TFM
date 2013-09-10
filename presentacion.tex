@@ -1,6 +1,6 @@
 \documentclass[serif,12pt]{beamer}
-\usetheme{Antibes}
-%\usecolortheme{whale}
+\usetheme{Copenhagen}
+%\usecolortheme{dolphin}
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
 
@@ -15,8 +15,8 @@
 \begin{document}
 
 \title[NoSQL in VO to support Big Data]{Integrating NoSQL into VO to support Big Data Challenges}  
-\institute[UGR]{TFM - Máster en Métodos y Técnicas Avanzadas en Física}
 \author[José Antonio Magro Cortés]{José Antonio Magro Cortés}
+\institute[UGR]{TFM - Máster en Métodos y Técnicas Avanzadas en Física}
 \date[Septiembre 2013]
 
 
@@ -33,7 +33,9 @@
 % dia 2 - contenido
 \begin{frame}
 \frametitle{Contenido}
+\scriptsize
 \tableofcontents
+\normalsize
 \end{frame} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -128,11 +130,13 @@ Realizar un estudio sobre la problemática de \emph{Big Data} en astronomía y p
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Definición}
 \begin{frame}
-\frametitle{NoSQL}
+\frametitle{Definición}
 
 \begin{center}
-NoSQL = \emph{Not Only SQL} \newline
+NoSQL = \emph{Not Only SQL}
 \end{center}
+
+Tipos: orientadas a \textcolor{red}{documentos}, grafos, objetos, tabulares, etc.\newline
 
 
 \begin{multicols}{2}
@@ -156,31 +160,14 @@ NoSQL = \emph{Not Only SQL} \newline
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Casos de éxito}
-\begin{frame}
-\frametitle{NoSQL: Casos de éxito}
-
-\begin{itemize}
-\item CMS en el LHC
-\item ATLAS Workload Management System
-\item Medida de niveles de radiación en Seattle
-\end{itemize}
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \subsection{¿Qué es un documento?}
 \begin{frame}
-\frametitle{NoSQL: Documentos}
+\frametitle{¿Qué es un documento?}
 
 \begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth, height=0.8\textheight]{images/document_vs_tables.png} 
-\label{fig:data_rates}
+\includegraphics[width=0.6\textwidth, height=0.6\textheight]{images/document_vs_tables.png} 
+\label{fig:document_vs_tables}
 \end{figure}
 
 \end{frame}
@@ -188,7 +175,7 @@ NoSQL = \emph{Not Only SQL} \newline
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{MongoDB}
 \begin{frame}
-\frametitle{NoSQL: MongoDB}
+\frametitle{MongoDB}
 
 \begin{itemize}
 \item Orientada a documentos
@@ -198,12 +185,29 @@ NoSQL = \emph{Not Only SQL} \newline
 \item Balanceo de carga
 \item Soporta MapReduce
 \item Conexión con Hadoop
-\item Tecnología del S. XXI para problemas del S. XXI
+\item Tecnología actual para problemas actuales
+\end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Casos de éxito}
+\begin{frame}
+\frametitle{Casos de éxito}
+
+\begin{itemize}
+\item CMS en el LHC: 10 PB de datos cada año.
+\item ATLAS Workload Management System.
+\item Medida de niveles de radiación en Seattle.
 \end{itemize}
 
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{NoSQL en el VO}
