@@ -66,7 +66,7 @@ Realizar un estudio sobre la problemática de \emph{Big Data} en astronomía y p
 \begin{itemize}
 \item A raíz del curso \emph{Archivos Astronómicos: El Observartorio Virtual} (MTAF):
   \begin{itemize}
-  \item Problemas en la gestión de grandes volúmenes de datos.
+  \item Problemas en la gestión de grandes volúmenes de datos en el VO.
   \item Inadecuación de:
     \begin{itemize}
     \item DBMS.
@@ -89,8 +89,17 @@ Realizar un estudio sobre la problemática de \emph{Big Data} en astronomía y p
 \begin{frame}
 \frametitle{Definición}
 
+\textbf{big data} \emph{noun}: \footnote{10gen Big Data Whitepaper}
+
 \begin{shaded}
-\emph{Conjuntos de datos tan grandes y complejos que dificultan su procesamiento mediante los sistemas actuales y tradicionales de gestión de bases de datos. Los problemas principales son la captura, clasificación, sistematización, almacenamiento, búsqueda, compartición, transferencia, análisis y visualización.}
+%\emph{Conjuntos de datos tan grandes y complejos que dificultan su procesamiento mediante los sistemas actuales y tradicionales de gestión de bases de datos. Los problemas principales son la captura, clasificación, sistematización, almacenamiento, búsqueda, compartición, transferencia, análisis y visualización.}
+
+referring to technologies and initiatives that
+involve data that is too diverse, fast-changing or
+massive for conventional technologies, skills and
+infrastructure to address efficiently.
+
+
 \end{shaded}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -141,21 +150,23 @@ Bases de datos relacionales:\newline
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% dia 6 - problema
+\subsection{Solución}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% dia 7 - VO
-% \section{Observatorio Virtual}
-% \begin{frame}
-% \frametitle{Observatorio Virtual}
-% 
-% \begin{itemize}
-% \item FITS
-% \item TAP
-% \item OpenCADC
-% \end{itemize}
-% 
-% \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Solución}
+
+MongoDB: Base de datos NoSQL orientada a documentos.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.3\textwidth, height=0.3\textheight]{images/logo_mongodb.png} 
+\label{fig:mongo_logo}
+\end{figure}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 
 \section{NoSQL}
@@ -168,7 +179,7 @@ Bases de datos relacionales:\newline
 NoSQL = \emph{Not Only SQL}
 \end{center}
 
-Tipos: orientadas a \textcolor{red}{documentos}, grafos, objetos, tabulares, etc.\newline
+Tipos de BD NoSQL: orientadas a \textcolor{red}{documentos}, grafos, objetos, tabulares, etc.\newline
 
 
 \begin{multicols}{2}
