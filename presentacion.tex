@@ -11,7 +11,6 @@
 \usepackage{wrapfig}\definecolor{shadecolor}{RGB}{224,238,238}
 
 
-
 \begin{document}
 
 \title[Integrating NoSQL in VO - Big Data challenges]{Integrating NoSQL into VO to support Big Data Challenges}  
@@ -149,7 +148,12 @@ Bases de datos relacionales:\newline
 
 
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{NoSQL}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % dia 6 - problema
 \subsection{Solución}
 
@@ -158,22 +162,36 @@ Bases de datos relacionales:\newline
 
 MongoDB: Base de datos NoSQL orientada a documentos.
 
+
 \begin{figure}
 \centering
-\includegraphics[width=0.3\textwidth, height=0.3\textheight]{images/logo_mongodb.png} 
-\label{fig:mongo_logo}
+\includegraphics[width=0.7\textwidth, height=0.7\textheight]{images/document-info.png} 
+\label{fig:document}
 \end{figure}
+
+% \begin{figure}
+% \centering
+% \includegraphics[width=0.3\textwidth, height=0.3\textheight]{images/logo_mongodb.png} 
+% \label{fig:mongo_logo}
+% \end{figure}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-\section{NoSQL}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Definición}
+\subsection{¿Qué es un documento?}
 \begin{frame}
-\frametitle{Definición}
+\frametitle{¿Qué es un documento?}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.6\textwidth, height=0.6\textheight]{images/document_vs_tables.png} 
+\label{fig:document_vs_tables}
+\end{figure}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{¿Qué es NoSQL?}
+\begin{frame}
+\frametitle{¿Qué es NoSQL?}
 
 \begin{center}
 NoSQL = \emph{Not Only SQL}
@@ -203,17 +221,7 @@ Tipos de BD NoSQL: orientadas a \textcolor{red}{documentos}, grafos, objetos, ta
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{¿Qué es un documento?}
-\begin{frame}
-\frametitle{¿Qué es un documento?}
 
-\begin{figure}
-\centering
-\includegraphics[width=0.6\textwidth, height=0.6\textheight]{images/document_vs_tables.png} 
-\label{fig:document_vs_tables}
-\end{figure}
-
-\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{MongoDB}
@@ -221,7 +229,6 @@ Tipos de BD NoSQL: orientadas a \textcolor{red}{documentos}, grafos, objetos, ta
 \frametitle{MongoDB}
 
 \begin{itemize}
-\item Orientada a documentos
 \item Drivers para varios lenguajes
 \item Soporte completo para índices
 \item Fácil instalación y puesta en marcha
@@ -315,5 +322,18 @@ Tipos de BD NoSQL: orientadas a \textcolor{red}{documentos}, grafos, objetos, ta
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\section{}
+\begin{frame}
+\frametitle{}
+\huge
+\begin{center}
+FIN
+\end{center}
+\end{frame}
+
+
 
 \end{document}
